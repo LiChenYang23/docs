@@ -2500,10 +2500,12 @@ URL api/v1/contract_contract_info
 **示例**
 
 - GET 
+
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_contract_info"
 ```
 >Response
+
 ```json
     {
       "status": "ok",
@@ -2547,10 +2549,12 @@ URL  api/v1/contract_index
 
 **示例**
 - GET  
+
 ```shell
 crul "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 ```
 > Response
+
 ```json
     {
       "status":"ok",
@@ -2595,10 +2599,12 @@ URL api/v1/contract_price_limit
 
 **示例**
 - GET  
+
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=this_week"
 ```
 > Response
+
 ```json
     {
       "status":"ok",
@@ -2642,10 +2648,12 @@ URL api/v1/contract_open_interest
 
 **示例**
 - GET 
+
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_type=this_week"
 ```
 > Response
+
 ```json
     {
       "status":"ok",
@@ -2683,10 +2691,12 @@ URL api/v1/contract_delivery_price
 
 **示例**
 - GET  
+
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"
 ```
 > Response
+
 ```json
     {
       "status":"ok",
@@ -2735,11 +2745,14 @@ URL /market/depth
     }
 ```
 **示例**
+
 - GET 
+
 ```shell
 curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 ```
 > Response
+
 ```json
     {
       "ch":"market.BTC_CQ.depth.step5",
@@ -2785,6 +2798,7 @@ URL /market/history/kline
   |ts|  true|number|    响应生成时间点，单位：毫秒|| 
 
 **Data说明：**
+
 ```
 "data": [
   {
@@ -2802,10 +2816,12 @@ URL /market/history/kline
 
 **示例**
 - GET  
+
 ```shell
 curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_CQ"
 ```
 > Response
+
 ```json
     {
       "ch": "market.BTC_CQ.kline.1min",
@@ -2856,6 +2872,7 @@ URL /market/detail/merged
   |ts|  true|number|    响应生成时间点，单位：毫秒|| 
 
 **tick说明:**
+
 ```
     "tick": {
       "id": K线id,
@@ -2873,10 +2890,12 @@ URL /market/detail/merged
 
 **示例**
 - GET  
+
 ```shell
 curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 ```
 > Response
+
 ```json
     {
       "ch": "market.BTC_CQ.detail.merged",
@@ -2937,10 +2956,12 @@ URL /market/trade
 
 **示例**
 - GET  
+
 ```shell
 curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 ```
 > Response
+
 ```json
     {
       "ch": "market.BTC_CQ.trade.detail",
@@ -2983,6 +3004,7 @@ URL /market/history/trade
   |ts|  true|number|    响应生成时间点，单位：毫秒||
 
 **data说明：**
+
 ```
     "data": {
       "id": 消息id,
@@ -3001,10 +3023,12 @@ URL /market/history/trade
 
 **示例**
 - GET  
+
 ```shell
 curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 ```
 > Response
+
 ```json
     {
       "ch": "market.BTC_CQ.trade.detail",
@@ -3062,8 +3086,11 @@ URL  api/v1/contract_account_info
   |ts|    number|    long|  响应生成时间点，单位：毫秒|| 
 
 **示例**
-- POST  `"https://api.hbdm.com/api/v1/contract_account_info"    `
+
+- POST  `"https://api.hbdm.com/api/v1/contract_account_info"`
+
 > Response
+
 ```json
     {
       "status": "ok",
@@ -3132,9 +3159,11 @@ URL api/v1/contract_position_info
   |ts|    true|long|  响应生成时间点，单位：毫秒   ||
 
 **示例**
+
 - POST  `https://api.hbdm.com/api/v1/contract_position_info`
 
 > Response
+
 ```json
     {
       "status": "ok",
@@ -3195,8 +3224,11 @@ URL api/v1/contract_order
   |ts|  true|long|  响应生成时间点，单位：毫秒||   
 
 **示例**
+
 - POST  `https://api.hbdm.com/api/v1/contract_order`
+
 > Response
+
 ```json
 
     {
@@ -3249,9 +3281,13 @@ URL api/v1/contract_batchorder
   |ts|  true|long|  响应生成时间点，单位：毫秒|
 
 **示例**
+
 - POST  
+
 `https://api.hbdm.com/api/v1/contract_batchorder`
+
 > Response
+
 ```json
     {
       "status": "ok",
@@ -3314,8 +3350,11 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
   |ts|true|long|  响应生成时间点，单位：毫秒| |
 
 **示例**
+
 - POST `https://api.hbdm.com/api/v1/contract_cancel`
+
 > Response
+
 ```json
 
     {
@@ -3363,7 +3402,9 @@ URL api/v1/contract_cancelall
   |ts| true|long|  响应生成时间点，单位：毫秒  || 
 
 **示例**
-    POST  https://api.hbdm.com.com/api/v1/contract_cancelall
+
+- POST  https://api.hbdm.com.com/api/v1/contract_cancelall
+    
 > Response
     
 ```json
@@ -3435,8 +3476,11 @@ URL api/v1/contract_order_info
   |ts|    true|long|  时间戳||   
 
 **示例**
+
 - POST  `https://api.hbdm.com.com/api/v1/contract_order_info`
+
 > Response
+
 ```json
     {
       "status": "ok",
@@ -3541,8 +3585,11 @@ URL api/v1/contract_order_detail
   |ts|  true|long|  时间戳||
 
 **示例**
+
 - POST  `https://api.hbdm.com/api/v1/contract_order_detail`
+
 > Response
+
 ```json
     {
       "status": "ok",
@@ -3580,7 +3627,9 @@ URL api/v1/contract_order_detail
       "ts": 1490759594752
     }
 ```
+
 **错误**
+
 ```json
     {
      "status":"error",
@@ -3636,7 +3685,9 @@ URL  /v1/contract_openorders
 
 **示例**
 - POST `https://www.hbdm.com/api/v1/contract_openorders`
+
 > Response
+
 ```json
     {
       "status": "ok",
@@ -3725,7 +3776,9 @@ URL api/v1/contract_hisorders
 
 **示例**
 - POST `https://api.hbdm.com/api/v1/contract_hisorders`
+
 > Response
+
 ```json
     {
       "status": "ok",
