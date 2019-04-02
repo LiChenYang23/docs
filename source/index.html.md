@@ -2408,28 +2408,28 @@ amount| true | double |- | 数量 |
 
 ## 接口列表
 
- |**接口类型**|    **接口数据类型**   |**请求方法**     |                                                                                                                                                   **类型**  | **描述**                    | **需要验签**|
-  |----------- |------------------ |------------------------------------------------------------------------------------------------------------------------------------------------------------------- |---------- |---------------------------- |--------------|
-  |Restful     |基础信息接口           |api/v1/contract_contract_info |                                                                                                                     GET        |获取合约信息                 |否|
-  |Restful     |基础信息接口          |api/v1/contract_index |                                                                                                                             GET        |获取合约指数信息             |否|
-  |Restful     |基础信息接口           |api /v1/contract_price_limit|                                                                                                                     GET        |获取合约最高限价和最低限价   |否|
-  |Restful     |基础信息接口           | api/v1/contract_open_interest|                                                                                                                      GET        |获取当前可用合约总持仓量     |否|
-  |Restful     |基础信息接口           | api/v1/contract_delivery_price|                                                                                                                      GET        |获取预估交割价    |否|
-  |Restful     |市场行情接口           | /market/depth |                                                                                                                                    GET        |获取行情深度数据            |否|
-  |Restful     |市场行情接口          |/market/history/kline |                                                                                                                            GET        |获取K线数据                  |否|
-  |Restful     |市场行情接口          | /market/detail/merged |                                                                                                                         GET        |获取聚合行情                 |否|
-  |Restful     |市场行情接口           | /market/trade |                                                                                                                                    GET        |获取市场最近成交记录         |否|
-  |Restful     |市场行情接口           |/market/history/trade |                                                                                                                             GET        |批量获取最近的交易记录       |否|
-  |Restful     |资产接口           | api/v1/contract_account_info |                                                                                                                   POST       |获取用户账户信息             |是|
-  |Restful     |资产接口           |api/v1/contract_position_info |                                                                                                                    POST       |获取用户持仓信息             |是|
-  |Restful     |交易接口           |api/v1/contract_order |                                                                                                                            POST       |合约下单                     |是|
-  |Restful     |交易接口           |api/v1/contract_batchorder |                                                                                                                        POST       |合约批量下单                 |是|
-  |Restful     |交易接口           |api/v1/contract_cancel |                                                                                                                            POST       |撤销订单                     |是|
-  |Restful     |交易接口           |api/v1/contract_cancelall |                                                                                                                         POST       |全部撤单                     |是|
-  |Restful     |交易接口          |api/v1/contract_order_info |                                                                                                                       POST       |获取合约订单信息             |是|
-  |Restful     |交易接口           | api/v1/contract_order_detail |                                                                                                                   POST       |获取订单明细信息             |是|
-  |Restful     |交易接口           | api/v1/contract_openorders |                                                                                                                       POST       |获取合约当前未成交委托       |是|
-  |Restful     |交易接口           |api/v1/contract_hisorders |                                                                                                                        POST       |获取合约历史委托             |是|
+  |  接口类型  |    接口数据类型   |   请求方法   |                     类型  | 描述                  |  需要验签  |
+  |  ----------- |------------------ |------------------------------------ |---------- |---------------------------- |--------------|
+  |  Restful     |  基础信息接口           |  api/v1/contract_contract_info |           GET        |  获取合约信息                  |  否  |
+  |  Restful     |  基础信息接口          |  api/v1/contract_index |                GET        |  获取合约指数信息             |  否  |
+  |  Restful     |  基础信息接口           |  api /v1/contract_price_limit  |                  GET        |  获取合约最高限价和最低限价   |  否   |
+  |  Restful     |  基础信息接口           | api/v1/contract_open_interest  |                   GET        |  获取当前可用合约总持仓量     |  否  |
+  |  Restful     |  基础信息接口           | api/v1/contract_delivery_price  |                   GET        |  获取预估交割价    |  否  |
+  |  Restful     |  市场行情接口           | /market/depth |                                 GET        |  获取行情深度数据            |  否  |
+  |  Restful     |  市场行情接口          |  /market/history/kline |                         GET        |  获取K线数据                  |  否  |
+  |  Restful     |  市场行情接口          | /market/detail/merged |                      GET        |  获取聚合行情                 |  否  |
+  |  Restful     |  市场行情接口           | /market/trade |                                 GET        |  获取市场最近成交记录         |  否  |
+  |  Restful     |  市场行情接口           |  /market/history/trade |                          GET        |  批量获取最近的交易记录       |  否  |
+  |  Restful     |  资产接口           | api/v1/contract_account_info |                POST       |  获取用户账户信息             |  是  |
+  |  Restful     |  资产接口           |  api/v1/contract_position_info |                 POST       |  获取用户持仓信息                |  是  |
+  |  Restful     |  交易接口           |  api/v1/contract_order |                         POST       |  合约下单                       |  是  |
+  |  Restful     |  交易接口           |  api/v1/contract_batchorder |                     POST       |  合约批量下单                  |  是  |
+  |  Restful     |  交易接口           |  api/v1/contract_cancel |                         POST       |  撤销订单                      |  是  |
+  |  Restful     |  交易接口           |  api/v1/contract_cancelall |                      POST       |  全部撤单                      |  是  |
+  |  Restful     |  交易接口          |  api/v1/contract_order_info |                    POST       |  获取合约订单信息              |  是  |
+  |  Restful     |  交易接口           | api/v1/contract_order_detail |                POST       |  获取订单明细信息             |  是  |
+  |  Restful     |  交易接口           | api/v1/contract_openorders |                    POST       |  获取合约当前未成交委托       |  是  |
+  |  Restful     |  交易接口           |  api/v1/contract_hisorders |                            POST       |  获取合约历史委托             |  是 |
 ## 访问地址
 | 访问地址 | 适用站点 | 适用功能 | 适用交易对 |
 |----|----|----|----|
