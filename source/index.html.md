@@ -2470,11 +2470,11 @@ URL api/v1/contract_contract_info
 
 **请求参数**
 
-|**参数名称**     |**参数类型**   |**必填**   |**描述**|
-|---------------- |-------------- |---------- |------------------------------------------------------------|
-  |symbol           |string         |false|      "BTC","ETH"...|
-  |contract_type   |string         |false|      合约类型: （this_week:当周 next_week:下周 quarter:季度）|
-  |contract_code   |string         |false|      BTC180914|
+参数名称     |  参数类型   |  必填   |  描述  |
+---------------- |  -------------- |  ---------- |  ------------------------------------------------------------|
+symbol           |  string         |  false|      "BTC","ETH"...  |
+contract_type   |  string         |  false|      合约类型: （this_week:当周 next_week:下周 quarter:季度） |
+contract_code   |  string         |  false|      BTC180914  |
 
 **备注**： 如果不填，默认查询所有所有合约信息;
 如果contract_code填了值，那就按照contract_code去查询;
@@ -2482,20 +2482,20 @@ URL api/v1/contract_contract_info
 
 **返回参数**
 
-  |**参数名称**               |**是否必须**   |**类型**   |**描述**                          |**取值范围**|
-  |-------------------------- |-------------- |---------- |--------------------------------- |--------------------------------------------------------------------------------------------------------------------|
-  |status                     |true           |string     |请求处理结果                      |"ok" , "error"|
-  |\<list\>(属性名称: data)    |                |           |                               | |
-  |symbol                     |true           |string     |品种代码                          |"BTC","ETH"...|
-  |contract_code             |true           |string     |合约代码                          |"BTC180914" ...|
-  |contract_type             |true           |string     |合约类型                          |当周:"this_week", 次周:"next_week", 季度:"quarter"|
-  |contract_size             |true           |decimal    |合约面值，即1张合约对应多少美元   |10, 100...|
-  |price_tick                |true           |decimal    |合约价格最小变动精度             | 0.001, 0.01...|
-  |delivery_date             |true           |string     |合约交割日期                     | 如"20180720"|
-  |create_date               |true           |string     |合约上市日期                      |如"20180706"|
-  |contract_status           |true           |int        |合约状态                          |合约状态: 0:已下市、1:上市、2:待上市、3:停牌，4:暂停上市中、5:结算中、6:交割中、7:结算完成、8:交割完成、9:暂停上市|
-  |\</list\>    |             |               |                     |        |                 
-  |ts                         |true           |long       |响应生成时间点，单位：毫秒  |      
+参数名称              |  是否必须   |  类型   |  描述                          |  取值范围|
+-------------------------- |  -------------- |  ---------- |  --------------------------------- |  -----------------------------------------------------------------------|
+status                     |  true           |  string     |  请求处理结果                      |  "ok" , "error"  |
+\<list\>(属性名称: data)    |                  |           |                               | |
+symbol                     |  true           |  string     |  品种代码                          |  "BTC","ETH"...  |
+contract_code             |  true           |  string     |  合约代码                          |  "BTC180914" ...  |
+contract_type             |  true           |  string     |  合约类型                          |  当周:"this_week", 次周:"next_week", 季度:"quarter"  |
+contract_size             |  true           |  decimal    |  合约面值，即1张合约对应多少美元   |  10, 100...  |
+price_tick                |  true           |  decimal    |  合约价格最小变动精度             |  0.001, 0.01...  |
+delivery_date             |  true           |  string     |  合约交割日期                     |  如"20180720"  |
+create_date               |  true           |  string     |  合约上市日期                      |  如"20180706"  |
+contract_status           |  true           |  int        |  合约状态                          |  合约状态: 0:已下市、1:上市、2:待上市、3:停牌，4:暂停上市中、5:结算中、6:交割中、7:结算完成、8:交割完成、9:暂停上市  |
+\</list\>    |             |               |                     |        |                 
+ts                         |  true           |  long       |  响应生成时间点，单位：毫秒  |      
 
 **示例**
 
@@ -2531,21 +2531,21 @@ URL  api/v1/contract_index
 
 **请求参数**
 
-  |**参数名称**   |**参数类型**   |**必填**   |**描述**|
-  |-------------- |-------------- |---------- |----------------|
-  |symbol         |string         |true       |"BTC","ETH"...|
+参数名称   |  参数类型   | 必填   | 描述  |
+-------------- |  -------------- |  ---------- |  ----------------  |
+symbol         |  string         |  true       |  "BTC","ETH"...  |
 
 **返回参数**
 
-  |**参数名称**               |**是否必须**   |**类型**   |**描述**                     |**取值范围**|
-  |--------------------------| --------------| ----------| ---------------------------- |----------------|
-  |status                    | true           |string     |请求处理结果                 |"ok" , "error"|
-  |\<list\>(属性名称: data)    |                |           |                           ||
-  |symbol                     |true           |string     |指数代码                    | "BTC","ETH"...|
-  |index_price               |true           |decimal    |指数价格   |                  |
-  |index_ts                |true           |long   |响应生成时间点，单位：毫秒   |                  |
-  |\</list\>               |                |           |                           ||                                                            
-  |ts                         |true           |long       |时间戳，单位：毫秒   |
+参数名称               | 是否必须   | 类型   |  描述             | 取值范围 |
+--------------------------  | --------------| ----------  | ---------------------------- |  ----------------  |
+status                    | true           |  string     |  请求处理结果                 |  "ok" , "error"  |
+\<list\>(属性名称: data)    |                |           |                           |  |
+symbol                     |  true           |  string     |  指数代码                    | "BTC","ETH"...  |
+index_price               |  true           |  decimal    |  指数价格   |                  |
+index_ts                |  true           |  long   |  响应生成时间点，单位：毫秒   |                  |
+\</list\>               |                |           |                           |  |                                                            
+ts                         |  true           |  long       |  时间戳，单位：毫秒   |   |
 
 **示例**
 - GET  
@@ -2553,6 +2553,7 @@ URL  api/v1/contract_index
 ```shell
 crul "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 ```
+
 > Response
 
 ```json
@@ -2575,29 +2576,30 @@ URL api/v1/contract_price_limit
 
 **请求参数**
 
-  |**参数名称**     |**参数类型**   |**必填**   |**描述**|
-  |----------------| --------------| ---------- |-----------------------------------------------------------------|
-  |symbol           |string         |false      |"BTC","ETH"...|
-  |contract_type   |string         |false      |合约类型 (当周:"this_week", 次周:"next_week", 季度:"quarter")|
-  |contract_code   |string         |false      |BTC180914 ...|
+参数名称     | 参数类型    | 必填    | 描述 |
+----------------  | --------------  | ---------- |  -----------------------------------------------------------------  |
+symbol           |  string         |  false      |  "BTC","ETH"...  |
+contract_type   |  string         |  false      |  合约类型 (当周:"this_week", 次周:"next_week", 季度:"quarter")  |
+contract_code   |  string         |  false      |  BTC180914 ...  |
 
 **备注**：如果contract_code填了值，那就按照contract_code去查询，如contract_code没有填值，则按照symbol+contract_type去查询，两个查询条件必填一个
 
 **返回参数**
 
-  |**参数名称**               |**是否必须**   |**类型**   |**描述**                     |**取值范围**|
-  |-------------------------- |-------------- |---------- |---------------------------- |------------------------------------------------------|
-  status|true|string|请求处理结果|"ok" ,"error”|
-  \<list\>(属性名称: data)||||
-  symbol|true|string|品种代码|"BTC","ETH" ...
-  high_limit||true|decimal    最高买价|
-  low_limit|| true|decimal    最低卖价|
-  contract_code|  true|string|合约代码|如"BTC180914" ...
-  contract_type|  true|string|合约类型|当周:"this_week", 次周:"next_week", 季度:"quarter"
-  \<list\>||||
-  ts|    true|long|  响应生成时间点，单位：毫秒   
+参数名称              | 是否必须   | 类型    | 描述                      | 取值范围 |
+-------------------------- |-------------- |---------- |---------------------------- |------------------------------------------------------ |
+status  |  true  |  string  |  请求处理结果  |  "ok" ,"error"  |
+\<list\>(属性名称: data)  |    |   |    |    |
+symbol  |  true  |  string  |  品种代码  |  "BTC","ETH" ...                                    |
+high_limit  |  true  |  decimal  |  最高买价|                                                          |
+low_limit  | true  |  decimal   |  最低卖价|                                                          |
+contract_code  |  true  |  string  |  合约代码  |  如"BTC180914" ...                                          |
+contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 季度:"quarter"              |
+\<list\>  |    |    |    |    |
+ts  |    true  |  long  |  响应生成时间点，单位：毫秒              |            |
 
 **示例**
+
 - GET  
 
 ```shell
@@ -2626,25 +2628,25 @@ URL api/v1/contract_open_interest
 
 **请求参数**
 
-  |**参数名称**|**参数类型**   |**必填**   |**描述**|
-  |---------------- |-------------- |---------- |-----------------------------------------------------------------|
- | symbol|string|    false| "BTC","ETH"...|
-  |contract_type|   string|    false| 合约类型 (当周:"this_week", 次周:"next_week", 季度:"quarter")|
-  |contract_code|   string|    false| BTC180914|
+参数名称 | 参数类型    | 必填    | 描述 |
+---------------- |  -------------- |  ---------- |  -----------------------------------------------------------------  |
+symbol  |  string  |    false  | "BTC","ETH"...  |
+contract_type  |   string  |    false  | 合约类型 (当周:"this_week", 次周:"next_week", 季度:"quarter")  |
+contract_code  |   string  |    false  | BTC180914  |
 
 **返回参数**
 
-  |**参数名称**|    **是否必须**   |**类型**   |**描述**|**取值范围**|
- | -------------------------- |-------------- |---------- |----------------------------| ------------------------------------------------------|
-  |status|true|string|请求处理结果| "ok" , "error"|
-  |\<list\>(属性名称: data)||||
-  |symbol|true|string|品种代码|"BTC", "ETH" ...|
-  |contract_type|  true|string|合约类型|当周:"this_week", 次周:"next_week", 季度:"quarter"|
-  |volume|true|decimal    持仓量(张)||   
-  |amount|true|decimal    持仓量(币)||   
-  |contract_code|  true|string|合约代码|如"BTC180914" ...|
-  |\</list\>|||||
-  |ts|    true|long|  响应生成时间点，单位：毫秒   |
+参数名称 |     是否必须    | 类型    | 描述 | 取值范围 |
+-------------------------- |  -------------- |  ---------- |  ----------------------------  | ------------------------------------------------------  |
+status  |  true  |  string  |  请求处理结果| "ok" , "error"  |
+\<list\>(属性名称: data)  |    |    |   |    |
+symbol  |  true  |  string  |  品种代码  |  "BTC", "ETH" ...  |
+contract_type  |  true  |  string  |  合约类型|  当周:"this_week", 次周:"next_week", 季度:"quarter"  |
+volume  |  true  |  decimal  |  持仓量(张)|    |   
+amount  |  true  |  decimal  |  持仓量(币)|    |   
+contract_code  |  true  |  string  |  合约代码  |  如"BTC180914" ...  |
+\</list\>  |    |    |    |    |
+ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |
 
 **示例**
 - GET 
@@ -2674,20 +2676,20 @@ URL api/v1/contract_delivery_price
 
 **请求参数**
 
-  |**参数名称**|**参数类型**   |**必填**   |**描述**|
-  |---------------- |-------------- |---------- |-----------------------------------------------------------------|
- | symbol|string|    true| "BTC","ETH"...|
+参数名称 | 参数类型    | 必填    | 描述 |
+---------------- |  -------------- |  ---------- |  -----------------------------------------------------------------  |
+symbol  |  string  |    true  | "BTC","ETH"...  |
 
 
 **返回参数**
 
-  |**参数名称**|    **是否必须**   |**类型**   |**描述**|**取值范围**|
- | -------------------------- |-------------- |---------- |----------------------------| ------------------------------------------------------|
-  |status|true|string|请求处理结果| "ok" , "error"|
-  |\<list\>(属性名称: data)||||
-  |delivery_price|  true|string|预估交割价| |
-  |\</list\>|||||
-  |ts|    true|long|  响应生成时间点，单位：毫秒   |
+参数名称  |    是否必须   |  类型   |  描述  |  取值范围  |
+-------------------------- |  -------------- |  ---------- |  ----------------------------  | ------------------------------------------------------  |
+status  |  true  |  string  |  请求处理结果  | "ok" , "error"  |
+\<list\>(属性名称: data)  |    |    |    |       |
+delivery_price  |  true  |  string  |  预估交割价  |   |
+\</list\>  |    |    |    |    |
+ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |        |
 
 **示例**
 - GET  
@@ -2714,21 +2716,21 @@ URL /market/depth
 
 **请求参数**
 
-  |**参数名称**   |**参数类型**   |**必填**   |**描述**|
-  |-------------- |-------------- |---------- |--------------------------------------------------------------------------------|
-  |symbol|    string|    true|  如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约|
-  |type|string|    true|  (150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度|
+参数名称   |  参数类型     |  必填    |  描述  |
+-------------- |  -------------- |  ---------- |  -------------------------------------------------------------------------------- |
+symbol  |    string  |    true  |  如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约  |
+type  |  string  |    true  |  (150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度  |
 
 **返回参数**
 
-| **参数名称** | **是否必须** | **数据类型** | **描述** | **取值范围** |
-| -------- | -------- | -------- |--------------------------------------- | -------------- | 
-| ch | true |string | 数据所属的 channel，格式： market.period | | 
-| status | true |string | 请求处理结果 | "ok" , "error" | 
-| asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
-| bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
-| mrid| true| string | 订单ID | | 
-|ts | true | number | 响应生成时间点，单位：毫秒 | |
+参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
+-------- | -------- | -------- |  --------------------------------------- | -------------- | 
+ch | true |  string | 数据所属的 channel，格式： market.period | | 
+status | true |  string | 请求处理结果 | "ok" , "error" | 
+asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
+bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
+mrid  | true| string | 订单ID | | 
+ts | true | number | 响应生成时间点，单位：毫秒 | |
 
 **tick 说明:**
 
@@ -2744,6 +2746,7 @@ URL /market/depth
       "version": 版本
     }
 ```
+
 **示例**
 
 - GET 
@@ -2782,20 +2785,20 @@ URL /market/history/kline
 
 **请求参数**
 
-  |**参数名称**   |**是否必须**  | **类型**   |**描述**   |**默认值**   |**取值范围**|
-  |-------------- |-------------- |---------- |---------- |------------ |--------------------------------------------------------------------------------|
-  |symbol|    true|string|合约名称||如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约|
-  |period|    true|string|K线类型|| 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon|
-  |size|true|integer    |获取数量   |150|[1,2000]|
+参数名称    |  是否必须  |   类型     |  描述    |  默认值   |  取值范围  |
+-------------- |  -------------- |  ---------- |  ---------- |  ------------ |  -----------------------------------------------------|
+symbol  |    true  |  string  |  合约名称  |  |  如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约  |
+period  |    true  |  string  |  K线类型  |  |  1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon  |
+size  |  true  |  integer    |  获取数量   |  150  |  [1,2000]  |
 
 **返回参数**
 
-  |**参数名称**   |**是否必须**   |**数据类型**   |**描述**|   **取值范围**|
- | -------------- |-------------- |-------------- |------------------------------------------ |----------------|
-  |ch|  true|string|    数据所属的 channel，格式： market.period   |
-  |data|true|object|    KLine 数据|| 
-  |status|    true|string|    请求处理结果|"ok" , "error"|
-  |ts|  true|number|    响应生成时间点，单位：毫秒|| 
+参数名称   |  是否必须     |  数据类型     |  描述  |   取值范围  |
+--------------  |  -------------- |  -------------- |  ------------------------------------------ |  ----------------  |
+ch  |  true  |  string  |    数据所属的 channel，格式： market.period   |        |
+data  |  true  |  object  |    KLine 数据  |   | 
+status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
+ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    | 
 
 **Data说明：**
 
@@ -2815,6 +2818,8 @@ URL /market/history/kline
 ```
 
 **示例**
+
+
 - GET  
 
 ```shell
@@ -2858,18 +2863,18 @@ URL /market/detail/merged
 
 **请求参数**
 
-  |**参数名称**   |**是否必须**   |**类型**   |**描述**   |**默认值**   |**取值范围**|
-  |--------------| --------------| ---------- |----------| ------------ |--------------------------------------------------------------------------------|
-  |symbol|    true|string|合约名称|如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约|
+参数名称   |  是否必须   |  类型   |  描述   |  默认值   |  取值范围  |
+--------------  | --------------  | ---------- |  ----------  | ------------ |  --------------------------------------------------------------------------------  |
+symbol  |    true  |  string  |  合约名称  |  如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约  |                |
 
 **返回参数**
 
-  |**参数名称**   |**是否必须**  | **数据类型**   |**描述**|    **取值范围**|
- | -------------- |-------------- |-------------- |----------------------------------------------------------| ----------------|
-  |ch|  true|string|    数据所属的 channel，格式： market.\$symbol.detail.merged   |
-  |status|    true|string|    请求处理结果|"ok" , "error"|
-  |tick|true|object|    K线数据||
-  |ts|  true|number|    响应生成时间点，单位：毫秒|| 
+参数名称     |  是否必须    |   数据类型     |  描述  |    取值范围  |
+-------------- |  -------------- |  -------------- |  ----------------------------------------------------------| ----------------  |
+ch  |  true  |  string  |    数据所属的 channel，格式： market.\$symbol.detail.merged   |     |
+status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
+tick  |  true  |  object  |    K线数据  |    |
+ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    | 
 
 **tick说明:**
 
@@ -2924,18 +2929,18 @@ URL /market/trade
 
 **请求参数**
 
-  |**参数名称**   |**是否必须**   |**类型**   |**描述**   |**默认值**   |**取值范围**|
-  |-------------- |-------------- |---------- |---------- |------------ |--------------------------------------------------------------------------------|
-  |symbol|    true|string|合约名称|如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约|
+参数名称     |  是否必须   |  类型   |  描述   |  默认值  |  取值范围  |
+-------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------  |
+symbol  |    true  |  string  |  合约名称  |  |  如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约  |
 
 **返回参数**
 
-  |**参数名称**   |**是否必须**   |**类型**   |**描述**|  **默认值**   |**取值范围**|
-  |--------------| --------------| ----------| ---------------------------------------------------------| ------------ |--------------|
-  |ch|  true|string|数据所属的 channel，格式： market.\$symbol.trade.detail||
-  |status|    true|string|||  "ok","error"
-  |tick|true|object|Trade 数据|||   
-  |ts|  true|number|发送时间|||
+参数名称     |  是否必须   |  类型   |  描述  |  默认值   |  取值范围  |
+--------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ |  --------------  |
+ch  |  true  |  string  |  数据所属的 channel，格式： market.\$symbol.trade.detail  |  |   |
+status  |  true  |  string  |  |  |  "ok","error" |
+tick  |  true  |  object  |  Trade 数据  |    |    |   
+ts  |  true  |  number  |  发送时间  |   |    |
 
 **Tick说明：**
 ```
@@ -2989,19 +2994,19 @@ URL /market/history/trade
 
 **请求参数：**
 
-  |**参数名称**   |**是否必须**   |**数据类型**   |**描述**|  **默认值**   |**取值范围**|
-  |-------------- |-------------- |-------------- |-------------------- |------------ |--------------------------------------------------------------------------------|
- | symbol|    true|string|    合约名称||如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约
-  |size|false|number|    获取交易记录的数量  | 1| [1, 2000]
+参数名称     |  是否必须     | 数据类型   |  描述  |    默认值    |  取值范围  |
+-------------- |  -------------- |  -------------- |  -------------------- |  ------------ |  --------------------------------------------------------------------------------  |
+symbol  |    true  |  string  |    合约名称  |    |  如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约  |
+size  |  false  |  number  |    获取交易记录的数量  | 1  |  [1, 2000]  |
 
 **返回参数**
 
-  |**参数名称**   |**是否必须**   |**数据类型**   |**描述**|   **取值范围**|
-  |--------------| --------------| --------------| ---------------------------------------------------------| ---------------|
-  |ch|  true|string|    数据所属的 channel，格式： market.\$symbol.trade.detail   ||
-  |data|true|object|    Trade 数据||
-  |status|    true|string||    "ok"，"error"
-  |ts|  true|number|    响应生成时间点，单位：毫秒||
+参数名称   |  是否必须     |  数据类型    |  描述  |    取值范围   |
+--------------  | --------------  | --------------  | ---------------------------------------------------------  | ---------------  |
+ch  |  true  |  string  |    数据所属的 channel，格式： market.\$symbol.trade.detail   |    |
+data  |  true  |  object  |    Trade 数据  |    |
+status  |  true  |  string  |    |    "ok"，"error" |
+ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 
 **data说明：**
 
@@ -3061,29 +3066,29 @@ URL  api/v1/contract_account_info
 
 **请求参数**
 
-  |**参数名称**   |**是否必须**   |**类型**   |**描述**   |**默认值**   |**取值范围**|
-  |-------------- |-------------- |---------- |----------| ------------ |------------------------------------------|
-  |symbol|    false|string|品种代码||"BTC","ETH"...如果缺省，默认返回所有品种|
+参数名称     |  是否必须   |  类型   |  描述   |  默认值   |  取值范围  |
+-------------- |  -------------- |  ---------- |  ----------  | ------------ |  ------------------------------------------ |
+symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺省，默认返回所有品种  |
 
 **返回参数**
 
-  |**参数名称**|    **是否必须**   |**类型**   |**描述**|   **取值范围**|
-  |-------------------------- |-------------- |---------- |------------------------------------------ |----------------|
-  |status|true|string|请求处理结果|"ok" , "error"|
-  |\<list\>(属性名称: data)||||    
-  |symbol|true|string|品种代码|"BTC","ETH"...|
-  |margin_balance| true|decimal    |账户权益||   
-  |margin_position|true|decimal    |持仓保证金（当前持有仓位所占用的保证金）   ||
-  |margin_frozen|  true|decimal    |冻结保证金|| 
-  |margin_available|true|decimal   |可用保证金|| 
-  |profit_real|    true|decimal    |已实现盈亏|| 
-  |profit_unreal|  true|decimal    |未实现盈亏|| 
-  |risk_rate|| true|decimal    |保证金率||   
-  |liquidation_price|    true|decimal    |预估强平价|| 
-  |withdraw_available|   true|decimal    |可划转数量|| 
-  |lever_rate||true|decimal    |杠杠倍数||   
-  |\</list\>||||   
-  |ts|    number|    long|  响应生成时间点，单位：毫秒|| 
+参数名称  |    是否必须   |  类型   |  描述  |   取值范围  |
+-------------------------- |  -------------- |  ---------- |  ------------------------------------------ |  ----------------  |
+status  |  true  |  string  |  请求处理结果  |  "ok" , "error"  |
+\<list\>(属性名称: data)  |    |    |    |    |    
+symbol  |  true  |  string  |  品种代码  |  "BTC","ETH"...  |
+margin_balance  |  true  |  decimal    |  账户权益   |    |   
+margin_position  |  true  |  decimal    |  持仓保证金（当前持有仓位所占用的保证金）   |    |
+margin_frozen  |  true  |  decimal    |  冻结保证金  |   | 
+margin_available  |  true  |  decimal   |  可用保证金  |    | 
+profit_real  |    true  |  decimal    |  已实现盈亏  |    | 
+profit_unreal  |  true  |  decimal    |  未实现盈亏  |   | 
+risk_rate  | true  |  decimal    |  保证金率  |  |   
+liquidation_price  |    true  |  decimal    |  预估强平价  |   | 
+withdraw_available  |   true  |  decimal    |  可划转数量  |   | 
+lever_rate  |  true  |  decimal    |  杠杠倍数  |    |   
+\</list\>  |    |    |    |       |
+ts  |    number  |    long  |  响应生成时间点，单位：毫秒  |    | 
 
 **示例**
 
@@ -3131,32 +3136,32 @@ URL api/v1/contract_position_info
 
 **请求参数**
 
-  |**参数名称**   |**是否必须**   |**类型**   |**描述**   |**默认值**   |**取值范围**|
-  |-------------- |--------------| ---------- |----------| ------------ |------------------------------------------|
-  |symbol|    false|string|品种代码||"BTC","ETH"...如果缺省，默认返回所有品种|
+参数名称   |  是否必须   |  类型    |  描述    |  默认值    |  取值范围  |
+-------------- |  --------------  | ---------- |  ----------  | ------------ |  ------------------------------------------  |
+symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺省，默认返回所有品种  |
 
 **返回参数**
 
-  |**参数名称**|    **是否必须**  | **类型**  | **描述**|**取值范围**|
-  |-------------------------- |-------------- |---------- |---------------------------- |------------------------------------------------------|
-  |status|true|string|请求处理结果| "ok" , "error"|
-  |\<list\>(属性名称: data)||||
-  |symbol|true|string|品种代码|"BTC","ETH"...|
-  |contract_code|  true|string|合约代码|"BTC180914" ...|
-  |contract_type|  true|string|合约类型|当周:"this_week", 次周:"next_week", 季度:"quarter"|
-  |volume|true|decimal    |持仓量|  |
-  |available| true|decimal    |可平仓数量||   
-  |frozen|true|decimal    |冻结数量||
-  |cost_open|true|decimal    |开仓均价||
-  |cost_hold| true|decimal    |持仓均价||
-  |profit_unreal|  true|decimal    |未实现盈亏||   
-  |profit_rate|    true|decimal    |收益率| | 
-  |profit|true|decimal    收益|    |
-  |position_margin|true|decimal    |持仓保证金||   
-  |lever_rate|true|int|   杠杠倍数||
-  |direction||  true|string|"buy":买 "sell":卖||
-  |\</list\>|||||
-  |ts|    true|long|  响应生成时间点，单位：毫秒   ||
+参数名称  |     是否必须   |  类型   |  描述  |  取值范围  |
+-------------------------- |  -------------- |  ---------- |  ---------------------------- |  ------------------------------------------------------  |
+status  |  true  |  string  |  请求处理结果  |  "ok" , "error"  |
+\<list\>(属性名称: data)  |    |    |    |     |
+symbol  |  true  |  string  |  品种代码  |  "BTC","ETH"...  |
+contract_code  |  true  |  string  |  合约代码  |  "BTC180914" ...  |
+contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 季度:"quarter"  |
+volume  |  true  |  decimal    |  持仓量|   |
+available  | true  |  decimal    |  可平仓数量  |    |   
+frozen  |  true  |  decimal    |  冻结数量  |    |
+cost_open  |  true  |  decimal    |  开仓均价  |    |
+cost_hold  | true  |  decimal    |  持仓均价  |    |
+profit_unreal  |  true  |  decimal    |  未实现盈亏  |    |   
+profit_rate  |    true  |  decimal    |  收益率  |   | 
+profit  |  true  |  decimal   |  收益  |    |
+position_margin  |  true  |  decimal    |  持仓保证金  |    |   
+lever_rate  |  true  |  int  |   杠杠倍数  |    |
+direction  |  true  |  string  |  "buy":买 "sell":卖  |    |
+\</list\>  |    |    |    |    |
+ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |    |
 
 **示例**
 
@@ -3199,29 +3204,29 @@ URL api/v1/contract_order
 
 **请求参数**
 
-  |**参数名**|**参数类型**   |**必填**   |**描述**|
-  |-------------------- |-------------- |----------| ---------------------------------------------------------------|
-  |symbol|    string|    true| "BTC","ETH"...|
-  |contract_type|  string|    true| 合约类型 ("this_week":当周 "next_week":下周 "quarter":季度)|
-  |contract_code|  string|    true| BTC180914|
-  |client_order_id |   long|false| 客户自己填写和维护，这次一定要大于上一次|
-  |price|decimal|   true|  价格|
-  |volume|    long|true|  委托数量(张)|
-  |direction| string|    true|  "buy":买 "sell":卖|
-  |offset|    string|    true|  "open":开 "close":平|
-  |lever_rate|int| true|  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]|
-  |order_price_type |  string|    true|  订单报价类型 "limit":限价 "opponent":对手价|
+参数名  |  参数类型    |  必填   |  描述  |
+-------------------- |  -------------- |  ----------  | ---------------------------------------------------------------  |
+symbol  |    string  |    true  | "BTC","ETH"...  |
+contract_type  |  string  |    true  | 合约类型 ("this_week":当周 "next_week":下周 "quarter":季度)  |
+contract_code  |  string  |    true  |  BTC180914  |
+client_order_id |   long  |  false  |  客户自己填写和维护，这次一定要大于上一次  |
+price  |  decimal  |   true  |  价格  |
+volume  |    long  |  true  |  委托数量(张)  |
+direction  |  string  |    true  |  "buy":买 "sell":卖  |
+offset  |    string  |    true  |  "open":开 "close":平  |
+lever_rate  |  int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]  |
+order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价  |
 
 **备注**：如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。
 
 **返回参数**
 
-  |**参数名称**|   **是否必须**   |**类型**   |**描述**|**取值范围**|
-  |------------------- |-------------- |---------- |-------------------------------------------- |----------------|
-  |status|   true|string|请求处理结果|"ok" , "error"|
-  |order_id|true|long|  订单ID|| 
-  |client_order_id  | true|long|  用户下单时填写的客户端订单ID，没填则不返回  | 
-  |ts|  true|long|  响应生成时间点，单位：毫秒||   
+参数名称  |   是否必须   |  类型   |  描述  |  取值范围  |
+------------------- | -------------- | ---------- | -------------------------------------------- | ---------------- |
+status  |   true  |  string  |  请求处理结果  |  "ok" , "error"  |
+order_id  |  true  |  long  |  订单ID  |    | 
+client_order_id  | true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
+ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |    |   
 
 **示例**
 
@@ -3246,39 +3251,39 @@ URL api/v1/contract_batchorder
 
 **请求参数**
 
-  |**参数名**|    **参数类型**   |**必填**   |**描述**|
-  |---------------------------------- |-------------- |---------- |--------------------------------------------------------------|
-  |\<list\>(属性名称: orders_data)|| ||  
-  |symbol|   string|    false| "BTC","ETH"...|
-  |contract_type|string|    false| 合约类型: "this_week":当周 "next_week":下周 "quarter":季度|
-  |contract_code|string|    false| BTC180914|
-  |client_order_id|  long|false|  客户自己填写和维护，这次一定要大于上一次|
-  |price|  decimal|   true|  价格|
-  |volume|  long|true|  委托数量(张)|
-  |direction|string|    true|  "buy":买 "sell":卖|
-  |offset|  string|    true|  "open":开 "close":平|
-  |lever_rate|   int| true|  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]|
-  |order_price_type| string|    true|  订单报价类型 "limit":限价 "opponent":对手价|
-  |\</list\>||||
+参数名  |    参数类型   |  必填   |  描述  |
+---------------------------------- | -------------- |  ---------- | -------------------------------------------------------------- |
+\<list\>(属性名称: orders_data)  |    |    |    |  
+symbol  |   string  |    false  | "BTC","ETH"...  |
+contract_type  |  string  |    false  | 合约类型: "this_week":当周 "next_week":下周 "quarter":季度  |
+contract_code  |  string  |    false  | BTC180914  |
+client_order_id  |  long  |  false  |  客户自己填写和维护，这次一定要大于上一次  |
+price  |  decimal  |   true  |  价格  |
+volume  |  long  |  true  |  委托数量(张)  |
+direction  |  string  |    true  |  "buy":买 "sell":卖  |
+offset  |  string  |    true  |  "open":开 "close":平  |
+lever_rate  |   int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]  |
+order_price_type  | string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价  |
+\</list\>  |    |    |    |
 
 **备注**：如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。
 
 **返回参数**
 
-  |**参数名称**|  **是否必须**   |**类型**   |**描述**|**取值范围**|
-  |----------------------------- |-------------- |---------- |--------------------------------------------| ----------------|
-  |status|   true|string|请求处理结果| "ok" , "error"|
-  |\<list\>(属性名称: errors)|||| 
-  |index|    true|int|   订单索引||
-  |err_code|true|int|   错误码||
-  |err_msg| true|string|错误信息||
-  |\</list\>||||  
-  |\<list\>(属性名称: success)||||
-  |index|    true|int|   订单索引||
-  |order_id|true|long|  订单ID|| 
-  |client_order_id|  true|long|  用户下单时填写的客户端订单ID，没填则不返回  | 
-  |\</list\>||||
-  |ts|  true|long|  响应生成时间点，单位：毫秒|
+参数名称  |  是否必须   |  类型   |  描述  |  取值范围  |
+----------------------------- | -------------- | ---------- | -------------------------------------------- | ---------------- |
+status  |   true  |  string  |  请求处理结果  | "ok" , "error"  |
+\<list\>(属性名称: errors)  |    |    |    |     |
+index  |    true  |  int  |   订单索引  |    |
+err_code  |  true  |  int  |   错误码  |    |
+err_msg  | true  |  string  |  错误信息  |    |
+\</list\>  |    |    |    |     |
+\<list\>(属性名称: success)  |    |    |    |     |
+index  |    true  |  int  |   订单索引  |    |
+order_id  |  true  |  long  |  订单ID  |    | 
+client_order_id  |  true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
+\</list\>  |    |    |    |    |
+ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |
 
 **示例**
 
@@ -3327,27 +3332,27 @@ URL api/v1/contract_cancel
 
 **请求参数**
 
-  |**参数名称**|   **是否必须**   |**类型**   |**描述**|
-  |------------------- |-------------- |---------- |--------------------------------------------------------------|
-  |order_id|false|string|订单ID（ 多个订单ID中间以","分隔,一次最多允许撤消50个订单 ）|
-  |client_order_id|  false|string|客户订单ID(多个订单ID中间以","分隔,一次最多允许撤消50个订单)|
-  |symbol|   true|string|"BTC","ETH"...|
+参数名称  |   是否必须   |  类型   |  描述  |
+------------------- | -------------- | ---------- | -------------------------------------------------------------- |
+order_id |  false  |  string  |  订单ID(多个订单ID中间以","分隔,一次最多允许撤消50个订单)  |
+client_order_id  |  false  |  string  |  客户订单ID(多个订单ID中间以","分隔,一次最多允许撤消50个订单)  |
+symbol  |   true  |  string  |  "BTC","ETH"...  |
 
 **备注**：
 order_id和client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。
 
 **返回参数**
 
-  |**参数名称**| **是否必须**  | **类型**  | **描述**| **取值范围**|
-  |---------------------------- |-------------- |---------- |--------------------------------------------------| ----------------|
-  |status|  true|string|请求处理结果| "ok" , "error"|
-  |\<list\>(属性名称: errors)||||
-  |order_id|    true|string|订单ID||   
-  |err_code|   true|int|   错误码||   
-  |err_msg|true|string|错误信息|| 
-  |\</list\>||||
-  |successes|   true|string|撤销成功的订单的order_id或client_order_id列表  | |
-  |ts|true|long|  响应生成时间点，单位：毫秒| |
+参数名称  |  是否必须  |  类型  |  描述  |  取值范围  |
+---------------------------- | -------------- | ---------- | -------------------------------------------------- | ---------------- |
+status  |  true  |  string  |  请求处理结果  | "ok" , "error"  | 
+\<list\>(属性名称: errors)  |    |    |    |    |  
+order_id  |    true  |  string  |  订单ID  |    |   
+err_code  |   true  |  int  |   错误码  |    |   
+err_msg  |  true  |  string  |  错误信息  |    | 
+\</list\>  |    |    |    |    |
+successes  |   true  |  string  |  撤销成功的订单的order_id或client_order_id列表  |   |
+ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |   |
 
 **示例**
 
@@ -3384,22 +3389,22 @@ URL api/v1/contract_cancelall
 
 **请求参数**
 
-  |**参数名称**   |**是否必须**   |**类型**   |**描述**|
-  |-------------- |-------------- |---------- |----------------------------|
-  |symbol|    true|string|品种代码，如"BTC","ETH"...|
+参数名称    |  是否必须    |  类型    |  描述  |
+-------------- | -------------- | ---------- | ---------------------------- |
+symbol  |    true  |  string   |  品种代码，如"BTC","ETH"...  |
 
 **返回参数**
 
-  |**参数名称**| **是否必须**   |**类型**  | **描述**|**取值范围**|
-  |---------------------------- |-------------- |---------- |---------------------------- |----------------|
-  |status|  true|string|请求处理结果| "ok" , "error"| 
-  |\<list\>(属性名称: errors)||||
-  |order_id|    true|String|订单id| | 
-  |err_code|    true|int|   订单失败错误码| |   
-  |err_msg|true|int|   订单失败信息|| 
-  |\</list\>|||| 
-  |successes|    true|string|成功的订单||   
-  |ts| true|long|  响应生成时间点，单位：毫秒  || 
+参数名称  |  是否必须   |  类型  |  描述  |  取值范围  |
+---------------------------- | -------------- | ---------- | ---------------------------- | ---------------- |
+status  |  true  |  string  |  请求处理结果  | "ok" , "error"  | 
+\<list\>(属性名称: errors)  |    |    |    |    |
+order_id  |    true  |  String  |  订单id  |   | 
+err_code  |    true  |  int  |   订单失败错误码  |   |   
+err_msg  |  true  |  int  |   订单失败信息  |    | 
+\</list\>    |    |    |    |    |
+successes  |    true  |  string  |  成功的订单  |    |   
+ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   | 
 
 **示例**
 
@@ -3437,43 +3442,43 @@ URL api/v1/contract_order_info
 
 **请求参数**
 
-  |**参数名称**|   **是否必须**   |**类型**   |**描述**|
-  |------------------- |--------------| ---------- |-------------------------------------------------------------|
-  |order_id|false|string|订单ID（ 多个订单ID中间以","分隔,一次最多允许查询20个订单 ）|
-  |client_order_id   |false|string|客户订单ID(多个订单ID中间以","分隔,一次最多允许查询20个订单)|
-  |symbol|   true|string|"BTC","ETH"...|
+参数名称  |    是否必须    |  类型    |  描述  |
+------------------- | -------------- | ---------- | ------------------------------------------------------------- |
+order_id  |  false  |  string  |  订单ID(多个订单ID中间以","分隔,一次最多允许查询20个订单)  |
+client_order_id   |  false  |  string  |  客户订单ID(多个订单ID中间以","分隔,一次最多允许查询20个订单)  |
+symbol  |   true  |  string  |  "BTC","ETH"...  |
 
 **备注**：order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。
 
 **返回数据**
 
-  |**参数名称**|    **是否必须**   |**类型**   |**描述**| **取值范围**|
-  |-------------------------- |-------------- |---------- |-------------------------------------------------------------------------------------------- |----------------------------------------------------|
-  |status|true|string|请求处理结果|  "ok" , "error"|
-  |\<list\>(属性名称: data)||||| 
-  |symbol|true|string|品种代码||| 
-  |contract_type|  true|string|合约类型|当周:"this_week", 周:"next_week", 季度:"quarter"|
-  |contract_code|  true|string|合约代码| "BTC180914" ...|
-  |volume|true|decimal    |委托数量|| 
-  |price| true|decimal    |委托价格|| 
-  |order_price_type|    true|string|订单报价类型 "limit":限价 "opponent":对手价||   
-  |direction|  true|string|"buy":买 "sell":卖||
-  |offset|true|string|"open":开 "close":平||
-  |lever_rate|true|int|   杠杆倍数|1\\5\\10\\20|
-  |order_id|  true|long|  订单ID|| 
-  |client_order_id|true|long|  客户订单ID||  
-  |created_at|true|long|  成交时间||
-  |trade_volume|   true|decimal|    成交数量||
-  |trade_turnover| true|decimal    成交总金额||    
-  |fee|   true|decimal|    手续费||   
-  |trade_avg_price|true|decimal|    成交均价|| 
-  |margin_frozen|  true|decimal|    冻结保证金||   
-  |profit|true|decimal|    收益||
-  |status|true|int|   订单状态|(1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 11撤单中) |  
-  |order_type|true|string|   订单类型|  1:报单 、 2:撤单 、 3:强平、4:交割
-  |order_source|   true|string|订单来源|（1:system、2:web、3:api、4:m 5:risk、6:settlement） |   
-  |\</list\>|||||
-  |ts|    true|long|  时间戳||   
+  参数名称  |    是否必须   |  类型   |  描述  |  取值范围  |
+-------------------------- | -------------- | ---------- | --------------------------------------------------------------------------------------------  | ---------------------------------------------------- |
+status  |  true  |  string  |  请求处理结果  |  "ok" , "error"  |
+\<list\>(属性名称: data)  |    |    |    |    | 
+symbol  |  true  |  string  |  品种代码  |    |  
+contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 周:"next_week", 季度:"quarter"  |
+contract_code  |  true  |  string  |  合约代码  | "BTC180914" ...  |
+volume  |  true  |  decimal    |  委托数量  |    | 
+price   |  true  |  decimal    |  委托价格  |    | 
+order_price_type  |    true  |  string  |  订单报价类型  | "limit":限价 "opponent":对手价  |  
+direction  |  true  |  string  |  买卖方向  |  "buy":买 "sell":卖  |
+offset  |  true  |  string  |  开平方向 |  "open":开 "close":平  |
+lever_rate  |  true  |  int  |   杠杆倍数  |  1\\5\\10\\20  |
+order_id  |  true  |  long  |  订单ID  |    | 
+client_order_id  |  true  |  long  |  客户订单ID  |    |  
+created_at  |  true  |  long  |  成交时间  |    |
+trade_volume    |  true  |  decimal  |    成交数量  |    |
+trade_turnover  |  true  |  decimal  |   成交总金额  |    |    
+fee  |   true  |  decimal  |     手续费  |     |   
+trade_avg_price  |  true  |  decimal  |    成交均价  |    | 
+margin_frozen    |  true  |  decimal  |    冻结保证金  |     |   
+profit  |  true  |  decimal  |    收益  |    |
+status  |  true  |  int  |   订单状态  |  (1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 11撤单中)  |  
+order_type    |  true  |  string  |  订单类型  |    1:报单 、 2:撤单 、 3:强平、4:交割              |
+order_source  |  true  |  string  |  订单来源  |  （1:system、2:web、3:api、4:m 5:risk、6:settlement） |   
+\</list\>  |    |    |    |    |
+ts  |    true  |  long  |  时间戳  |  |   
 
 **示例**
 
@@ -3542,47 +3547,47 @@ URL api/v1/contract_order_detail
 
 **请求参数**
 
-  |**参数名称**   |**是否必须**   |**类型**   |**描述**|
-  |-------------- |-------------- |---------- |------------------------|
-  |symbol|    true|string|"BTC","ETH"...|
-  |order_id| true|long|  订单id|
-  |created_at|  true|long|  下单时间戳|
-  |order_type|  true|int|  订单类型，1:报单 、 2:撤单 、 3:强平、4:交割|
-  |page_index|    false|int|   第几页,不填第一页|
-  |page_size|false|int|   不填默认20，不得多于50|
+参数名称    |  是否必须     |  类型    |  描述  |
+-------------- | -------------- | ---------- | ------------------------ |
+symbol  |    true  |  string  |  "BTC","ETH"...  |
+order_id  | true  |  long  |   订单id  |
+created_at  |  true  |  long  |   下单时间戳  |
+order_type  |  true  |  int  |   订单类型，1:报单 、 2:撤单 、 3:强平、4:交割  |
+page_index  |    false  |  int  |   第几页,不填第一页  |
+page_size  |  false  |  int  |   不填默认20，不得多于50  |
 
 **返回数据**
 
-  |**参数名称**|  **是否必须**   |**类型**   |**描述**| **取值范围**|
-  |----------------------------- |-------------- |---------- |--------------------------------------------- |------------------------------------------------------|
-  |status|   true|string|请求处理结果| "ok" , "error"|
-  |\<object\> (属性名称: data)|||| 
-  |symbol|   true|string|品种代码|| 
-  |contract_type|true|string|合约类型|当周:"this_week", 次周:"next_week", 季度:"quarter"|
-  |contract_code|true|string|合约代码|"BTC180914" ...|
-  |lever_rate|   true|int|   杠杆倍数| 1\5\10\20|
-  |direction|true|string|"buy":买 "sell":卖||  
-  |offset|   true|string|"open":开 "close":平||
-  |volume|   true|decimal    |委托数量|| 
-  |price|    true|decimal    |委托价格|| 
-  |created_at|   true|long|  成交时间||
-  |order_source| true|string|订单来源|| 
-  |order_price_type| true|string|订单报价类型 |1限价单 3对手价   |  
-  |margin_frozen|true|decimal    |冻结保证金||    
-  |profit|   true|decimal    |收益||
-  |total_page|   true|int|   总共页数|||
-  |current_page| true|int|   当前页数|| 
-  |total_size|   true|int|   总条数||   
-  |\<list\> (属性名称: trades)|||| 
-  |trade_id|true|long|  撮合结果id||    
-  |trade_price|  true|decimal    撮合价格||
-  |trade_volume| true|decimal    成交量||  
-  |trade_turnover|    true|decimal    成交金额|| 
-  |trade_fee|   true|decimal    成交手续费||    
-  |created_at|   true|long|  创建时间||| 
-  |\</list\>||||   
-  |\</object \>||||
-  |ts|  true|long|  时间戳||
+参数名称  |  是否必须   |  类型   |  描述  |  取值范围  |
+----------------------------- | -------------- | ---------- | --------------------------------------------- | ------------------------------------------------------ |
+status  |   true  |  string  |  请求处理结果  | "ok" , "error"  |
+\<object\> (属性名称: data)  |    |    |    |    | 
+symbol  |   true  |  string  |  品种代码  |    | 
+contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 季度:"quarter"  |
+contract_code  |  true  |  string  |  合约代码  |  "BTC180914" ...  |
+lever_rate  |   true  |  int  |   杠杆倍数  |  1\5\10\20  |
+direction  |  true  |  string  |  买卖方向  | "buy":买 "sell":卖 |  
+offset  |     true  |  string  | 开平方向 |  "open":开 "close":平  |
+volume  |     true  |  decimal    |  委托数量  |    | 
+price  |      true  |  decimal    |  委托价格  |    | 
+created_at  |   true  |  long    |    成交时间  |    |
+order_source  | true  |  string  |  订单来源  |   | 
+order_price_type  | true  |  string  |  订单报价类型  |  1限价单 3对手价   |  
+margin_frozen  |  true  |  decimal    |  冻结保证金  |    |    
+profit  |   true  |  decimal    |  收益  |     |
+total_page  |   true  |  int  |   总共页数  |    |
+current_page  | true  |  int  |   当前页数  |    | 
+total_size  |   true  |  int  |   总条数  |    |   
+\<list\> (属性名称: trades)  |    |    |    |    | 
+trade_id  |  true  |  long  |  撮合结果id  |    |    
+trade_price  |  true  |  decimal  |  撮合价格  |    |
+trade_volume  | true  |  decimal  |  成交量  |    |  
+trade_turnover  |    true  |  decimal  |  成交金额  |    | 
+trade_fee  |   true  |  decimal  |  成交手续费  |    |    
+created_at  |   true  |  long  |  创建时间  |    | 
+\</list\>  |    |    |    |    |   
+\</object \>  |    |     |    |    |
+ts  |  true  |  long  |  时间戳  |     |
 
 **示例**
 
@@ -3645,45 +3650,46 @@ URL  /v1/contract_openorders
 
 **请求参数**
 
-  |**参数名称**   |**是否必须**   |**类型**   |**描述**| **默认值**   |**取值范围**|
-  |-------------- |-------------- |---------- |------------------------ |------------ |----------------|
-  |symbol|    false|string|品种代码|    |"BTC","ETH"...|
-  |page_index   | false|int|   ||页码，不填默认第1页| 1| 
-  |page_size|false|int|   ||不填默认20，不得多于50 |
+  参数名称   |  是否必须    |  类型    |  描述  |  默认值    |  取值范围  |
+-------------- | -------------- | ---------- | ------------------------ | ------------ | ---------------- |
+symbol  |    false  |  string  |  品种代码  |     |  "BTC","ETH"...  |
+page_index   |  false  |  int  |   页码，不填默认第1页  |  1  |     | 
+page_size  |  false  |  int  |    |    |  不填默认20，不得多于50 |
 
 **返回参数**
 
-  |**参数名称**|    **是否必须**   |**类型**   |**描述**|   **取值范围**|
-  |-------------------------- |-------------- |---------- |--------------------------------------------------------------- |------------------------------------------------------|
-  |status|true|string|请求处理结果||
-  |\<list\>(属性名称: data)||||   
-  |symbol|true|string|品种代码||  
-  |contract_type|  true|string|合约类型|当周:"this_week", 次周:"next_week", 季度:"quarter"|
-  |contract_code|  true|string|合约代码|"BTC180914" ...|
-  |volume|true|decimal    |委托数量||
-  |price| true|decimal    |委托价格||   
-  |order_price_type|    true|string|订单报价类型 "limit":限价 "opponent":对手价|
-  |direction|  true|string|"buy":买 "sell":卖||   
-  |offset|true|string|"open":开 "close":平||  
-  |lever_rate||true|int|   杠杆倍数|   1\\5\\10\\20|
-  |order_id||  true|long|  订单ID||
-  |client_order_id|true|long|  客户订单ID||
-  |created_at|true|long|  订单创建时间||
-  |trade_volume|   true|decimal    |成交数量||  
-  |trade_turnover| true|decimal    |成交总金额|| 
-  |fee|   true|decimal    |手续费||
-  |trade_avg_price|true|decimal    |成交均价||  
-  |margin_frozen|  true|decimal    |冻结保证金|| 
-  |profit|true|decimal   | 收益||  
-  |status|true|int|   订单状态|(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |  
-  |order_source|   true|string|订单来源||
-  |\</list\>||||
-  |total_page|true|int|   总页数||
-  |current_page|   true|int|   当前页||
-  |total_size|true|int|   总条数||
-  |ts|    true|long|  时间戳||
+参数名称  |   是否必须  |  类型   |  描述  |   取值范围  |
+-------------------------- | -------------- | ---------- | --------------------------------------------------------------- | ------------------------------------------------------ |
+status  |  true  |  string  |  请求处理结果  |    |
+\<list\>(属性名称: data)  |    |    |    |    |   
+symbol  |  true  |  string  |  品种代码  |    |  
+contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 季度:"quarter"  |
+contract_code  |  true  |  string  |  合约代码  |  "BTC180914" ...  |
+volume  |  true  |  decimal    |  委托数量  |    |
+price   |  true  |  decimal    |  委托价格  |    |   
+order_price_type  |    true  |  string  |  订单报价类型 "limit":限价 "opponent":对手价  |
+direction  |  true  |  string  |  "buy":买 "sell":卖  |    |   
+offset  |  true  |  string  |  "open":开 "close":平  |    |  
+lever_rate  |  true  |  int  |   杠杆倍数  |   1\\5\\10\\20  |
+order_id  |  true  |  long  |  订单ID  |    |
+client_order_id  |  true  |  long  |  客户订单ID  |    |
+created_at  |  true  |  long  |  订单创建时间  |    |
+trade_volume  |   true  |  decimal    |  成交数量  |    |  
+trade_turnover  | true  |  decimal    |  成交总金额  |     | 
+fee  |   true  |  decimal    |  手续费  |    |
+trade_avg_price  |  true |  decimal    |  成交均价  |    |  
+margin_frozen  |  true  |  decimal    |  冻结保证金  |    | 
+profit  |  true  |  decimal   | 收益  |    |  
+status  |  true  |  int  |   订单状态  |  (3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)  |  
+order_source|   true  |  string  |  订单来源|    |
+\</list\>  |    |    |    |    |
+total_page  |  true  |  int  |   总页数  |    |
+current_page  |   true  |  int  |   当前页  |    |
+total_size  |  true  |  int  |   总条数  |    |
+ts  |    true  |  long  |  时间戳  |    |
 
 **示例**
+
 - POST `https://www.hbdm.com/api/v1/contract_openorders`
 
 > Response
@@ -3730,49 +3736,49 @@ URL api/v1/contract_hisorders
 
 **请求参数**
 
-  |**参数名称**   |**是否必须**   |**类型**   |**描述**| **默认值**   |**取值范围**|
-  |--------------| --------------| ---------- |------------------------| ------------| ------------------------------------------------------------------------------------------------------|
-  |symbol|    true|string|品种代码|   "BTC","ETH"...|
-  |trade_type |   true|int|   交易类型|    0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平,7:交割平多,8: 交割平空|
-  |type|true|int|   类型|1:所有订单,2:结束状态的订单|
-  |status|    true|int|   订单状态|    0:全部,3:未成交, 4: 部分成交,5: 部分成交已撤单,6: 全部成交,7:已撤单|
-  |create_date |  true|int|   日期|  7，90（7天或者90天）|
-  |page_index  |  false|int|   |页码，不填默认第1页| 1| 
-  |page_size|false|int|   |不填默认20，不得多于50   20|
+参数名称   |  是否必须   |  类型    |  描述  |  默认值    |  取值范围  |
+-------------- | -------------- | ---------- |------------------------ | ------------ | ------------------------------------------------------------------------------------------------------ |
+symbol  |    true  |  string  |  品种代码  |   "BTC","ETH"...  |
+trade_type  |   true  |  int  |   交易类型  |    0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平,7:交割平多,8: 交割平空  |
+type  |  true  |  int  |   类型  |  1:所有订单,2:结束状态的订单  |
+status  |    true  |  int  |   订单状态  |    0:全部,3:未成交, 4: 部分成交,5: 部分成交已撤单,6: 全部成交,7:已撤单  |
+create_date |  true  |  int  |   日期  |   7，90（7天或者90天） |
+page_index  |  false  |  int  |   |  页码，不填默认第1页  |  1  | 
+page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得多于50  |
 
 **返回参数**
 
-  |**参数名称**| **是否必须**   |**类型**   |**描述**|**取值范围**|
-  |---------------------------- |-------------- |---------- |--------------------------------------------- |------------------------------------------------------|
-  |status|  true|string|请求处理结果||  
-  |\<object\>(属性名称: data)|||| 
-  |\<list\>(属性名称: orders)|||| 
-  |order_id|    true|long|  订单ID|  
-  |symbol|  true|string|品种代码|
-  |contract_type|    true|string|合约类型| 当周:"this_week", 次周:"next_week", 季度:"quarter"|
-  |contract_code|    true|string|合约代码| "BTC180914" ...|
-  |lever_rate|  true|int|   杠杆倍数| 1\\5\\10\\20|
-  |direction|    true|string|"buy":买 "sell":卖||  
-  |offset|  true|string|"open":开 "close":平||
-  |volume|  true|decimal    |委托数量||
-  |price|   true|decimal    |委托价格|| 
-  |create_date| true|long|  创建时间|| 
-  |order_source|true|string|订单来源|| 
-  |order_price_type|true|string|订单报价类型 |"limit":限价 "opponent":对手价 |  
-  |margin_frozen|    true|decimal    |冻结保证金||    
-  |profit|  true|decimal    |收益||
-  |trade_volume|true|decimal    |成交数量|| 
-  |trade_turnover|   true|decimal    |成交总金额||    
-  |fee||true|decimal    |手续费||   
-  |trade_avg_price| true|decimal    |成交均价|| 
-  |status|  true|int|   订单状态|| 
-  |order_type|  true|int|   订单类型|1:报单 、 2:撤单 、 3:强平、4:交割|
-  |\</list\>||||  
-  |\</object\>||||
-  |total_page|  true|int|   总页数||   
-  |current_page|true|int|   当前页||   
-  |total_size|  true|int|   总条数||  
-  |ts|true|long|  时间戳||  
+参数名称  |  是否必须   |  类型    |  描述  |  取值范围  |
+---------------------------- | -------------- | ---------- | --------------------------------------------- | ------------------------------------------------------ |
+status  |  true  |  string  |  请求处理结果  |    |  
+\<object\>(属性名称: data)  |    |    |    |    | 
+\<list\>(属性名称: orders)  |    |    |    |    | 
+order_id  |    true  |  long  |  订单ID  |  
+symbol  |  true  |  string  |  品种代码  |
+contract_type  |    true  |  string  |  合约类型  | 当周:"this_week", 次周:"next_week", 季度:"quarter"  |
+contract_code  |    true  |  string  |  合约代码  | "BTC180914" ...  |
+lever_rate  |  true  |  int  |   杠杆倍数  |  1\\5\\10\\20  |
+direction  |    true  |  string  | 买卖方向 |  "buy":买 "sell":卖  |  
+offset  |  true  |  string  |  开平方向  |  "open":开 "close":平  |
+volume  |  true  |  decimal    |  委托数量  |    |
+price  |   true  |  decimal    |  委托价格  |    | 
+create_date   |  true  |  long    |  创建时间  |    | 
+order_source  |  true  |  string  |  订单来源  |    | 
+order_price_type  |  true  |  string  |  订单报价类型 |  "limit":限价 "opponent":对手价 |  
+margin_frozen  |    true  |  decimal    |  冻结保证金  |    |    
+profit  |  true  |  decimal    |  收益  |    |
+trade_volume  |  true  |  decimal    |  成交数量  |    | 
+trade_turnover  |   true  |decimal    |  成交总金额  |    |    
+fee  |  true  |  decimal    |  手续费  |    |   
+trade_avg_price  | true  |  decimal    |  成交均价  |    | 
+status  |  true  |  int  |   订单状态  |    | 
+order_type  |  true  |  int  |   订单类型  |  1:报单 、 2:撤单 、 3:强平、4:交割  |
+\</list\>  |    |    |     |     |  
+\</object\>|    |    |     |     |
+total_page    |  true  |  int  |   总页数  |   |   
+current_page  |  true  |  int  |   当前页  |   |   
+total_size  |  true  |  int  |   总条数  |    |  
+ts  |  true  |  long  |  时间戳  |    |  
 
 **示例**
 - POST `https://api.hbdm.com/api/v1/contract_hisorders`
