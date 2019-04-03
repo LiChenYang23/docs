@@ -2300,27 +2300,27 @@ obtain_currency_list  | array     | For creation this is the amount for ETF crea
 
 
 
-| API Type  | **Content Type** | **Context**                                      | **Request Type** | **Desc**                                       | **Signature Required** |
-| --------- | ---------------- | ------------------------------------------------ | ---------------- | ---------------------------------------------- | ---------------------- |
-| Restful   | Market Data      | <a href="#1">api/v1/contract_contract_info </a>     | GET              | Get Contracts Information                      | No                     |
-| Restful   | Market Data      | <a href="#2">api/v1/contract_index </a>             | GET              | Get contract Index Price Information           | No                     |
-| Restful   | Market Data      | <a href="#3"> api/v1/contract_price_limit </a>      | GET              | Get Contract Price Limits                      | No                     |
-| Restful   | Market Data      | <a href="#4"> api/v1/contract_open_interest</a>     | GET              | Get Contract Open Interest Information         | No                     |
-| Restful   | Market Data      | <a href="#5"> /market/depth </a>                 | GET              | Get Market Depth                               | No                     |
-| Restful   | Market Data      | <a href="#6">/market/history/kline  </a>         | GET              | Get K-Line Data                                | No                     |
-| Restful   | Market Data      | <a href="#7"> /market/detail/merged </a>         | GET              | Get Market Data Overview                       | No                     |
-| Restful   | Market Data      | <a href="#8"> /market/trade </a>                 | GET              | The Last Trade of a Contract                   | No                     |
-| Restful   | Market Data      | <a href="#9">/market/history/trade  </a>         | GET              | Request a Batch of Trade Records of a Contract | No                     |
-| Restful   | Account          | <a href="#101"> api/v1/contract_account_info </a>   | POST             | User’s Account Information                     | Yes                    |
-| Restful   | Account          | <a href="#102">api/v1/contract_position_info  </a>  | POST             | User’s position Information                    | Yes                    |
-| Restful   | Trade            | <a href="#103"> api/v1/contract_order </a>          | POST             | Place an Order                                 | Yes                    |
-| Restful   | Trade            | <a href="#104">api/v1/contract_batchorder   </a>    | POST             | Place a Batch of Orders                        | Yes                    |
-| Restful   | Trade            | <a href="#105">api/v1/contract_cancel </a>          | POST             | Cancel an Order                                | Yes                    |
-| Restful   | Trade            | <a href="#106">api/v1/contract_cancelall  </a>      | POST             | Cancel All Orders                              | Yes                    |
-| Restful   | User Order Info  | <a href="#107">api/v1/contract_order_info  </a>     | POST             | Get Information of an Order                    | Yes                    |
-| Restful   | User Order Info  | <a href="#108"> api/v1/contract_order_detail  </a>  | POST             | Get Trade Details of an Order                  | Yes                    |
-| Restful   | User Order Info  | <a href="#109"> api/v1/contract_openorders  </a>    | POST             | Get Current Orders                             | Yes                    |
-| Restful   | User Order Info  | <a href="#110"> api/v1/contract_hisorders  </a>     | POST             | Get History Orders                             | Yes                    |
+API Type  |  Content Type  |  Context                                       |  Request Type  |  Desc                                        |  Signature Required  |
+--------- | ---------------- | ------------------------------------------------ | ---------------- | ---------------------------------------------- | ---------------------- |
+Restful   | Market Data      | <a href="#1">api/v1/contract_contract_info </a>     | GET              | Get Contracts Information                      | No                     |
+Restful   | Market Data      | <a href="#2">api/v1/contract_index </a>             | GET              | Get contract Index Price Information           | No                     |
+Restful   | Market Data      | <a href="#3"> api/v1/contract_price_limit </a>      | GET              | Get Contract Price Limits                      | No                     |
+Restful   | Market Data      | <a href="#4"> api/v1/contract_open_interest</a>     | GET              | Get Contract Open Interest Information         | No                     |
+Restful   | Market Data      | <a href="#5"> /market/depth </a>                 | GET              | Get Market Depth                               | No                     |
+Restful   | Market Data      | <a href="#6">/market/history/kline  </a>         | GET              | Get K-Line Data                                | No                     |
+Restful   | Market Data      | <a href="#7"> /market/detail/merged </a>         | GET              | Get Market Data Overview                       | No                     |
+Restful   | Market Data      | <a href="#8"> /market/trade </a>                 | GET              | The Last Trade of a Contract                   | No                     |
+Restful   | Market Data      | <a href="#9">/market/history/trade  </a>         | GET              | Request a Batch of Trade Records of a Contract | No                     |
+Restful   | Account          | <a href="#101"> api/v1/contract_account_info </a>   | POST             | User’s Account Information                     | Yes                    |
+Restful   | Account          | <a href="#102">api/v1/contract_position_info  </a>  | POST             | User’s position Information                    | Yes                    |
+Restful   | Trade            | <a href="#103"> api/v1/contract_order </a>          | POST             | Place an Order                                 | Yes                    |
+Restful   | Trade            | <a href="#104">api/v1/contract_batchorder   </a>    | POST             | Place a Batch of Orders                        | Yes                    |
+Restful   | Trade            | <a href="#105">api/v1/contract_cancel </a>          | POST             | Cancel an Order                                | Yes                    |
+Restful   | Trade            | <a href="#106">api/v1/contract_cancelall  </a>      | POST             | Cancel All Orders                              | Yes                    |
+Restful   | User Order Info  | <a href="#107">api/v1/contract_order_info  </a>     | POST             | Get Information of an Order                    | Yes                    |
+Restful   | User Order Info  | <a href="#108"> api/v1/contract_order_detail  </a>  | POST             | Get Trade Details of an Order                  | Yes                    |
+Restful   | User Order Info  | <a href="#109"> api/v1/contract_openorders  </a>    | POST             | Get Current Orders                             | Yes                    |
+Restful   | User Order Info  | <a href="#110"> api/v1/contract_hisorders  </a>     | POST             | Get History Orders                             | Yes                    |
 
 
 
@@ -2364,41 +2364,45 @@ Once received the application, we will expedite on it and reply to you soon. Tha
 
 ### <a ame="1"> Get Contract Info  </a> 
 
-URL api/v1/contract_contract_info
+**Example**              
+                                   
+- GET  ` api/v1/contract_contract_info`
 
+```shell
+curl "https://api.hbdm.com/api/v1/contract_contract_info"      
+```
+                                                           
 **Request Parameter**
 
-| **Parameter Name** | **Type** | **Mandatory** | **Description** |
-| ------------------ | -------- | ------------- | --------------- |
-| symbol             | string   | false         | "BTC","ETH"...  |
-| contract_type | string   | false      | "this_week","next_week", "quarter" |
-| contract_code | string   | false      | BTC180914|
+  Parameter Name   |   Type   |   Mandatory   |   Description   |
+------------------ | -------- | ------------- | --------------- |
+symbol             | string   | false         | "BTC","ETH"...  |
+contract_type | string   | false      | "this_week","next_week", "quarter" |
+contract_code | string   | false      | BTC180914|
 
 **Note**：
 Note：If there is a number in the Contract Code row，inquiry with Contract_Code. If there is no number，inquiry by Symbol + Contract Type. One of the query conditions must be chosen.
 
 **Returning Parameter**
 
-| **Parameter Name**             | **Mandatory** | **Type** | **Description**                               | **Value Range**                                              |
-| ------------------------------ | ------------- | -------- | --------------------------------------------- | ------------------------------------------------------------ |
-| status                         | true          | string   | Request Processing Result                     | "ok" , "error"                                               |
-| \<list\>(Attribute Name: data) |               |          |                                               |                                                              |
-| symbol                         | true          | string   | Product Code                                  | "BTC","ETH"...                                               |
-| contract_code                  | true          | string   | Contract Code                                 | "BTC180914" ...                                              |
-| contract_type                  | true          | string   | Contract Type                                 | "this_week","next_week", "quarter"                           |
-| contract_size                  | true          | decimal  | Contract Value (USD of one contract)          | 10, 100...                                                   |
-| price_tick                     | true          | decimal  | Minimum Variation of Contract Price           | 0.001, 0.01...                                               |
-| delivery_date                  | true          | string   | Contract Delivery Date                        | eg "20180720"                                                |
-| create_date                    | true          | string   | Contract Listing Date                         | eg "20180706"                                                |
-| contract_status                | true          | int      | Contract Status                               | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered,9: Suspended Listing |
-| \</list\>                      |               |          |                                               |                                                              |
-| ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
+Parameter Name               |   Mandatory   |   Type   |   Description                                |   Value Range                                                |
+------------------------------ | ------------- | -------- | --------------------------------------------- | ------------------------------------------------------------ |
+status                         | true          | string   | Request Processing Result                     | "ok" , "error"                                               |
+\<list\>(Attribute Name: data) |               |          |                                               |                                                              |
+symbol                         | true          | string   | Product Code                                  | "BTC","ETH"...                                               |
+contract_code                  | true          | string   | Contract Code                                 | "BTC180914" ...                                              |
+contract_type                  | true          | string   | Contract Type                                 | "this_week","next_week", "quarter"                           |
+contract_size                  | true          | decimal  | Contract Value (USD of one contract)          | 10, 100...                                                   |
+price_tick                     | true          | decimal  | Minimum Variation of Contract Price           | 0.001, 0.01...                                               |
+delivery_date                  | true          | string   | Contract Delivery Date                        | eg "20180720"                                                |
+create_date                    | true          | string   | Contract Listing Date                         | eg "20180706"                                                |
+contract_status                | true          | int      | Contract Status                               | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered,9: Suspended Listing |
+\</list\>                      |               |          |                                               |                                                              |
+ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
 
-**Example**
-```
-GET https://api.hbdm.com/api/v1/contract_contract_info
+> Response
 
-# Response
+```json
 {
   "status": "ok",
   "data": [
@@ -2415,11 +2419,17 @@ GET https://api.hbdm.com/api/v1/contract_contract_info
     ],
   "ts":158797866555
 }
-
 ```
+
 ### <a name="2">Get Contract Index Price Information  </a>
 
-URL  api/v1/contract_index
+**Example**                                                 
+                                                            
+- GET `api/v1/contract_index` 
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC" 
+```
 
 **Request Parameter**
 
@@ -2438,11 +2448,9 @@ URL  api/v1/contract_index
 | \</list\>                      |               |          |                                               |                 |
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
-**Example**
-```
-GET  https://api.hbdm.com/api/v1/contract_index?symbol=BTC
+> Response
 
-# Response
+```json
 {
   "status":"ok",
   "data": [
@@ -2454,9 +2462,16 @@ GET  https://api.hbdm.com/api/v1/contract_index?symbol=BTC
   "ts": 1490759594752
 }
 ```
+
 ### <a name="3">Contract Price Limitation</a>
 
-URL api/v1/contract_price_limit
+**Example**    
+                                                                          
+- GET `api/v1/contract_price_limit` 
+ 
+```shell
+curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=this_week"
+```
 
 **Request Parameter**
 
@@ -2482,11 +2497,9 @@ URL api/v1/contract_price_limit
 | \<list\>                       |               |          |                                               |                                   |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
-**Example**
-```
-GET  https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=this_week
+> Response
 
-# Response
+```json
 {
   "status":"ok",
   "data": 
@@ -2500,9 +2513,16 @@ GET  https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=t
   "ts": 1490759594752
 }
 ```
+
 ### <a name="4">Get Contract Open Interest Information </a>
 
-URL api/v1/contract_open_interest
+**Example** 
+                                                                                 
+- GET `api/v1/contract_open_interest` 
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_type=this_week"
+```
 
 **Request Parameter**
 
@@ -2526,11 +2546,9 @@ URL api/v1/contract_open_interest
 | \</list\>                      |               |          |                                               |                                   |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
-**Example**
-```
-GET  https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_type=this_week
+> Response:
 
-# Response
+```json
 {
   "status":"ok",
   "data":
@@ -2544,9 +2562,16 @@ GET  https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_type
   "ts": 1490759594752
 }
 ```
+
 ### <a name="5">Get Market Depth</a>
 
-URL /market/depth
+**Example**          
+                                            
+- GET `/market/depth` 
+
+```shell
+curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
+```  
 
 **Request Parameter**
 
@@ -2564,6 +2589,7 @@ URL /market/depth
 | asks               | true          | object        | Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price |                 |
 | bids               | true          | object        | Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price |                 |
 | ts                 | true          | number        | Time of Respond Generation，Unit：Millisecond                |                 |
+
 ```
 tick illustration:
 
@@ -2575,11 +2601,10 @@ tick illustration:
     }
 
 ```
-**Example**
-```
-GET https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5
 
-# Response
+> Response:
+
+```json
 {
   "ch":"market.BTC_CQ.depth.step5",
   "status":"ok",
@@ -2601,10 +2626,15 @@ GET https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5
   "ts":1536980854585
 }
 ```
+
 ### <a name="6">Get K-Line Data</a>
 
-URL
-/market/history/kline
+**Example**                                                                      
+- GET `/market/history/kline` 
+
+```shell
+curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_CQ"
+```
 
 **Request Parameter**
 
@@ -2624,6 +2654,7 @@ URL
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond |                 |
 
 Data Illustration：
+
 ```
 "data": [
   {
@@ -2638,11 +2669,10 @@ Data Illustration：
    }
 ]
 ```
-**Example**
-```
-GET  https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_CQ
 
-# Response
+> Response:
+
+```json
 {
   "ch": "market.BTC_CQ.kline.1min",
   "data": [
@@ -2670,13 +2700,18 @@ GET  https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_C
   "status": "ok",
   "ts": 1529908345313
 }
-
-
 ```
+
 ###  <a name="7">Get Market Data Overview</a>
 
-URL
-/market/detail/merged
+**Example**          
+                                         
+- GET `/market/detail/merged`
+   
+```shell
+curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
+```
+
 
 **Request Parameter**
 
@@ -2694,6 +2729,7 @@ URL
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond                |                 |
 
 tick Illustration
+
 ```
 "tick": {
     "id": K-Line id,
@@ -2709,11 +2745,10 @@ tick Illustration
 
   }
 ```
-**Example**
-```
-GET  https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ
 
-# Response
+> Response:
+
+```json
 {
   "ch": "market.BTC_CQ.detail.merged",
   "status": "ok",
@@ -2734,10 +2769,17 @@ GET  https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ
   "ts": 1529387842137
 }
 ```
+
 ### <a name="8">The Last Trade of a Contract</a>
 
-URL /market/trade
+**Example** 
+                                          
+- GET `/market/trade`   
 
+```shell
+curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
+```
+ 
 **Request Parameter**
 
 | **Parameter Name** | **Mandatory** | **Type** | **Desc**      | **Default** | **Value Range**                                              |
@@ -2754,7 +2796,8 @@ URL /market/trade
 | ts                 | true          | number   | Sending time                                                |             |                 |
 
 Tick Illustration：
-```
+
+```json
 "tick": {
   "id": Message id,
   "ts": Latest Transaction time,
@@ -2763,7 +2806,7 @@ Tick Illustration：
       "id": Transaction id,
       "price": Transaction price,
       "amount": transaction amount,
-      "direction": Active transaction direction
+      "direction": Active transaction direction,
       "ts": transaction time
 
     }
@@ -2771,12 +2814,9 @@ Tick Illustration：
 }
 ```
 
+> Response:
 
-**Example**
-```
-GET  https://api.hbdm.com/market/trade?symbol=BTC_CQ
-
-# Response
+```json
 {
   "ch": "market.BTC_CQ.trade.detail",
   "status": "ok",
@@ -2796,9 +2836,16 @@ GET  https://api.hbdm.com/market/trade?symbol=BTC_CQ
   "ts": 1529388202797
 }
 ```
+
 ### <a name="9">Request a Batch of Trade Records of a Contract</a>
 
-URL /market/history/trade
+**Example**
+                                                            
+- GET `/market/history/trade`
+   
+```shell 
+curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
+```
 
 **Request Parameter**
 
@@ -2817,7 +2864,8 @@ URL /market/history/trade
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond               |                 |
 
 data Illustration：
-```
+
+```json
 "data": {
   "id": Message id,
   "ts": Latest transaction time,
@@ -2832,12 +2880,9 @@ data Illustration：
 }
 ```
 
+> Response:
 
-**Example**
-```
-GET  https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100
-
-# Response
+```json
 {
   "ch": "market.BTC_CQ.trade.detail",
   "status": "ok",
@@ -2858,14 +2903,15 @@ GET  https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100
     }
    ]
 }
-
 ```
 
 ## Account Interface
 
 ### <a name="101">User’s Account Information</a>
 
-URL  api/v1/contract_account_info 
+**Example**        
+                                      
+- POST `api/v1/contract_account_info`  
 
 **Request Parameter**
 
@@ -2893,11 +2939,9 @@ URL  api/v1/contract_account_info
 | \</list\>                      |               |          |                                               |                 |
 | ts                             | number        | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
-**Example**
-```
-POST  https://api.hbdm.com/api/v1/contract_account_info    
+> Response:
 
-# Response
+```json
 {
   "status": "ok",
   "data": [
@@ -2928,11 +2972,13 @@ POST  https://api.hbdm.com/api/v1/contract_account_info
    ],
   "ts":158797866555
 }
-
 ```
+
 ### <a name="102">User’s position Information </a>
 
-URL api/v1/contract_position_info
+**Example**                         
+                     
+- POST  `api/v1/contract_position_info` 
 
 **Request Parameter**
 
@@ -2963,11 +3009,9 @@ URL api/v1/contract_position_info
 | \</list\>                      |               |          |                                               |                                     |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
 
-**Example**
-```
-POST  https://api.hbdm.com/api/v1/contract_position_info
+> Response:
 
-# Response
+```json
 {
   "status": "ok",
   "data": [
@@ -2997,7 +3041,9 @@ POST  https://api.hbdm.com/api/v1/contract_position_info
 
 ### <a name="103"> Place an Order </a>
 
-URL api/v1/contract_order
+**Example**
+
+- POST `api/v1/contract_order`
 
 **Request Parameter**
 
@@ -3025,11 +3071,10 @@ URL api/v1/contract_order
 | client_order_id    | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | ts                 | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
-**Example**
-```
-POST  https://api.hbdm.com/api/v1/contract_order
 
-# Response
+> Response:
+
+```json
 {
   "status": "ok",
   "order_id": 986,
@@ -3040,7 +3085,9 @@ POST  https://api.hbdm.com/api/v1/contract_order
 
 ### <a name="104"> Place a Batch of Orders</a>
 
-URL /v1/contract_batchorder
+**Example**
+
+- POST `/v1/contract_batchorder`
 
 **Request Parameter**
 
@@ -3078,11 +3125,9 @@ URL /v1/contract_batchorder
 | \</list\>                         |               |          |                                                              |                 |
 | ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
-**Example**
-```
-POST  https://api.hbdm.com/api/v1/contract_batchorder
+> Response:
 
-# Response
+```json
 {
   "status": "ok",
   "data": {
@@ -3117,7 +3162,9 @@ POST  https://api.hbdm.com/api/v1/contract_batchorder
 
 ### <a name="105">Cancel an Order </a>
 
-URL api/v1/contract_cancel
+**Example** 
+
+- POST  `api/v1/contract_cancel`
 
 **Request Parameter**
 
@@ -3143,12 +3190,9 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | successes                        | true          | string   | Successfully withdrew list of order_id or client_order_id |                 |
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond             |                 |
 
-**Example**
-```
-POST  https://api.hbdm.com.com/api/v1/contract_cancel
+> Response: result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
 
-# Response
-# result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
+```json
 {
   "status": "ok",
   "errors":[
@@ -3170,7 +3214,9 @@ POST  https://api.hbdm.com.com/api/v1/contract_cancel
 
 ### <a name="106">Cancel All Orders </a>
 
-URL api/v1/contract_cancelall
+**Example**
+
+- POST `api/v1/contract_cancelall`
 
 **Request Parameter**
 
@@ -3192,16 +3238,17 @@ URL api/v1/contract_cancelall
 | successes                        | true          | string   | Successful order                              |                 |
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
-**Example**
-```
-POST  https://api.hbdm.com.com/api/v1/contract_cancel      
 
-# Response
+> Request:
+```json
 {
  "symbol": "BTC"
 }
-# Response
-# result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
+```
+
+> Response:
+ result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
+```json
 {
   "status": "ok",
   "data": {
@@ -3221,7 +3268,11 @@ POST  https://api.hbdm.com.com/api/v1/contract_cancel
    },
   "ts": 1490759594752
 }
-Error：
+```
+
+> Error：
+
+```json
 {
   "status": "error",
   "err_code": 20012,
@@ -3232,7 +3283,9 @@ Error：
 
 ### <a name="107">Get Information of an Order </a>
 
-URL api/v1/contract_order_info
+**Example** 
+
+- POST `api/v1/contract_order_info`
 
 **Request Parameter**
 
@@ -3273,11 +3326,10 @@ URL api/v1/contract_order_info
 | \</list\>                      |               |          |                                                              |                                     |
 | ts                             | true          | long     | Timestamp                                                    |                                     |
 
-**Example**
-```
-POST  https://api.hbdm.com.com/api/v1/contract_order_info
 
-# Response
+> Response:
+
+```json
 {
   "status": "ok",
   "data":[
@@ -3332,7 +3384,9 @@ POST  https://api.hbdm.com.com/api/v1/contract_order_info
 
 ### <a name="108">Order details acquisition </a>
 
-URL api/v1/contract_order_detail
+**Example** 
+
+- POST `api/v1/contract_order_detail`
 
 **Request Parameter**
 
@@ -3377,11 +3431,10 @@ URL api/v1/contract_order_detail
 | \</object \>                      |               |          |                                                              |                                   |
 | ts                                | true          | long     | Timestamp                                                    |                                   |
 
-**Example**
-```
-POST  https://api.hbdm.com/api/v1/contract_order_detail
 
-# Response
+> Response:
+
+```json
 {
   "status": "ok",
   "data":{
@@ -3417,7 +3470,11 @@ POST  https://api.hbdm.com/api/v1/contract_order_detail
     },
   "ts": 1490759594752
 }
-Error:
+```
+
+> Error:
+
+```json
 {
  "status":"error",
  "err_code":20029,
@@ -3428,7 +3485,9 @@ Error:
 
 ### <a name="109">Current unfilled commission acquisition </a>
 
-URL  api/v1/contract_openorders
+**Example**
+
+- POST  `api/v1/contract_openorders`
 
 **Request Parameter**
 
@@ -3470,11 +3529,10 @@ URL  api/v1/contract_openorders
 | total_size                     | true          | int      | Total Size                                                   |                                   |
 | ts                             | true          | long     | Timestamp                                                    |                                   |
 
-**Example**
-```
-POST https://www.hbdm.com/api/v1/contract_openorders
 
-# Response
+> Response:
+
+```json
 {
   "status": "ok",
   "data":{
@@ -3510,7 +3568,9 @@ POST https://www.hbdm.com/api/v1/contract_openorders
 ```
 ### <a name="110">Get History Orders</a>
 
-URL api/v1/contract_hisorders
+**Example**
+
+- POST `api/v1/contract_hisorders`
 
 **Request Parameter**
 
@@ -3557,11 +3617,10 @@ URL api/v1/contract_hisorders
 | total_size                       | true          | int      | Total Size                                                   |                                   |
 | ts                               | true          | long     | Timestamp                                                    |                                   |
 
-**Example**
-```
-POST https://api.hbdm.com/api/v1/contract_hisorders
 
-# Response
+> Response:
+
+```json
 {
   "status": "ok",
   "data":{
