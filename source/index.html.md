@@ -2129,7 +2129,7 @@ data     | integer | Margin order id
           {
               "currency": "btc",
               "type": "loan-available",//可借btc
-              "balance": "8161.876538350676000000"
+              "balance": "8161.87653835067600 0000"
           }
       ]
     }
@@ -2431,9 +2431,9 @@ Restful     |  交易接口           | api/v1/contract_order_detail |          
 Restful     |  交易接口           | api/v1/contract_openorders |                    POST       |  获取合约当前未成交委托       |  是  |
 Restful     |  交易接口           |  api/v1/contract_hisorders |                            POST       |  获取合约历史委托             |  是 |
 ## 访问地址
-| 访问地址 | 适用站点 | 适用功能 | 适用交易对 |
-|----|----|----|----|
-| https://api.hbdm.com| 火币合约|   行情     | 火币合约的交易品种  |
+访问地址 | 适用站点 | 适用功能 | 适用交易对 |
+------ | ---- | ---- | ------ |
+https://api.hbdm.com| 火币合约|   行情     | 火币合约的交易品种  |
 ## 签名认证
 
 #### <a name="199">认证方式</a>
@@ -2466,7 +2466,13 @@ Restful     |  交易接口           |  api/v1/contract_hisorders |            
 
 ### 获取合约信息 
 
-URL api/v1/contract_contract_info
+**示例**
+      
+- GET `api/v1/contract_contract_info`
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_contract_info"
+```
 
 **请求参数**
 
@@ -2483,9 +2489,9 @@ contract_code   |  string         |  false|      BTC180914  |
 **返回参数**
 
 参数名称              |  是否必须   |  类型   |  描述                          |  取值范围|
--------------------------- |  -------------- |  ---------- |  --------------------------------- |  -----------------------------------------------------------------------|
+-------------------------- |  ----------------- |  ---------- |  --------------------------------- |  -----------------------------------------------------------------------|
 status                     |  true           |  string     |  请求处理结果                      |  "ok" , "error"  |
-\<list\>(属性名称: data)    |                  |           |                               | |
+\<list\>(属性名称: data)    |                  |           |                               |   |
 symbol                     |  true           |  string     |  品种代码                          |  "BTC","ETH"...  |
 contract_code             |  true           |  string     |  合约代码                          |  "BTC180914" ...  |
 contract_type             |  true           |  string     |  合约类型                          |  当周:"this_week", 次周:"next_week", 季度:"quarter"  |
@@ -2497,14 +2503,7 @@ contract_status           |  true           |  int        |  合约状态       
 \</list\>    |             |               |                     |        |                 
 ts                         |  true           |  long       |  响应生成时间点，单位：毫秒  |      
 
-**示例**
-
-- GET 
-
-```shell
-curl "https://api.hbdm.com/api/v1/contract_contract_info"
-```
->Response
+>Response:
 
 ```json
     {
@@ -2527,7 +2526,13 @@ curl "https://api.hbdm.com/api/v1/contract_contract_info"
 
 ### 获取合约指数信息
 
-URL  api/v1/contract_index
+**示例**
+
+- GET `api/v1/contract_index`
+
+```shell
+crul "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
+```
 
 **请求参数**
 
@@ -2547,14 +2552,7 @@ index_ts                |  true           |  long   |  响应生成时间点，�
 \</list\>               |                |           |                           |  |                                                            
 ts                         |  true           |  long       |  时间戳，单位：毫秒   |   |
 
-**示例**
-- GET  
-
-```shell
-crul "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
-```
-
-> Response
+> Response:
 
 ```json
     {
@@ -2572,7 +2570,13 @@ crul "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 
 ### 获取合约最高限价和最低限价
 
-URL api/v1/contract_price_limit
+**示例**
+
+- GET `api/v1/contract_price_limit`
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=this_week"
+```
 
 **请求参数**
 
@@ -2598,14 +2602,8 @@ contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次�
 \<list\>  |    |    |    |    |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒              |            |
 
-**示例**
 
-- GET  
-
-```shell
-curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=this_week"
-```
-> Response
+> Response:
 
 ```json
     {
@@ -2624,7 +2622,13 @@ curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=
 
 ### 获取当前可用合约总持仓量 
 
-URL api/v1/contract_open_interest
+**示例**
+
+- GET `api/v1/contract_open_interest`
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_type=this_week"
+```
 
 **请求参数**
 
@@ -2648,13 +2652,7 @@ contract_code  |  true  |  string  |  合约代码  |  如"BTC180914" ...  |
 \</list\>  |    |    |    |    |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |
 
-**示例**
-- GET 
-
-```shell
-curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_type=this_week"
-```
-> Response
+> Response:
 
 ```json
     {
@@ -2672,7 +2670,13 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 ```
 ### 获取预估交割价
 
-URL api/v1/contract_delivery_price
+**示例**
+
+- GET `api/v1/contract_delivery_price`
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"
+```
 
 **请求参数**
 
@@ -2691,13 +2695,7 @@ delivery_price  |  true  |  string  |  预估交割价  |   |
 \</list\>  |    |    |    |    |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |        |
 
-**示例**
-- GET  
-
-```shell
-curl "https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"
-```
-> Response
+> Response:
 
 ```json
     {
@@ -2712,7 +2710,13 @@ curl "https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"
 
 ### 获取行情深度数据
 
-URL /market/depth
+**示例**
+
+- GET `/market/depth` 
+
+```shell
+curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
+```
 
 **请求参数**
 
@@ -2732,7 +2736,7 @@ bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按
 mrid  | true| string | 订单ID | | 
 ts | true | number | 响应生成时间点，单位：毫秒 | |
 
-**tick 说明:**
+>tick 说明:
 
 ```
     "tick": {
@@ -2747,14 +2751,7 @@ ts | true | number | 响应生成时间点，单位：毫秒 | |
     }
 ```
 
-**示例**
-
-- GET 
-
-```shell
-curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
-```
-> Response
+> Response:
 
 ```json
     {
@@ -2781,7 +2778,13 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 
 ### 获取K线数据
 
-URL /market/history/kline
+**示例**
+
+- GET  `/market/history/kline`
+
+```shell
+curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_CQ"
+```
 
 **请求参数**
 
@@ -2800,7 +2803,7 @@ data  |  true  |  object  |    KLine 数据  |   |
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    | 
 
-**Data说明：**
+>Data说明：
 
 ```
 "data": [
@@ -2817,15 +2820,7 @@ ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 ]
 ```
 
-**示例**
-
-
-- GET  
-
-```shell
-curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_CQ"
-```
-> Response
+> Response:
 
 ```json
     {
@@ -2859,7 +2854,12 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 
 ### 获取聚合行情
 
-URL /market/detail/merged
+**示例**
+- GET  `/market/detail/merged`
+
+```shell
+curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
+```
 
 **请求参数**
 
@@ -2876,7 +2876,7 @@ status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 tick  |  true  |  object  |    K线数据  |    |
 ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    | 
 
-**tick说明:**
+>tick说明:
 
 ```
     "tick": {
@@ -2893,13 +2893,7 @@ ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
      }
 ```
 
-**示例**
-- GET  
-
-```shell
-curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
-```
-> Response
+> Response:
 
 ```json
     {
@@ -2925,8 +2919,13 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 
 ### 获取市场最近成交记录
 
-URL /market/trade
+**示例**
 
+- GET  `/market/trade`
+
+```shell
+curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
+```
 **请求参数**
 
 参数名称     |  是否必须   |  类型   |  描述   |  默认值  |  取值范围  |
@@ -2942,7 +2941,8 @@ status  |  true  |  string  |  |  |  "ok","error" |
 tick  |  true  |  object  |  Trade 数据  |    |    |   
 ts  |  true  |  number  |  发送时间  |   |    |
 
-**Tick说明：**
+>Tick说明：
+
 ```
     "tick": {
       "id": 消息id,
@@ -2959,13 +2959,8 @@ ts  |  true  |  number  |  发送时间  |   |    |
     }
 ```
 
-**示例**
-- GET  
 
-```shell
-curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
-```
-> Response
+> Response:
 
 ```json
     {
@@ -2990,7 +2985,13 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 
 ### 批量获取最近的交易记录
 
-URL /market/history/trade
+**示例**
+
+- GET  `/market/history/trade`
+
+```shell
+curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
+```
 
 **请求参数：**
 
@@ -3008,7 +3009,7 @@ data  |  true  |  object  |    Trade 数据  |    |
 status  |  true  |  string  |    |    "ok"，"error" |
 ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 
-**data说明：**
+>data说明：
 
 ```
     "data": {
@@ -3026,13 +3027,7 @@ ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
     }
 ```
 
-**示例**
-- GET  
-
-```shell
-curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
-```
-> Response
+> Response:
 
 ```json
     {
@@ -3062,7 +3057,10 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 ### 获取用户账户信息
 
-URL  api/v1/contract_account_info
+**示例**
+
+- POST  `api/v1/contract_account_info`
+
 
 **请求参数**
 
@@ -3090,11 +3088,7 @@ lever_rate  |  true  |  decimal    |  杠杠倍数  |    |
 \</list\>  |    |    |    |       |
 ts  |    number  |    long  |  响应生成时间点，单位：毫秒  |    | 
 
-**示例**
-
-- POST  `"https://api.hbdm.com/api/v1/contract_account_info"`
-
-> Response
+> Response:
 
 ```json
     {
@@ -3132,7 +3126,9 @@ ts  |    number  |    long  |  响应生成时间点，单位：毫秒  |    |
 
 ### 获取用户持仓信息
 
-URL api/v1/contract_position_info
+**示例**
+
+- POST `api/v1/contract_position_info`
 
 **请求参数**
 
@@ -3163,11 +3159,7 @@ direction  |  true  |  string  |  "buy":买 "sell":卖  |    |
 \</list\>  |    |    |    |    |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |    |
 
-**示例**
-
-- POST  `https://api.hbdm.com/api/v1/contract_position_info`
-
-> Response
+> Response:
 
 ```json
     {
@@ -3200,7 +3192,10 @@ ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |    |
 
 ### 合约下单 
 
-URL api/v1/contract_order
+**示例**
+
+- POST  `api/v1/contract_order`
+
 
 **请求参数**
 
@@ -3228,11 +3223,8 @@ order_id  |  true  |  long  |  订单ID  |    |
 client_order_id  | true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |    |   
 
-**示例**
 
-- POST  `https://api.hbdm.com/api/v1/contract_order`
-
-> Response
+> Response:
 
 ```json
 
@@ -3247,7 +3239,10 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |    |
 
 ### 合约批量下单 
 
-URL api/v1/contract_batchorder
+
+**示例**
+
+- POST  `api/v1/contract_batchorder`
 
 **请求参数**
 
@@ -3285,13 +3280,7 @@ client_order_id  |  true  |  long  |  用户下单时填写的客户端订单ID�
 \</list\>  |    |    |    |    |
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |
 
-**示例**
-
-- POST  
-
-`https://api.hbdm.com/api/v1/contract_batchorder`
-
-> Response
+> Response:
 
 ```json
     {
@@ -3328,7 +3317,9 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |
 
 ### 撤销订单 
 
-URL api/v1/contract_cancel
+**示例**
+
+- POST `api/v1/contract_cancel`
 
 **请求参数**
 
@@ -3354,11 +3345,7 @@ err_msg  |  true  |  string  |  错误信息  |    |
 successes  |   true  |  string  |  撤销成功的订单的order_id或client_order_id列表  |   |
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |   |
 
-**示例**
-
-- POST `https://api.hbdm.com/api/v1/contract_cancel`
-
-> Response
+> Response:
 
 ```json
 
@@ -3385,7 +3372,9 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |   |
 
 ### 全部撤单 
 
-URL api/v1/contract_cancelall
+**示例**
+
+- POST  `api/v1/contract_cancelall`
 
 **请求参数**
 
@@ -3406,11 +3395,7 @@ err_msg  |  true  |  int  |   订单失败信息  |    |
 successes  |    true  |  string  |  成功的订单  |    |   
 ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   | 
 
-**示例**
-
-- POST  https://api.hbdm.com.com/api/v1/contract_cancelall
-    
-> Response
+> Response:
     
 ```json
     多笔订单返回结果(成功订单ID,失败订单ID)
@@ -3438,7 +3423,9 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 
 ### 获取合约订单信息
 
-URL api/v1/contract_order_info
+**示例**
+
+- POST  `api/v1/contract_order_info`
 
 **请求参数**
 
@@ -3480,11 +3467,7 @@ order_source  |  true  |  string  |  订单来源  |  （1:system、2:web、3:ap
 \</list\>  |    |    |    |    |
 ts  |    true  |  long  |  时间戳  |  |   
 
-**示例**
-
-- POST  `https://api.hbdm.com.com/api/v1/contract_order_info`
-
-> Response
+> Response:
 
 ```json
     {
@@ -3543,7 +3526,9 @@ ts  |    true  |  long  |  时间戳  |  |
 
 ### 获取订单明细信息
 
-URL api/v1/contract_order_detail
+**示例**
+
+- POST `api/v1/contract_order_detail`
 
 **请求参数**
 
@@ -3589,11 +3574,7 @@ created_at  |   true  |  long  |  创建时间  |    |
 \</object \>  |    |     |    |    |
 ts  |  true  |  long  |  时间戳  |     |
 
-**示例**
-
-- POST  `https://api.hbdm.com/api/v1/contract_order_detail`
-
-> Response
+> Response:
 
 ```json
     {
@@ -3633,7 +3614,7 @@ ts  |  true  |  long  |  时间戳  |     |
     }
 ```
 
-**错误**
+>错误:
 
 ```json
     {
@@ -3646,7 +3627,9 @@ ts  |  true  |  long  |  时间戳  |     |
 
 ### 获取合约当前未成交委托 
 
-URL  /v1/contract_openorders
+**示例**
+
+- POST `/v1/contract_openorders`  
 
 **请求参数**
 
@@ -3688,11 +3671,7 @@ current_page  |   true  |  int  |   当前页  |    |
 total_size  |  true  |  int  |   总条数  |    |
 ts  |    true  |  long  |  时间戳  |    |
 
-**示例**
-
-- POST `https://www.hbdm.com/api/v1/contract_openorders`
-
-> Response
+> Response:
 
 ```json
     {
@@ -3732,7 +3711,9 @@ ts  |    true  |  long  |  时间戳  |    |
 
 ### 获取合约历史委托
 
-URL api/v1/contract_hisorders
+**示例**
+
+- POST `api/v1/contract_hisorders` 
 
 **请求参数**
 
@@ -3780,10 +3761,7 @@ current_page  |  true  |  int  |   当前页  |   |
 total_size  |  true  |  int  |   总条数  |    |  
 ts  |  true  |  long  |  时间戳  |    |  
 
-**示例**
-- POST `https://api.hbdm.com/api/v1/contract_hisorders`
-
-> Response
+> Response:
 
 ```json
     {
