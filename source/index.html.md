@@ -3524,10 +3524,9 @@ err_msg  |  true  |  int  |   订单失败信息  |    |
 successes  |    true  |  string  |  成功的订单  |    |   
 ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   | 
 
-> Response:
+> Response:(多笔订单返回结果(成功订单ID,失败订单ID))
     
 ```json
-    多笔订单返回结果(成功订单ID,失败订单ID)
     {
       "status": "ok",
       "data": {
