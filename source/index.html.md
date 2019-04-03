@@ -2292,7 +2292,7 @@ obtain_currency_list  | array     | For creation this is the amount for ETF crea
 
   - <a href='https://github.com/huobiapi/API_Docs_en#websocket-apimarket'>Websocket Documentation </a>
  
-# HBDM API Subscription
+# HuobiDM API Subscription
 
 
   
@@ -2420,6 +2420,21 @@ ts                             | true          | long     | Time of Respond Gene
   "ts":158797866555
 }
 ```
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 ### <a name="2">Get Contract Index Price Information  </a>
 
@@ -2462,6 +2477,17 @@ curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
   "ts": 1490759594752
 }
 ```
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 ### <a name="3">Contract Price Limitation</a>
 
@@ -2514,6 +2540,18 @@ curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=
 }
 ```
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
 ### <a name="4">Get Contract Open Interest Information </a>
 
 **Example** 
@@ -2563,6 +2601,18 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 }
 ```
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
 ### <a name="5">Get Market Depth</a>
 
 **Example**          
@@ -2590,9 +2640,9 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 | bids               | true          | object        | Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price |                 |
 | ts                 | true          | number        | Time of Respond Generation，Unit：Millisecond                |                 |
 
-```
-tick illustration:
+>tick illustration:
 
+```
 "tick": {
     "id": Message id.
     "ts": Time of Message Generation, unit: millisecond
@@ -2627,6 +2677,37 @@ tick illustration:
 }
 ```
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
 ### <a name="6">Get K-Line Data</a>
 
 **Example**                                                                      
@@ -2653,7 +2734,7 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 | status             | true          | string        | Request Processing Result                     | "ok" , "error"  |
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond |                 |
 
-Data Illustration：
+> Data Illustration：
 
 ```
 "data": [
@@ -2702,6 +2783,48 @@ Data Illustration：
 }
 ```
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+
 ###  <a name="7">Get Market Data Overview</a>
 
 **Example**          
@@ -2728,7 +2851,7 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 | tick               | true          | object        | K-Line Data                                                  |                 |
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond                |                 |
 
-tick Illustration
+> tick Illustration:
 
 ```
 "tick": {
@@ -2769,6 +2892,36 @@ tick Illustration
   "ts": 1529387842137
 }
 ```
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 ### <a name="8">The Last Trade of a Contract</a>
 
@@ -2795,9 +2948,9 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 | tick               | true          | object   | Trade Data                                                  |             |                 |
 | ts                 | true          | number   | Sending time                                                |             |                 |
 
-Tick Illustration：
+> Tick Illustration：
 
-```json
+```
 "tick": {
   "id": Message id,
   "ts": Latest Transaction time,
@@ -2837,6 +2990,38 @@ Tick Illustration：
 }
 ```
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+
 ### <a name="9">Request a Batch of Trade Records of a Contract</a>
 
 **Example**
@@ -2863,9 +3048,9 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | status             | true          | string        |                                                             | "ok"，"error"   |
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond               |                 |
 
-data Illustration：
+> data Illustration：
 
-```json
+```
 "data": {
   "id": Message id,
   "ts": Latest transaction time,
@@ -2904,6 +3089,37 @@ data Illustration：
    ]
 }
 ```
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 ## Account Interface
 
@@ -2974,6 +3190,37 @@ data Illustration：
 }
 ```
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
 ### <a name="102">User’s position Information </a>
 
 **Example**                         
@@ -3036,6 +3283,26 @@ data Illustration：
 }
 ```
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 ##Trade Interface
 
@@ -3082,6 +3349,12 @@ data Illustration：
   "ts": 158797866555
 }
 ```
+
+</br>
+</br>
+</br>
+</br>
+</br>
 
 ### <a name="104"> Place a Batch of Orders</a>
 
@@ -3160,6 +3433,37 @@ data Illustration：
 }
 ```
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
 ### <a name="105">Cancel an Order </a>
 
 **Example** 
@@ -3211,6 +3515,32 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
   "ts": 1490759594752
 }
 ```
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 ### <a name="106">Cancel All Orders </a>
 
@@ -3280,6 +3610,32 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
   "ts": 1490759594752
 }
 ```
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 ### <a name="107">Get Information of an Order </a>
 
@@ -3382,6 +3738,57 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 }
 ```
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
 ### <a name="108">Order details acquisition </a>
 
 **Example** 
@@ -3483,6 +3890,47 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 }
 ```
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
 ### <a name="109">Current unfilled commission acquisition </a>
 
 **Example**
@@ -3566,6 +4014,49 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
   "ts": 1490759594752
 }
 ```
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+
 ### <a name="110">Get History Orders</a>
 
 **Example**
