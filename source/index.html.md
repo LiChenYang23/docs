@@ -3670,7 +3670,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | lever_rate                     | true          | int      | Leverage rate                                                | 1\\5\\10\\20                        |
 | order_id                       | true          | long     | Order ID                                                     |                                     |
 | client_order_id                | true          | long     | Client order ID                                              |                                     |
-| created_at                     | true          | long     | Transaction time                                             |                                     |
+| created_at                     | true          | long     | Creation time                                             |                                     |
 | trade_volume                   | true          | decimal  | Transaction quantity                                         |                                     |
 | trade_turnover                 | true          | decimal  | Transaction aggregate amount                                 |                                     |
 | fee                            | true          | decimal  | Servicefee                                                   |                                     |
@@ -3819,7 +3819,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | offset                            | true          | string   | "open": "close"                                              |                                   |
 | volume                            | true          | decimal  | Number of Order                                              |                                   |
 | price                             | true          | decimal  | Price committed                                              |                                   |
-| created_at                        | true          | long     | Transaction time                                             |                                   |
+| created_at                        | true          | long     | Creation time                                             |                                   |
 | order_source                      | true          | string   | Order Source                                                 |                                   |
 | order_price_type                  | true          | string   | Order price type [limited price，opponent price，market price] |                                   |
 | margin_frozen                     | true          | decimal  | Freeze margin                                                |                                   |
