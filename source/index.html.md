@@ -3824,6 +3824,12 @@ total_size  |  true  |  int  |   总条数  |    |
 ts  |  true  |  long  |  时间戳  |    |  
 
 
+# 合约Websocket 订阅
+
+  - <a href='https://github.com/huobiapi/API_Docs/wiki/WS_api_reference_Derivatives'>合约Websocket 文档 </a>
+
+<br>
+
 <br>
 <br>
 <br>
