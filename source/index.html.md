@@ -2302,25 +2302,25 @@ obtain_currency_list  | array     | For creation this is the amount for ETF crea
 
 API Type  |  Content Type  |  Context                                       |  Request Type  |  Desc                                        |  Signature Required  |
 --------- | ---------------- | ------------------------------------------------ | ---------------- | ---------------------------------------------- | ---------------------- |
-Restful   | Market Data      | <a href="#1">api/v1/contract_contract_info </a>     | GET              | Get Contracts Information                      | No                     |
-Restful   | Market Data      | <a href="#2">api/v1/contract_index </a>             | GET              | Get contract Index Price Information           | No                     |
-Restful   | Market Data      | <a href="#3"> api/v1/contract_price_limit </a>      | GET              | Get Contract Price Limits                      | No                     |
-Restful   | Market Data      | <a href="#4"> api/v1/contract_open_interest</a>     | GET              | Get Contract Open Interest Information         | No                     |
-Restful   | Market Data      | <a href="#5"> /market/depth </a>                 | GET              | Get Market Depth                               | No                     |
-Restful   | Market Data      | <a href="#6">/market/history/kline  </a>         | GET              | Get K-Line Data                                | No                     |
-Restful   | Market Data      | <a href="#7"> /market/detail/merged </a>         | GET              | Get Market Data Overview                       | No                     |
-Restful   | Market Data      | <a href="#8"> /market/trade </a>                 | GET              | The Last Trade of a Contract                   | No                     |
-Restful   | Market Data      | <a href="#9">/market/history/trade  </a>         | GET              | Request a Batch of Trade Records of a Contract | No                     |
-Restful   | Account          | <a href="#101"> api/v1/contract_account_info </a>   | POST             | User’s Account Information                     | Yes                    |
-Restful   | Account          | <a href="#102">api/v1/contract_position_info  </a>  | POST             | User’s position Information                    | Yes                    |
-Restful   | Trade            | <a href="#103"> api/v1/contract_order </a>          | POST             | Place an Order                                 | Yes                    |
-Restful   | Trade            | <a href="#104">api/v1/contract_batchorder   </a>    | POST             | Place a Batch of Orders                        | Yes                    |
-Restful   | Trade            | <a href="#105">api/v1/contract_cancel </a>          | POST             | Cancel an Order                                | Yes                    |
-Restful   | Trade            | <a href="#106">api/v1/contract_cancelall  </a>      | POST             | Cancel All Orders                              | Yes                    |
-Restful   | User Order Info  | <a href="#107">api/v1/contract_order_info  </a>     | POST             | Get Information of an Order                    | Yes                    |
-Restful   | User Order Info  | <a href="#108"> api/v1/contract_order_detail  </a>  | POST             | Get Trade Details of an Order                  | Yes                    |
-Restful   | User Order Info  | <a href="#109"> api/v1/contract_openorders  </a>    | POST             | Get Current Orders                             | Yes                    |
-Restful   | User Order Info  | <a href="#110"> api/v1/contract_hisorders  </a>     | POST             | Get History Orders                             | Yes                    |
+Restful   | Market Data      | api/v1/contract_contract_info      | GET              | Get Contracts Information                      | No                     |
+Restful   | Market Data      | api/v1/contract_index           | GET              | Get contract Index Price Information           | No                     |
+Restful   | Market Data      |  api/v1/contract_price_limit       | GET              | Get Contract Price Limits                      | No                     |
+Restful   | Market Data      |  api/v1/contract_open_interest     | GET              | Get Contract Open Interest Information         | No                     |
+Restful   | Market Data      |  /market/depth                 | GET              | Get Market Depth                               | No                     |
+Restful   | Market Data      | /market/history/kline           | GET              | Get K-Line Data                                | No                     |
+Restful   | Market Data      |  /market/detail/merged          | GET              | Get Market Data Overview                       | No                     |
+Restful   | Market Data      |  /market/trade                 | GET              | The Last Trade of a Contract                   | No                     |
+Restful   | Market Data      | /market/history/trade          | GET              | Request a Batch of Trade Records of a Contract | No                     |
+Restful   | Account          |  api/v1/contract_account_info    | POST             | User’s Account Information                     | Yes                    |
+Restful   | Account          | api/v1/contract_position_info   | POST             | User’s position Information                    | Yes                    |
+Restful   | Trade            |  api/v1/contract_order           | POST             | Place an Order                                 | Yes                    |
+Restful   | Trade            | api/v1/contract_batchorder       | POST             | Place a Batch of Orders                        | Yes                    |
+Restful   | Trade            | api/v1/contract_cancel          | POST             | Cancel an Order                                | Yes                    |
+Restful   | Trade            | api/v1/contract_cancelall        | POST             | Cancel All Orders                              | Yes                    |
+Restful   | User Order Info  | api/v1/contract_order_info       | POST             | Get Information of an Order                    | Yes                    |
+Restful   | User Order Info  |  api/v1/contract_order_detail  | POST             | Get Trade Details of an Order                  | Yes                    |
+Restful   | User Order Info  |  api/v1/contract_openorders      | POST             | Get Current Orders                             | Yes                    |
+Restful   | User Order Info  |  api/v1/contract_hisorders      | POST             | Get History Orders                             | Yes                    |
 
 
 
@@ -2355,11 +2355,11 @@ Once received the application, we will expedite on it and reply to you soon. Tha
 
 # HuobiDM Market Data interface
 
-## Get Contract Info 
+## Get Contract Info 
 
 ### Example              
                                    
-- GET  ` api/v1/contract_contract_info`
+- GET  `api/v1/contract_contract_info`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_contract_info"      
