@@ -2353,18 +2353,11 @@ Please note that, for both public interface and private interface, there are rat
 
 Once received the application, we will expedite on it and reply to you soon. Thanks for your patience.
 
+# HuobiDM Market Data interface
 
+## <a ame="1"> Get Contract Info  </a> 
 
-
-
-
-
-
-## Market Data
-
-### <a ame="1"> Get Contract Info  </a> 
-
-**Example**              
+### Example              
                                    
 - GET  ` api/v1/contract_contract_info`
 
@@ -2372,7 +2365,7 @@ Once received the application, we will expedite on it and reply to you soon. Tha
 curl "https://api.hbdm.com/api/v1/contract_contract_info"      
 ```
                                                            
-**Request Parameter**
+### Request Parameter
 
   Parameter Name   |   Type   |   Mandatory   |   Description   |
 ------------------ | -------- | ------------- | --------------- |
@@ -2380,25 +2373,9 @@ symbol             | string   | false         | "BTC","ETH"...  |
 contract_type | string   | false      | "this_week","next_week", "quarter" |
 contract_code | string   | false      | BTC180914|
 
-**Note**：
+### Note：
+
 Note：If there is a number in the Contract Code row，inquiry with Contract_Code. If there is no number，inquiry by Symbol + Contract Type. One of the query conditions must be chosen.
-
-**Returning Parameter**
-
-Parameter Name               |   Mandatory   |   Type   |   Description                                |   Value Range                                                |
------------------------------- | ------------- | -------- | --------------------------------------------- | ------------------------------------------------------------ |
-status                         | true          | string   | Request Processing Result                     | "ok" , "error"                                               |
-\<list\>(Attribute Name: data) |               |          |                                               |                                                              |
-symbol                         | true          | string   | Product Code                                  | "BTC","ETH"...                                               |
-contract_code                  | true          | string   | Contract Code                                 | "BTC180914" ...                                              |
-contract_type                  | true          | string   | Contract Type                                 | "this_week","next_week", "quarter"                           |
-contract_size                  | true          | decimal  | Contract Value (USD of one contract)          | 10, 100...                                                   |
-price_tick                     | true          | decimal  | Minimum Variation of Contract Price           | 0.001, 0.01...                                               |
-delivery_date                  | true          | string   | Contract Delivery Date                        | eg "20180720"                                                |
-create_date                    | true          | string   | Contract Listing Date                         | eg "20180706"                                                |
-contract_status                | true          | int      | Contract Status                               | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered,9: Suspended Listing |
-\</list\>                      |               |          |                                               |                                                              |
-ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
 
 > Response
 
@@ -2420,25 +2397,28 @@ ts                             | true          | long     | Time of Respond Gene
   "ts":158797866555
 }
 ```
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
 
-### <a name="2">Get Contract Index Price Information  </a>
+### Returning Parameter
 
-**Example**                                                 
+Parameter Name               |   Mandatory   |   Type   |   Description                                |   Value Range                                                |
+------------------------------ | ------------- | -------- | --------------------------------------------- | ------------------------------------------------------------ |
+status                         | true          | string   | Request Processing Result                     | "ok" , "error"                                               |
+\<list\>(Attribute Name: data) |               |          |                                               |                                                              |
+symbol                         | true          | string   | Product Code                                  | "BTC","ETH"...                                               |
+contract_code                  | true          | string   | Contract Code                                 | "BTC180914" ...                                              |
+contract_type                  | true          | string   | Contract Type                                 | "this_week","next_week", "quarter"                           |
+contract_size                  | true          | decimal  | Contract Value (USD of one contract)          | 10, 100...                                                   |
+price_tick                     | true          | decimal  | Minimum Variation of Contract Price           | 0.001, 0.01...                                               |
+delivery_date                  | true          | string   | Contract Delivery Date                        | eg "20180720"                                                |
+create_date                    | true          | string   | Contract Listing Date                         | eg "20180706"                                                |
+contract_status                | true          | int      | Contract Status                               | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered,9: Suspended Listing |
+\</list\>                      |               |          |                                               |                                                              |
+ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
+
+
+## <a name="2">Get Contract Index Price Information  </a>
+
+### Example                                                
                                                             
 - GET `api/v1/contract_index` 
 
@@ -2446,22 +2426,11 @@ ts                             | true          | long     | Time of Respond Gene
 curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC" 
 ```
 
-**Request Parameter**
+### Request Parameter
 
-| **Parameter Name** | **Parameter Type** | **Mandatory** | **Desc**       |
+| Parameter Name | Parameter Type | Mandatory   |   Desc         |
 | ------------------ | ------------------ | ------------- | -------------- |
 | symbol             | string             | true          | "BTC","ETH"... |
-
-**Returning Parameter**
-
-| **Parameter Name**             | **Mandatory** | **Type** | **Desc**                                      | **Value Range** |
-| ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------- |
-| status                         | true          | string   | Request Processing Result                     | "ok" , "error"  |
-| \<list\>(Attribute Name: data) |               |          |                                               |                 |
-| symbol                         | true          | string   | symbol                                        | "BTC","ETH"...  |
-| index_price                    | true          | decimal  | Index Price                                   |                 |
-| \</list\>                      |               |          |                                               |                 |
-| ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
 > Response
 
@@ -2478,20 +2447,21 @@ curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
 
-### <a name="3">Contract Price Limitation</a>
+|   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range   |
+| ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------- |
+| status                         | true          | string   | Request Processing Result                     | "ok" , "error"  |
+| \<list\>(Attribute Name: data) |               |          |                                               |                 |
+| symbol                         | true          | string   | symbol                                        | "BTC","ETH"...  |
+| index_price                    | true          | decimal  | Index Price                                   |                 |
+| \</list\>                      |               |          |                                               |                 |
+| ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
-**Example**    
+  
+## <a name="3">Contract Price Limitation</a>
+
+###  Example      
                                                                           
 - GET `api/v1/contract_price_limit` 
  
@@ -2499,29 +2469,19 @@ curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=this_week"
 ```
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Parameter Type** | **Mandatory** | **Desc**                                          |
+|   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------- |
 | symbol             | string             | false         | "BTC","ETH"...                                    |
 | contract_type      | string             | false         | Contract Type ("this_week","next_week","quarter") |
 | contract_code      | string             | false         | BTC180914  ...                                    |
 
-**Note**：If there is a number in the Contract Code row，inquiry with Contract_Code. If there is no number，inquiry by Symbol + Contract Type. One of the query conditions must be chosen
+###  Note  ：
 
-**Returning Parameter**
-
-| **Parameter Name**             | **Mandatory** | **Type** | **Desc**                                      | **Value Range**                   |
-| ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------------------------- |
-| status                         | true          | string   | Request Processing Result                     | "ok" ,"error"                     |
-| \<list\>(Attribute Name: data) |               |          |                                               |                                   |
-| symbol                         | true          | string   | Variety code                                  | "BTC","ETH" ...                   |
-| high_limit                     | true          | decimal  | Highest Buying Price                          |                                   |
-| low_limit                      | true          | decimal  | Lowest Selling Price                          |                                   |
-| contract_code                  | true          | string   | Contract Code                                 | eg "BTC180914"  ...               |
-| contract_type                  | true          | string   | Contract Type                                 | "this_week","next_week","quarter" |
-| \<list\>                       |               |          |                                               |                                   |
-| ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
+If there is a number in the Contract Code row，inquiry with Contract_Code. 
+If there is no number，inquiry by Symbol + Contract Type. 
+One of the query conditions must be chosen.
 
 > Response
 
@@ -2540,21 +2500,24 @@ curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
 
-### <a name="4">Get Contract Open Interest Information </a>
+|   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range                     |
+| ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------------------------- |
+| status                         | true          | string   | Request Processing Result                     | "ok" ,"error"                     |
+| \<list\>(Attribute Name: data) |               |          |                                               |                                   |
+| symbol                         | true          | string   | Variety code                                  | "BTC","ETH" ...                   |
+| high_limit                     | true          | decimal  | Highest Buying Price                          |                                   |
+| low_limit                      | true          | decimal  | Lowest Selling Price                          |                                   |
+| contract_code                  | true          | string   | Contract Code                                 | eg "BTC180914"  ...               |
+| contract_type                  | true          | string   | Contract Type                                 | "this_week","next_week","quarter" |
+| \<list\>                       |               |          |                                               |                                   |
+| ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
-**Example** 
+
+## <a name="4">Get Contract Open Interest Information </a>
+
+###  Example   
                                                                                  
 - GET `api/v1/contract_open_interest` 
 
@@ -2562,27 +2525,13 @@ curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=
 curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_type=this_week"
 ```
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Parameter Type** | **Mandatory** | **Desc**                                          |
+|   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------- |
 | symbol             | string             | false         | "BTC","ETH"...                                    |
 | contract_type      | string             | false         | Contract Type ("this_week","next_week","quarter") |
 | contract_code      | string             | false         | BTC180914                                         |
-
-**Returning Parameter**
-
-| **Parameter Name**             | **Mandatory** | **Type** | **Desc**                                      | **Value Range**                   |
-| ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------------------------- |
-| status                         | true          | string   | Request Processing Result                     | "ok" , "error"                    |
-| \<list\>(Attribute Name: data) |               |          |                                               |                                   |
-| symbol                         | true          | string   | Variety code                                  | "BTC", "ETH" ...                  |
-| contract_type                  | true          | string   | Contract Type                                 | "this_week","next_week","quarter" |
-| volume                         | true          | decimal  | Position quantity(amount)                     |                                   |
-| amount                         | true          | decimal  | Position quantity(Currency)                   |                                   |
-| contract_code                  | true          | string   | Contract Code                                 | eg "BTC180914"   ...              |
-| \</list\>                      |               |          |                                               |                                   |
-| ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
 > Response:
 
@@ -2601,21 +2550,24 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
 
-### <a name="5">Get Market Depth</a>
+|   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range                     |
+| ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------------------------- |
+| status                         | true          | string   | Request Processing Result                     | "ok" , "error"                    |
+| \<list\>(Attribute Name: data) |               |          |                                               |                                   |
+| symbol                         | true          | string   | Variety code                                  | "BTC", "ETH" ...                  |
+| contract_type                  | true          | string   | Contract Type                                 | "this_week","next_week","quarter" |
+| volume                         | true          | decimal  | Position quantity(amount)                     |                                   |
+| amount                         | true          | decimal  | Position quantity(Currency)                   |                                   |
+| contract_code                  | true          | string   | Contract Code                                 | eg "BTC180914"   ...              |
+| \</list\>                      |               |          |                                               |                                   |
+| ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
-**Example**          
+
+## <a name="5">Get Market Depth</a>
+
+###  Example            
                                             
 - GET `/market/depth` 
 
@@ -2623,22 +2575,12 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 ```  
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Parameter Type** | **Mandatory** | **Desc**                                                     |
+|   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------------------ |
 | symbol             | string             | true          | e.g. "BTC_CQ" represents BTC “This Week”，"BTC_CQ" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | type               | string             | true          | step0, step1, step2, step3, step4, step5（merged deep data 0-5）；when step is 0，deep data not merged |
-
-**Returning Parameter**
-
-| **Parameter Name** | **Mandatory** | **Data Type** | **Desc**                                                     | **Value Range** |
-| ------------------ | ------------- | ------------- | ------------------------------------------------------------ | --------------- |
-| ch                 | true          | string        | Data belonged channel，Format： market.period                |                 |
-| status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
-| asks               | true          | object        | Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price |                 |
-| bids               | true          | object        | Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price |                 |
-| ts                 | true          | number        | Time of Respond Generation，Unit：Millisecond                |                 |
 
 >tick illustration:
 
@@ -2677,62 +2619,34 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
 
-### <a name="6">Get K-Line Data</a>
+|   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                                       |   Value Range   |
+| ------------------ | ------------- | ------------- | ------------------------------------------------------------ | --------------- |
+| ch                 | true          | string        | Data belonged channel，Format： market.period                |                 |
+| status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
+| asks               | true          | object        | Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price |                 |
+| bids               | true          | object        | Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price |                 |
+| ts                 | true          | number        | Time of Respond Generation，Unit：Millisecond                |                 |
 
-**Example**                                                                      
+
+## <a name="6">Get K-Line Data</a>
+
+###  Example     
+                                                                   
 - GET `/market/history/kline` 
 
 ```shell
 curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_CQ"
 ```
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**             | **Default** | **Value Range**                                              |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc               |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
 | symbol             | true          | string   | Contract Name        |             | e.g. "BTC_CQ" represents BTC “This Week”，"BTC_CQ" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | false         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
-
-**Returning Parameter**
-
-| **Parameter Name** | **Mandatory** | **Data Type** | **Desc**                                      | **Value Range** |
-| ------------------ | ------------- | ------------- | --------------------------------------------- | --------------- |
-| ch                 | true          | string        | Data belonged channel，Format： market.period |                 |
-| data               | true          | object        | KLine Data                                    |                 |
-| status             | true          | string        | Request Processing Result                     | "ok" , "error"  |
-| ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond |                 |
 
 > Data Illustration：
 
@@ -2783,51 +2697,19 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
+
+|   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                        |   Value Range   |
+| ------------------ | ------------- | ------------- | --------------------------------------------- | --------------- |
+| ch                 | true          | string        | Data belonged channel，Format： market.period |                 |
+| data               | true          | object        | KLine Data                                    |                 |
+| status             | true          | string        | Request Processing Result                     | "ok" , "error"  |
+| ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond |                 |
 
 
-###  <a name="7">Get Market Data Overview</a>
+##  <a name="7">Get Market Data Overview</a>
 
-**Example**          
+###  Example            
                                          
 - GET `/market/detail/merged`
    
@@ -2836,20 +2718,11 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 ```
 
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**      | **Default** | **Value Range**                                              |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
 | symbol             | true          | string   | Contract Name |             | e.g. "BTC_CQ" represents BTC “This Week”，"BTC_CQ" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
-
-**Returning Parameter**
-
-| **Parameter Name** | **Mandatory** | **Data Type** | **Desc**                                                     | **Value Range** |
-| ------------------ | ------------- | ------------- | ------------------------------------------------------------ | --------------- |
-| ch                 | true          | string        | Data belonged channel，format： market.$symbol.detail.merged |                 |
-| status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
-| tick               | true          | object        | K-Line Data                                                  |                 |
-| ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond                |                 |
 
 > tick Illustration:
 
@@ -2892,40 +2765,20 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
   "ts": 1529387842137
 }
 ```
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
 
-### <a name="8">The Last Trade of a Contract</a>
+###  Returning Parameter  
 
-**Example** 
+|   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                                       |   Value Range   |
+| ------------------ | ------------- | ------------- | ------------------------------------------------------------ | --------------- |
+| ch                 | true          | string        | Data belonged channel，format： market.$symbol.detail.merged |                 |
+| status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
+| tick               | true          | object        | K-Line Data                                                  |                 |
+| ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond                |                 |
+
+
+## <a name="8">The Last Trade of a Contract</a>
+
+###  Example   
                                           
 - GET `/market/trade`   
 
@@ -2933,20 +2786,11 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 ```
  
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**      | **Default** | **Value Range**                                              |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
 | symbol             | true          | string   | Contract Name |             | e.g. "BTC_CQ" represents BTC “This Week”，"BTC_CQ" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
-
-**Returning Parameter**
-
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**                                                    | **Default** | **Value Range** |
-| ------------------ | ------------- | -------- | ----------------------------------------------------------- | ----------- | --------------- |
-| ch                 | true          | string   | Data belonged channel，Format： market.$symbol.trade.detail |             |                 |
-| status             | true          | string   |                                                             |             | "ok","error"    |
-| tick               | true          | object   | Trade Data                                                  |             |                 |
-| ts                 | true          | number   | Sending time                                                |             |                 |
 
 > Tick Illustration：
 
@@ -2990,41 +2834,19 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
+
+|   Parameter Name   |   Mandatory   |   Type   |   Desc                                                      |   Default   |   Value Range   |
+| ------------------ | ------------- | -------- | ----------------------------------------------------------- | ----------- | --------------- |
+| ch                 | true          | string   | Data belonged channel，Format： market.$symbol.trade.detail |             |                 |
+| status             | true          | string   |                                                             |             | "ok","error"    |
+| tick               | true          | object   | Trade Data                                                  |             |                 |
+| ts                 | true          | number   | Sending time                                                |             |                 |
 
 
-### <a name="9">Request a Batch of Trade Records of a Contract</a>
+## <a name="9">Request a Batch of Trade Records of a Contract</a>
 
-**Example**
+###  Example  
                                                             
 - GET `/market/history/trade`
    
@@ -3032,21 +2854,12 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 ```
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Mandatory** | **Data Type** | **Desc**                              | **Default** | **Value Range**                                              |
+|   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                |   Default   |   Value Range                                                |
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
 | symbol             | true          | string        | Contract Name                         |             | e.g. "BTC_CQ" represents BTC “This Week”，"BTC_CQ" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | size               | false         | number        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
-
-**Returning Parameter**
-
-| **Parameter Name** | **Mandatory** | **Data Type** | **Desc**                                                    | **Value Range** |
-| ------------------ | ------------- | ------------- | ----------------------------------------------------------- | --------------- |
-| ch                 | true          | string        | Data belonged channel，Format： market.$symbol.trade.detail |                 |
-| data               | true          | object        | Trade Data                                                  |                 |
-| status             | true          | string        |                                                             | "ok"，"error"   |
-| ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond               |                 |
 
 > data Illustration：
 
@@ -3090,70 +2903,28 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
 
-## Account Interface
+|   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                                      |   Value Range   |
+| ------------------ | ------------- | ------------- | ----------------------------------------------------------- | --------------- |
+| ch                 | true          | string        | Data belonged channel，Format： market.$symbol.trade.detail |                 |
+| data               | true          | object        | Trade Data                                                  |                 |
+| status             | true          | string        |                                                             | "ok"，"error"   |
+| ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond               |                 |
 
-### <a name="101">User’s Account Information</a>
+# HuobiDM Account Interface
 
-**Example**        
+## <a name="101">User’s Account Information</a>
+
+###  Example          
                                       
 - POST `api/v1/contract_account_info`  
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**     | **Default** | **Value Range**                                         |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
 | ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
 | symbol             | false         | string   | Variety code |             | "BTC","ETH"...if default, return to all types defaulted |
-
-**Returning Parameter**
-
-| **Parameter Name**             | **Mandatory** | **Type** | **Desc**                                      | **Value Range** |
-| ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------- |
-| status                         | true          | string   | Request Processing Result                     | "ok" , "error"  |
-| \<list\>(Attribute Name: data) |               |          |                                               |                 |
-| symbol                         | true          | string   | Variety code                                  | "BTC","ETH"...  |
-| margin_balance                 | true          | decimal  | Account rights                                |                 |
-| margin_position                | true          | decimal  | Position Margin                               |                 |
-| margin_frozen                  | true          | decimal  | Freeze margin                                 |                 |
-| margin_available               | true          | decimal  | Available margin                              |                 |
-| profit_real                    | true          | decimal  | Realized profit                               |                 |
-| profit_unreal                  | true          | decimal  | Unrealized profit                             |                 |
-| risk_rate                      | true          | decimal  | risk rate                                     |                 |
-| liquidation_price              | true          | decimal  | Estimated liquidation price                   |                 |
-| withdraw_available             | true          | decimal  | Available withdrawal                          |                 |
-| lever_rate                     | true          | decimal  | Leverage Rate                                 |                 |
-| \</list\>                      |               |          |                                               |                 |
-| ts                             | number        | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 > Response:
 
@@ -3190,71 +2961,39 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
 
-### <a name="102">User’s position Information </a>
+|   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range   |
+| ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------- |
+| status                         | true          | string   | Request Processing Result                     | "ok" , "error"  |
+| \<list\>(Attribute Name: data) |               |          |                                               |                 |
+| symbol                         | true          | string   | Variety code                                  | "BTC","ETH"...  |
+| margin_balance                 | true          | decimal  | Account rights                                |                 |
+| margin_position                | true          | decimal  | Position Margin                               |                 |
+| margin_frozen                  | true          | decimal  | Freeze margin                                 |                 |
+| margin_available               | true          | decimal  | Available margin                              |                 |
+| profit_real                    | true          | decimal  | Realized profit                               |                 |
+| profit_unreal                  | true          | decimal  | Unrealized profit                             |                 |
+| risk_rate                      | true          | decimal  | risk rate                                     |                 |
+| liquidation_price              | true          | decimal  | Estimated liquidation price                   |                 |
+| withdraw_available             | true          | decimal  | Available withdrawal                          |                 |
+| lever_rate                     | true          | decimal  | Leverage Rate                                 |                 |
+| \</list\>                      |               |          |                                               |                 |
+| ts                             | number        | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
-**Example**                         
+
+
+## <a name="102">User’s position Information </a>
+
+###  Example                           
                      
 - POST  `api/v1/contract_position_info` 
 
-**Request Parameter**
+### Request Parameter  
 
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**     | **Default** | **Value Range**                                         |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
 | ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
 | symbol             | false         | string   | Variety code |             | "BTC","ETH"...if default, return to all types defaulted |
-
-**Returning Parameter**
-
-| **Parameter Name**             | **Mandatory** | **Type** | **Desc**                                      | **Value Range**                     |
-| ------------------------------ | ------------- | -------- | --------------------------------------------- | ----------------------------------- |
-| status                         | true          | string   | Request Processing Result                     | "ok" , "error"                      |
-| \<list\>(Attribute Name: data) |               |          |                                               |                                     |
-| symbol                         | true          | string   | Variety code                                  | "BTC","ETH"...                      |
-| contract_code                  | true          | string   | Contract Code                                 | "BTC180914" ...                     |
-| contract_type                  | true          | string   | Contract Type                                 | "this_week", "next_week", "quarter" |
-| volume                         | true          | decimal  | Position quantity                             |                                     |
-| available                      | true          | decimal  | Available position can be closed              |                                     |
-| frozen                         | true          | decimal  | frozen                                        |                                     |
-| cost_open                      | true          | decimal  | Opening average price                         |                                     |
-| cost_hold                      | true          | decimal  | Average price of position                     |                                     |
-| profit_unreal                  | true          | decimal  | Unrealized profit and loss                    |                                     |
-| profit_rate                    | true          | decimal  | Profit rate                                   |                                     |
-| profit                         | true          | decimal  | profit                                        |                                     |
-| position_margin                | true          | decimal  | Position margin                               |                                     |
-| lever_rate                     | true          | int      | Leverage rate                                 |                                     |
-| direction                      | true          | string   | Transaction direction                         |                                     |
-| \</list\>                      |               |          |                                               |                                     |
-| ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
 
 > Response:
 
@@ -3283,38 +3022,41 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+### Returning Parameter  
 
-##Trade Interface
+|   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range                       |
+| ------------------------------ | ------------- | -------- | --------------------------------------------- | ----------------------------------- |
+| status                         | true          | string   | Request Processing Result                     | "ok" , "error"                      |
+| \<list\>(Attribute Name: data) |               |          |                                               |                                     |
+| symbol                         | true          | string   | Variety code                                  | "BTC","ETH"...                      |
+| contract_code                  | true          | string   | Contract Code                                 | "BTC180914" ...                     |
+| contract_type                  | true          | string   | Contract Type                                 | "this_week", "next_week", "quarter" |
+| volume                         | true          | decimal  | Position quantity                             |                                     |
+| available                      | true          | decimal  | Available position can be closed              |                                     |
+| frozen                         | true          | decimal  | frozen                                        |                                     |
+| cost_open                      | true          | decimal  | Opening average price                         |                                     |
+| cost_hold                      | true          | decimal  | Average price of position                     |                                     |
+| profit_unreal                  | true          | decimal  | Unrealized profit and loss                    |                                     |
+| profit_rate                    | true          | decimal  | Profit rate                                   |                                     |
+| profit                         | true          | decimal  | profit                                        |                                     |
+| position_margin                | true          | decimal  | Position margin                               |                                     |
+| lever_rate                     | true          | int      | Leverage rate                                 |                                     |
+| direction                      | true          | string   | Transaction direction                         |                                     |
+| \</list\>                      |               |          |                                               |                                     |
+| ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
 
-### <a name="103"> Place an Order </a>
 
-**Example**
+# HuobiDM Trade Interface
+
+## <a name="103"> Place an Order </a>
+
+###  Example  
 
 - POST `api/v1/contract_order`
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Parameter Type** | **Mandatory** | **Desc**                                                     |
+|   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------------------ |
 | symbol             | string             | false         | "BTC","ETH"...                                               |
 | contract_type      | string             | false         | Contract Type ("this_week": "next_week": "quarter":)         |
@@ -3327,17 +3069,10 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | lever_rate         | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
 | order_price_type   | string             | true          | "limit", "opponent"                                          |
 
-**Note**： If there is a number in the Contract Code row，inquiry with Contract_Code. If there is no number，inquiry by Symbol + Contract Type
+###  Note ： 
 
-**Returning Parameter**
-
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**                                                     | **Value Range** |
-| ------------------ | ------------- | -------- | ------------------------------------------------------------ | --------------- |
-| status             | true          | string   | Request Processing Result                                    | "ok" , "error"  |
-| order_id           | true          | long     | Order ID                                                     |                 |
-| client_order_id    | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
-| ts                 | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
-
+If there is a number in the Contract Code row，inquiry with Contract_Code. 
+If there is no number，inquiry by Symbol + Contract Type.
 
 > Response:
 
@@ -3350,21 +3085,26 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
 
-### <a name="104"> Place a Batch of Orders</a>
+###  Returning Parameter  
 
-**Example**
+|   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |   Value Range   |
+| ------------------ | ------------- | -------- | ------------------------------------------------------------ | --------------- |
+| status             | true          | string   | Request Processing Result                                    | "ok" , "error"  |
+| order_id           | true          | long     | Order ID                                                     |                 |
+| client_order_id    | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
+| ts                 | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
+
+
+## <a name="104"> Place a Batch of Orders</a>
+
+###  Example  
 
 - POST `/v1/contract_batchorder`
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name**                    | **Parameter Type** | **Mandatory** | **Desc**                                                     |
+|   Parameter Name                      |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------------------------- | ------------------ | ------------- | ------------------------------------------------------------ |
 | \<list\>(Attribute Name: orders_data) |                    |               |                                                              |
 | symbol                                | string             | false         | "BTC","ETH"...                                               |
@@ -3379,24 +3119,10 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | order_price_type                      | string             | true          | "limit":   "opponent"                                        |
 | \</list\>                             |                    |               |                                                              |
 
-**Note**：If there is a number in the Contract Code row，inquiry with Contract_Code. If there is no number，inquiry by Symbol + Contract Type
+###  Note  ：
 
-**Returning Parameter**
-
-| **Parameter Name**                | **Mandatory** | **Type** | **Desc**                                                     | **Value Range** |
-| --------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------- |
-| status                            | true          | string   | Request Processing Result                                    | "ok" , "error"  |
-| \<list\>(Attribute Name: errors)  |               |          |                                                              |                 |
-| index                             | true          | int      | order Index                                                  |                 |
-| err_code                          | true          | int      | Error code                                                   |                 |
-| err_msg                           | true          | string   | Error information                                            |                 |
-| \</list\>                         |               |          |                                                              |                 |
-| \<list\>(Attribute Name: success) |               |          |                                                              |                 |
-| index                             | true          | int      | order Index                                                  |                 |
-| order_id                          | true          | long     | Order ID                                                     |                 |
-| client_order_id                   | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
-| \</list\>                         |               |          |                                                              |                 |
-| ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
+If there is a number in the Contract Code row,inquiry with Contract_Code. 
+If there is no number,inquiry by Symbol + Contract Type.
 
 > Response:
 
@@ -3433,66 +3159,40 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
 
-### <a name="105">Cancel an Order </a>
+|   Parameter Name                  |   Mandatory   |   Type   |   Desc                                                       |   Value Range   |
+| --------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------- |
+| status                            | true          | string   | Request Processing Result                                    | "ok" , "error"  |
+| \<list\>(Attribute Name: errors)  |               |          |                                                              |                 |
+| index                             | true          | int      | order Index                                                  |                 |
+| err_code                          | true          | int      | Error code                                                   |                 |
+| err_msg                           | true          | string   | Error information                                            |                 |
+| \</list\>                         |               |          |                                                              |                 |
+| \<list\>(Attribute Name: success) |               |          |                                                              |                 |
+| index                             | true          | int      | order Index                                                  |                 |
+| order_id                          | true          | long     | Order ID                                                     |                 |
+| client_order_id                   | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
+| \</list\>                         |               |          |                                                              |                 |
+| ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
-**Example** 
+## <a name="105">Cancel an Order </a>
+
+###  Example   
 
 - POST  `api/v1/contract_cancel`
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**                                                     |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
 | order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time） |
 | client_order_id    | false         | string   | Client order ID (different IDs are separated by ",", maximum 50 orders can be withdrew at one time) |
 | symbol             | true          | string   | "BTC","ETH"...                                               |
 
-**Note**：
+###  Note  ：
+
 Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。
-
-**Returning Parameter**
-
-| **Parameter Name**               | **Mandatory** | **Type** | **Desc**                                                  | **Value Range** |
-| -------------------------------- | ------------- | -------- | --------------------------------------------------------- | --------------- |
-| status                           | true          | string   | Request Processing Result                                 | "ok" , "error"  |
-| \<list\>(Attribute Name: errors) |               |          |                                                           |                 |
-| order_id                         | true          | string   | Order ID                                                  |                 |
-| err_code                         | true          | int      | Error code                                                |                 |
-| err_msg                          | true          | string   | Error information                                         |                 |
-| \</list\>                        |               |          |                                                           |                 |
-| successes                        | true          | string   | Successfully withdrew list of order_id or client_order_id |                 |
-| ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond             |                 |
 
 > Response: result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
 
@@ -3516,58 +3216,25 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
 
-### <a name="106">Cancel All Orders </a>
+|   Parameter Name                 |   Mandatory   |   Type   |   Desc                                                    |   Value Range   |
+| -------------------------------- | ------------- | -------- | --------------------------------------------------------- | --------------- |
+| status                           | true          | string   | Request Processing Result                                 | "ok" , "error"  |
+| \<list\>(Attribute Name: errors) |               |          |                                                           |                 |
+| order_id                         | true          | string   | Order ID                                                  |                 |
+| err_code                         | true          | int      | Error code                                                |                 |
+| err_msg                          | true          | string   | Error information                                         |                 |
+| \</list\>                        |               |          |                                                           |                 |
+| successes                        | true          | string   | Successfully withdrew list of order_id or client_order_id |                 |
+| ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond             |                 |
 
-**Example**
+
+## <a name="106">Cancel All Orders </a>
+
+###  Example  
 
 - POST `api/v1/contract_cancelall`
-
-**Request Parameter**
-
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**                        |
-| ------------------ | ------------- | -------- | ------------------------------- |
-| symbol             | true          | string   | Variety code，eg "BTC","ETH"... |
-
-**Returning Parameter**
-
-| **Parameter Name**               | **Mandatory** | **Type** | **Desc**                                      | **Value Range** |
-| -------------------------------- | ------------- | -------- | --------------------------------------------- | --------------- |
-| status                           | true          | string   | Request Processing Result                     | "ok" , "error"  |
-| successes                        | true          | string   | Successful order                              |                 |
-| \<list\>(Attribute Name: errors) |               |          |                                               |                 |
-| order_id                         | true          | String   | Order ID                                      |                 |
-| err_code                         | true          | int      | failed order error messageError code          |                 |
-| err_msg                          | true          | int      | failed order information                      |                 |
-| \</list\>                        |               |          |                                               |                 |
-| successes                        | true          | string   | Successful order                              |                 |
-| ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond |                 |
-
 
 > Request:
 ```json
@@ -3575,6 +3242,12 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
  "symbol": "BTC"
 }
 ```
+
+###  Request Parameter  
+
+|   Parameter Name   |   Mandatory   |   Type   |   Desc                          |
+| ------------------ | ------------- | -------- | ------------------------------- |
+| symbol             | true          | string   | Variety code，eg "BTC","ETH"... |
 
 > Response:
  result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
@@ -3611,77 +3284,38 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
 
-### <a name="107">Get Information of an Order </a>
+|   Parameter Name                 |   Mandatory   |   Type   |   Desc                                        |   Value Range   |
+| -------------------------------- | ------------- | -------- | --------------------------------------------- | --------------- |
+| status                           | true          | string   | Request Processing Result                     | "ok" , "error"  |
+| successes                        | true          | string   | Successful order                              |                 |
+| \<list\>(Attribute Name: errors) |               |          |                                               |                 |
+| order_id                         | true          | String   | Order ID                                      |                 |
+| err_code                         | true          | int      | failed order error messageError code          |                 |
+| err_msg                          | true          | int      | failed order information                      |                 |
+| \</list\>                        |               |          |                                               |                 |
+| successes                        | true          | string   | Successful order                              |                 |
+| ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
-**Example** 
+
+## <a name="107">Get Information of an Order </a>
+
+###  Example   
 
 - POST `api/v1/contract_order_info`
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**                                                     |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
 | order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 20 orders can be withdrew at one time） |
 | client_order_id    | false         | string   | Client order ID Order ID（different IDs are separated by ",", maximum 20 orders can be withdrew at one time) |
 | symbol             | true          | string   | "BTC","ETH"...                                               |
 
-**Note**：Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。
+###  Note  ：
 
-**Returning Parameter**
-
-| **Parameter Name**             | **Mandatory** | **Type** | **Desc**                                                     | **Value Range**                     |
-| ------------------------------ | ------------- | -------- | ------------------------------------------------------------ | ----------------------------------- |
-| status                         | true          | string   | Request Processing Result                                    | "ok" , "error"                      |
-| \<list\>(Attribute Name: data) |               |          |                                                              |                                     |
-| symbol                         | true          | string   | Variety code                                                 |                                     |
-| contract_type                  | true          | string   | Contract Type                                                | "this_week", "next_week", "quarter" |
-| contract_code                  | true          | string   | Contract Code                                                | "BTC180914" ...                     |
-| volume                         | true          | decimal  | Numbers of order                                             |                                     |
-| price                          | true          | decimal  | Price committed                                              |                                     |
-| order_price_type               | true          | string   | Order price type [limited price，opponent price，market price] |                                     |
-| direction                      | true          | string   | Transaction direction                                        |                                     |
-| offset                         | true          | string   | "open": "close"                                              |                                     |
-| lever_rate                     | true          | int      | Leverage rate                                                | 1\\5\\10\\20                        |
-| order_id                       | true          | long     | Order ID                                                     |                                     |
-| client_order_id                | true          | long     | Client order ID                                              |                                     |
-| created_at                     | true          | long     | Creation time                                             |                                     |
-| trade_volume                   | true          | decimal  | Transaction quantity                                         |                                     |
-| trade_turnover                 | true          | decimal  | Transaction aggregate amount                                 |                                     |
-| fee                            | true          | decimal  | Servicefee                                                   |                                     |
-| trade_avg_price                | true          | decimal  | Transaction average price                                    |                                     |
-| margin_frozen                  | true          | decimal  | Freeze margin                                                |                                     |
-| profit                         | true          | decimal  | profit                                                       |                                     |
-| status                         | true          | int      | Order status (1ready to submit 2ordered 3submitted 4partially transacted 5partially withdrew 6all transacted 7withdrew 11withdrawing) |                                     |
-| order_source                   | true          | string   | Order source（1:system、2:web、3:api、4:m 5:risk、6:settlement） |                                     |
-| \</list\>                      |               |          |                                                              |                                     |
-| ts                             | true          | long     | Timestamp                                                    |                                     |
-
+Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。
 
 > Response:
 
@@ -3738,106 +3372,52 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
 
-### <a name="108">Order details acquisition </a>
+|   Parameter Name               |   Mandatory   |   Type   |   Desc                                                       |   Value Range                       |
+| ------------------------------ | ------------- | -------- | ------------------------------------------------------------ | ----------------------------------- |
+| status                         | true          | string   | Request Processing Result                                    | "ok" , "error"                      |
+| \<list\>(Attribute Name: data) |               |          |                                                              |                                     |
+| symbol                         | true          | string   | Variety code                                                 |                                     |
+| contract_type                  | true          | string   | Contract Type                                                | "this_week", "next_week", "quarter" |
+| contract_code                  | true          | string   | Contract Code                                                | "BTC180914" ...                     |
+| volume                         | true          | decimal  | Numbers of order                                             |                                     |
+| price                          | true          | decimal  | Price committed                                              |                                     |
+| order_price_type               | true          | string   | Order price type [limited price，opponent price，market price] |                                     |
+| direction                      | true          | string   | Transaction direction                                        |                                     |
+| offset                         | true          | string   | "open": "close"                                              |                                     |
+| lever_rate                     | true          | int      | Leverage rate                                                | 1\\5\\10\\20                        |
+| order_id                       | true          | long     | Order ID                                                     |                                     |
+| client_order_id                | true          | long     | Client order ID                                              |                                     |
+| created_at                     | true          | long     | Creation time                                             |                                     |
+| trade_volume                   | true          | decimal  | Transaction quantity                                         |                                     |
+| trade_turnover                 | true          | decimal  | Transaction aggregate amount                                 |                                     |
+| fee                            | true          | decimal  | Servicefee                                                   |                                     |
+| trade_avg_price                | true          | decimal  | Transaction average price                                    |                                     |
+| margin_frozen                  | true          | decimal  | Freeze margin                                                |                                     |
+| profit                         | true          | decimal  | profit                                                       |                                     |
+| status                         | true          | int      | Order status (1ready to submit 2ordered 3submitted 4partially transacted 5partially withdrew 6all transacted 7withdrew 11withdrawing) |                                     |
+| order_source                   | true          | string   | Order source（1:system、2:web、3:api、4:m 5:risk、6:settlement） |                                     |
+| \</list\>                      |               |          |                                                              |                                     |
+| ts                             | true          | long     | Timestamp                                                    |                                     |
 
-**Example** 
+
+
+## <a name="108">Order details acquisition </a>
+
+###  Example   
 
 - POST `api/v1/contract_order_detail`
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**                      |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc                        |
 | ------------------ | ------------- | -------- | ----------------------------- |
 | symbol             | true          | string   | "BTC","ETH"...                |
 | order_id           | true          | long     | Order ID                      |
 | createAt           | true          | long     | Timestamp                     |
 | page_index         | false         | int      | Page number, default 1st page |
 | page_size          | false         | int      | Default 20，no more than 50   |
-
-**返回数据**
-
-| **Parameter Name**                | **Mandatory** | **Type** | **Desc**                                                     | **Value Range**                   |
-| --------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
-| status                            | true          | string   | Request Processing Result                                    | "ok" , "error"                    |
-| \<object\> (Attribute Name: data) |               |          |                                                              |                                   |
-| symbol                            | true          | string   | Variety code                                                 |                                   |
-| contract_type                     | true          | string   | Contract Type                                                | "this_week","next_week","quarter" |
-| contract_code                     | true          | string   | Contract Code                                                | "BTC180914" ...                   |
-| lever_rate                        | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
-| direction                         | true          | string   | Transaction direction                                        |                                   |
-| offset                            | true          | string   | "open": "close"                                              |                                   |
-| volume                            | true          | decimal  | Number of Order                                              |                                   |
-| price                             | true          | decimal  | Price committed                                              |                                   |
-| created_at                        | true          | long     | Creation time                                             |                                   |
-| order_source                      | true          | string   | Order Source                                                 |                                   |
-| order_price_type                  | true          | string   | Order price type [limited price，opponent price，market price] |                                   |
-| margin_frozen                     | true          | decimal  | Freeze margin                                                |                                   |
-| profit                            | true          | decimal  | profit                                                       |                                   |
-| total_page                        | true          | int      | Page in total                                                |                                   |
-| current_page                      | true          | int      | Current Page                                                 |                                   |
-| total_size                        | true          | int      | Total Size                                                   |                                   |
-| \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
-| trade_id                          | true          | long     | Match Result id                                              |                                   |
-| trade_price                       | true          | decimal  | Match Price                                                  |                                   |
-| trade_volume                      | true          | decimal  | Transaction quantity                                         |                                   |
-| trade_turnover                    | true          | decimal  | Transaction price                                            |                                   |
-| trade_fee                         | true          | decimal  | Transaction Service fee                                      |                                   |
-| created_at                        | true          | long     | Creation time                                                |                                   |
-| \</list\>                         |               |          |                                                              |                                   |
-| \</object \>                      |               |          |                                                              |                                   |
-| ts                                | true          | long     | Timestamp                                                    |                                   |
-
 
 > Response:
 
@@ -3890,93 +3470,53 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter 
 
-### <a name="109">Current unfilled commission acquisition </a>
+|   Parameter Name                  |   Mandatory   |   Type   |   Desc                                                       |   Value Range                     |
+| --------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
+| status                            | true          | string   | Request Processing Result                                    | "ok" , "error"                    |
+| \<object\> (Attribute Name: data) |               |          |                                                              |                                   |
+| symbol                            | true          | string   | Variety code                                                 |                                   |
+| contract_type                     | true          | string   | Contract Type                                                | "this_week","next_week","quarter" |
+| contract_code                     | true          | string   | Contract Code                                                | "BTC180914" ...                   |
+| lever_rate                        | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
+| direction                         | true          | string   | Transaction direction                                        |                                   |
+| offset                            | true          | string   | "open": "close"                                              |                                   |
+| volume                            | true          | decimal  | Number of Order                                              |                                   |
+| price                             | true          | decimal  | Price committed                                              |                                   |
+| created_at                        | true          | long     | Creation time                                             |                                   |
+| order_source                      | true          | string   | Order Source                                                 |                                   |
+| order_price_type                  | true          | string   | Order price type [limited price，opponent price，market price] |                                   |
+| margin_frozen                     | true          | decimal  | Freeze margin                                                |                                   |
+| profit                            | true          | decimal  | profit                                                       |                                   |
+| total_page                        | true          | int      | Page in total                                                |                                   |
+| current_page                      | true          | int      | Current Page                                                 |                                   |
+| total_size                        | true          | int      | Total Size                                                   |                                   |
+| \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
+| trade_id                          | true          | long     | Match Result id                                              |                                   |
+| trade_price                       | true          | decimal  | Match Price                                                  |                                   |
+| trade_volume                      | true          | decimal  | Transaction quantity                                         |                                   |
+| trade_turnover                    | true          | decimal  | Transaction price                                            |                                   |
+| trade_fee                         | true          | decimal  | Transaction Service fee                                      |                                   |
+| created_at                        | true          | long     | Creation time                                                |                                   |
+| \</list\>                         |               |          |                                                              |                                   |
+| \</object \>                      |               |          |                                                              |                                   |
+| ts                                | true          | long     | Timestamp                                                    |                                   |
 
-**Example**
+
+## <a name="109">Current unfilled commission acquisition </a>
+
+###  Example  
 
 - POST  `api/v1/contract_openorders`
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**                    | **Default** | **Value Range** |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc                      |   Default   |   Value Range   |
 | ------------------ | ------------- | -------- | --------------------------- | ----------- | --------------- |
 | symbol             | false         | string   | Variety code                |             | "BTC","ETH"...  |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                 |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                 |
-
-**Returning Parameter**
-
-| **Parameter Name**             | **Mandatory** | **Type** | **Desc**                                                     | **Value Range**                   |
-| ------------------------------ | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
-| status                         | true          | string   | Request Processing Result                                    |                                   |
-| \<list\>(Attribute Name: data) |               |          |                                                              |                                   |
-| symbol                         | true          | string   | Variety code                                                 |                                   |
-| contract_type                  | true          | string   | Contract Type                                                | "this_week","next_week","quarter" |
-| contract_code                  | true          | string   | Contract Code                                                | "BTC180914" ...                   |
-| volume                         | true          | decimal  | Number of Order                                              |                                   |
-| price                          | true          | decimal  | Price committed                                              |                                   |
-| order_price_type               | true          | string   | Order price type [limited price，opponent price，market price] |                                   |
-| direction                      | true          | string   | Transaction direction                                        |                                   |
-| offset                         | true          | string   | "open": "close"                                              |                                   |
-| lever_rate                     | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
-| order_id                       | true          | long     | Order ID                                                     |                                   |
-| client_order_id                | true          | long     | Client order ID                                              |                                   |
-| created_at                     | true          | long     | Order Creation time                                          |                                   |
-| trade_volume                   | true          | decimal  | Transaction quantity                                         |                                   |
-| trade_turnover                 | true          | decimal  | Transaction aggregate amount                                 |                                   |
-| fee                            | true          | decimal  | Servicefee                                                   |                                   |
-| trade_avg_price                | true          | decimal  | Transaction average price                                    |                                   |
-| margin_frozen                  | true          | decimal  | Freeze margin                                                |                                   |
-| profit                         | true          | decimal  | profit                                                       |                                   |
-| status                         | true          | int      | Order status (3didn’t transact 4partially transacted 5partially withdrew 6all transacted 7withdrew) |                                   |
-| order_source                   | true          | string   | Order Source                                                 |                                   |
-| \</list\>                      |               |          |                                                              |                                   |
-| total_page                     | true          | int      | Total Pages                                                  |                                   |
-| current_page                   | true          | int      | Current Page                                                 |                                   |
-| total_size                     | true          | int      | Total Size                                                   |                                   |
-| ts                             | true          | long     | Timestamp                                                    |                                   |
-
 
 > Response:
 
@@ -4015,57 +3555,47 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 }
 ```
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+###  Returning Parameter  
 
+|   Parameter Name               |   Mandatory   |   Type   |   Desc                                                       |   Value Range                     |
+| ------------------------------ | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
+| status                         | true          | string   | Request Processing Result                                    |                                   |
+| \<list\>(Attribute Name: data) |               |          |                                                              |                                   |
+| symbol                         | true          | string   | Variety code                                                 |                                   |
+| contract_type                  | true          | string   | Contract Type                                                | "this_week","next_week","quarter" |
+| contract_code                  | true          | string   | Contract Code                                                | "BTC180914" ...                   |
+| volume                         | true          | decimal  | Number of Order                                              |                                   |
+| price                          | true          | decimal  | Price committed                                              |                                   |
+| order_price_type               | true          | string   | Order price type [limited price，opponent price，market price] |                                   |
+| direction                      | true          | string   | Transaction direction                                        |                                   |
+| offset                         | true          | string   | "open": "close"                                              |                                   |
+| lever_rate                     | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
+| order_id                       | true          | long     | Order ID                                                     |                                   |
+| client_order_id                | true          | long     | Client order ID                                              |                                   |
+| created_at                     | true          | long     | Order Creation time                                          |                                   |
+| trade_volume                   | true          | decimal  | Transaction quantity                                         |                                   |
+| trade_turnover                 | true          | decimal  | Transaction aggregate amount                                 |                                   |
+| fee                            | true          | decimal  | Servicefee                                                   |                                   |
+| trade_avg_price                | true          | decimal  | Transaction average price                                    |                                   |
+| margin_frozen                  | true          | decimal  | Freeze margin                                                |                                   |
+| profit                         | true          | decimal  | profit                                                       |                                   |
+| status                         | true          | int      | Order status (3didn’t transact 4partially transacted 5partially withdrew 6all transacted 7withdrew) |                                   |
+| order_source                   | true          | string   | Order Source                                                 |                                   |
+| \</list\>                      |               |          |                                                              |                                   |
+| total_page                     | true          | int      | Total Pages                                                  |                                   |
+| current_page                   | true          | int      | Current Page                                                 |                                   |
+| total_size                     | true          | int      | Total Size                                                   |                                   |
+| ts                             | true          | long     | Timestamp                                                    |                                   |
 
-### <a name="110">Get History Orders</a>
+## <a name="110">Get History Orders</a>
 
-**Example**
+###  Example  
 
 - POST `api/v1/contract_hisorders`
 
-**Request Parameter**
+###  Request Parameter  
 
-| **Parameter Name** | **Mandatory** | **Type** | **Desc**                    | **Default** | **Value Range**                                              |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc                      |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | --------------------------- | ----------- | ------------------------------------------------------------ |
 | symbol             | true          | string   | Variety code                |             | "BTC","ETH"...                                               |
 | trade_type         | true          | int      | Transaction type            |             | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long,5: sell liquidation,6: buy liquidation,7:Delivery long,8: Delivery short |
@@ -4074,40 +3604,6 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | create_date        | true          | int      | Date                        |             | 7，90（7days or 90 days）                                    |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                                                              |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                                                              |
-
-**Returning Parameter**
-
-| **Parameter Name**               | **Mandatory** | **Type** | **Desc**                                                     | **Value Range**                   |
-| -------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
-| status                           | true          | string   | Request Processing Result                                    |                                   |
-| \<object\>(Attribute Name: data) |               |          |                                                              |                                   |
-| \<list\>(Attribute Name: orders) |               |          |                                                              |                                   |
-| order_id                         | true          | long     | Order ID                                                     |                                   |
-| symbol                           | true          | string   | Variety code                                                 |                                   |
-| contract_type                    | true          | string   | Contract Type                                                | "this_week","next_week","quarter" |
-| contract_code                    | true          | string   | Contract Code                                                | "BTC180914" ...                   |
-| lever_rate                       | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
-| direction                        | true          | string   | Transaction direction                                        |                                   |
-| offset                           | true          | string   | "open": "close"                                              |                                   |
-| volume                           | true          | decimal  | Number of Order                                              |                                   |
-| price                            | true          | decimal  | Price committed                                              |                                   |
-| create_date                      | true          | long     | Creation time                                                |                                   |
-| order_source                     | true          | string   | Order Source                                                 |                                   |
-| order_price_type                 | true          | string   | Order price type [limited price，opponent price，market price] |                                   |
-| margin_frozen                    | true          | decimal  | Freeze margin                                                |                                   |
-| profit                           | true          | decimal  | profit                                                       |                                   |
-| trade_volume                     | true          | decimal  | Transaction quantity                                         |                                   |
-| trade_turnover                   | true          | decimal  | Transaction aggregate amount                                 |                                   |
-| fee                              | true          | decimal  | Servicefee                                                   |                                   |
-| trade_avg_price                  | true          | decimal  | Transaction average price                                    |                                   |
-| status                           | true          | int      | Order Status                                                 |                                   |
-| \</list\>                        |               |          |                                                              |                                   |
-| \</object\>                      |               |          |                                                              |                                   |
-| total_page                       | true          | int      | Total Pages                                                  |                                   |
-| current_page                     | true          | int      | Current Page                                                 |                                   |
-| total_size                       | true          | int      | Total Size                                                   |                                   |
-| ts                               | true          | long     | Timestamp                                                    |                                   |
-
 
 > Response:
 
@@ -4146,3 +3642,41 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
   "ts": 1490759594752
 }
 ```
+
+
+###  Returning Parameter  
+
+|   Parameter Name                 |   Mandatory   |   Type   |   Desc                                                       |   Value Range                     |
+| -------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
+| status                           | true          | string   | Request Processing Result                                    |                                   |
+| \<object\>(Attribute Name: data) |               |          |                                                              |                                   |
+| \<list\>(Attribute Name: orders) |               |          |                                                              |                                   |
+| order_id                         | true          | long     | Order ID                                                     |                                   |
+| symbol                           | true          | string   | Variety code                                                 |                                   |
+| contract_type                    | true          | string   | Contract Type                                                | "this_week","next_week","quarter" |
+| contract_code                    | true          | string   | Contract Code                                                | "BTC180914" ...                   |
+| lever_rate                       | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
+| direction                        | true          | string   | Transaction direction                                        |                                   |
+| offset                           | true          | string   | "open": "close"                                              |                                   |
+| volume                           | true          | decimal  | Number of Order                                              |                                   |
+| price                            | true          | decimal  | Price committed                                              |                                   |
+| create_date                      | true          | long     | Creation time                                                |                                   |
+| order_source                     | true          | string   | Order Source                                                 |                                   |
+| order_price_type                 | true          | string   | Order price type [limited price，opponent price，market price] |                                   |
+| margin_frozen                    | true          | decimal  | Freeze margin                                                |                                   |
+| profit                           | true          | decimal  | profit                                                       |                                   |
+| trade_volume                     | true          | decimal  | Transaction quantity                                         |                                   |
+| trade_turnover                   | true          | decimal  | Transaction aggregate amount                                 |                                   |
+| fee                              | true          | decimal  | Servicefee                                                   |                                   |
+| trade_avg_price                  | true          | decimal  | Transaction average price                                    |                                   |
+| status                           | true          | int      | Order Status                                                 |                                   |
+| \</list\>                        |               |          |                                                              |                                   |
+| \</object\>                      |               |          |                                                              |                                   |
+| total_page                       | true          | int      | Total Pages                                                  |                                   |
+| current_page                     | true          | int      | Current Page                                                 |                                   |
+| total_size                       | true          | int      | Total Size                                                   |                                   |
+| ts                               | true          | long     | Timestamp                                                    |                                   |
+
+# HuobiDM Websocket Subscription
+
+  - <a href='https://github.com/huobiapi/API_Docs_en/wiki/WS_api_reference_en'>HuobiDM Websocket Documentation </a>
