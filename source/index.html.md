@@ -2983,7 +2983,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 
 
-## User’s position Information
+## User’s Position Information
 
 ###  Example                           
                      
