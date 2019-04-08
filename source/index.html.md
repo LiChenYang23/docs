@@ -2778,6 +2778,30 @@ bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按
 mrid  | true| string | 订单ID | | 
 ts | true | number | 响应生成时间点，单位：毫秒 | |
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
 ### 获取K线数据
 
 **示例**
@@ -2844,6 +2868,36 @@ size  |  true  |  integer    |  获取数量   |  150  |  [1,2000]  |
       "ts": 1529908345313
     }
 ```
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 **返回参数**
 
@@ -2920,6 +2974,22 @@ status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 tick  |  true  |  object  |    K线数据  |    |
 ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    | 
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 ### 获取市场最近成交记录
 
@@ -2986,6 +3056,23 @@ ch  |  true  |  string  |  数据所属的 channel，格式： market.\$symbol.t
 status  |  true  |  string  |  |  |  "ok","error" |
 tick  |  true  |  object  |  Trade 数据  |    |    |   
 ts  |  true  |  number  |  发送时间  |   |    |
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 
 ### 批量获取最近的交易记录
