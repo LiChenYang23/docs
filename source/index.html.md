@@ -2993,6 +2993,11 @@ ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 </br>
 </br>
 </br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 ### 获取市场最近成交记录
 
@@ -3060,6 +3065,8 @@ status  |  true  |  string  |  |  |  "ok","error" |
 tick  |  true  |  object  |  Trade 数据  |    |    |   
 ts  |  true  |  number  |  发送时间  |   |    |
 
+</br>
+</br>
 </br>
 </br>
 </br>
