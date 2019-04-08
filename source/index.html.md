@@ -2355,7 +2355,7 @@ Once received the application, we will expedite on it and reply to you soon. Tha
 
 # HuobiDM Market Data interface
 
-## <a ame="1"> Get Contract Info  </a> 
+## Get Contract Info 
 
 ### Example              
                                    
@@ -2416,7 +2416,7 @@ contract_status                | true          | int      | Contract Status     
 ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
 
 
-## <a name="2">Get Contract Index Price Information  </a>
+## Get Contract Index Price Information 
 
 ### Example                                                
                                                             
@@ -2459,7 +2459,7 @@ curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
   
-## <a name="3">Contract Price Limitation</a>
+## Contract Price Limitation
 
 ###  Example      
                                                                           
@@ -2515,7 +2515,7 @@ One of the query conditions must be chosen.
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
 
-## <a name="4">Get Contract Open Interest Information </a>
+## Get Contract Open Interest Information
 
 ###  Example   
                                                                                  
@@ -2565,7 +2565,7 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
 
-## <a name="5">Get Market Depth</a>
+## Get Market Depth
 
 ###  Example            
                                             
@@ -2630,7 +2630,7 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 | ts                 | true          | number        | Time of Respond Generation，Unit：Millisecond                |                 |
 
 
-## <a name="6">Get K-Line Data</a>
+## Get K-Line Data
 
 ###  Example     
                                                                    
@@ -2707,7 +2707,7 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond |                 |
 
 
-##  <a name="7">Get Market Data Overview</a>
+##  Get Market Data Overview
 
 ###  Example            
                                          
@@ -2776,7 +2776,7 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond                |                 |
 
 
-## <a name="8">The Last Trade of a Contract</a>
+## The Last Trade of a Contract
 
 ###  Example   
                                           
@@ -2844,7 +2844,7 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 | ts                 | true          | number   | Sending time                                                |             |                 |
 
 
-## <a name="9">Request a Batch of Trade Records of a Contract</a>
+## Request a Batch of Trade Records of a Contract
 
 ###  Example  
                                                             
@@ -2914,7 +2914,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 # HuobiDM Account Interface
 
-## <a name="101">User’s Account Information</a>
+## User’s Account Information
 
 ###  Example          
                                       
@@ -2983,7 +2983,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 
 
-## <a name="102">User’s position Information </a>
+## User’s position Information
 
 ###  Example                           
                      
@@ -3048,7 +3048,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 # HuobiDM Trade Interface
 
-## <a name="103"> Place an Order </a>
+##  Place an Order 
 
 ###  Example  
 
@@ -3096,7 +3096,7 @@ If there is no number，inquiry by Symbol + Contract Type.
 | ts                 | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
 
-## <a name="104"> Place a Batch of Orders</a>
+##  Place a Batch of Orders
 
 ###  Example  
 
@@ -3176,7 +3176,7 @@ If there is no number,inquiry by Symbol + Contract Type.
 | \</list\>                         |               |          |                                                              |                 |
 | ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
-## <a name="105">Cancel an Order </a>
+## Cancel an Order 
 
 ###  Example   
 
@@ -3230,7 +3230,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond             |                 |
 
 
-## <a name="106">Cancel All Orders </a>
+## Cancel All Orders 
 
 ###  Example  
 
@@ -3299,7 +3299,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 
-## <a name="107">Get Information of an Order </a>
+## Get Information of an Order
 
 ###  Example   
 
@@ -3403,7 +3403,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 
 
 
-## <a name="108">Order details acquisition </a>
+## Order details acquisition
 
 ###  Example   
 
@@ -3504,7 +3504,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | ts                                | true          | long     | Timestamp                                                    |                                   |
 
 
-## <a name="109">Current unfilled commission acquisition </a>
+## Current unfilled commission acquisition
 
 ###  Example  
 
@@ -3587,7 +3587,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | total_size                     | true          | int      | Total Size                                                   |                                   |
 | ts                             | true          | long     | Timestamp                                                    |                                   |
 
-## <a name="110">Get History Orders</a>
+## Get History Orders
 
 ###  Example  
 
@@ -3680,3 +3680,9 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 # HuobiDM Websocket Subscription
 
   - <a href='https://github.com/huobiapi/API_Docs_en/wiki/WS_api_reference_en'>HuobiDM Websocket Documentation </a>
+  
+</br>
+</br>
+</br>
+</br>
+</br>
