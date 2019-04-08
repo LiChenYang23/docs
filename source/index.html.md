@@ -2466,7 +2466,7 @@ https://api.hbdm.com| 火币合约|   行情     | 火币合约的交易品种  
 
   我们工作人员将及时跟进您的限频提升申请。
   
-# 合约交易市场行情接口
+# 合约市场行情接口
 
 ## 获取合约信息 
 
@@ -2787,30 +2787,6 @@ bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按
 mrid  | true| string | 订单ID | | 
 ts | true | number | 响应生成时间点，单位：毫秒 | |
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-
 ## 获取K线数据
 
 ###  示例
@@ -2887,36 +2863,6 @@ data  |  true  |  object  |    KLine 数据  |   |
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    | 
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-
 ## 获取聚合行情
 
 ###  示例
@@ -2983,31 +2929,6 @@ status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 tick  |  true  |  object  |    K线数据  |    |
 ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    | 
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-
 ## 获取市场最近成交记录
 
 ###  示例
@@ -3073,29 +2994,6 @@ ch  |  true  |  string  |  数据所属的 channel，格式： market.\$symbol.t
 status  |  true  |  string  |  |  |  "ok","error" |
 tick  |  true  |  object  |  Trade 数据  |    |    |   
 ts  |  true  |  number  |  发送时间  |   |    |
-
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
 
 
 ## 批量获取最近的交易记录
@@ -3168,7 +3066,7 @@ status  |  true  |  string  |    |    "ok"，"error" |
 ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 
 
-# 合约交易资产接口
+# 合约资产接口
 
 ## 获取用户账户信息
 
