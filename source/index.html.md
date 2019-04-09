@@ -2687,8 +2687,6 @@ api.hbdm.com\n
 
 - <a href='https://github.com/huobiapi/Futures-Python-demo'>Python</a>
 
-- <a href='https://github.com/huobiapi/Futures-Yi-demo'>易语言</a>
-
 - <a href='https://github.com/huobiapi/Futures-Go-demo'>Golang</a>
 
 - <a href='https://github.com/huobiapi/Futures-CSharp-demo'>CSharp</a>
@@ -2697,6 +2695,7 @@ api.hbdm.com\n
 
 - <a href='https://github.com/huobiapi/Futures-Node.js-demo'>Node.js</a>
 
+- <a href='https://github.com/huobiapi/Futures-Yi-demo'>易语言</a>
   
 # 合约市场行情接口
 
