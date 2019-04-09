@@ -2769,7 +2769,7 @@ ts                         |  true           |  long       |  响应生成时间
 - GET `api/v1/contract_index`
 
 ```shell
-crul "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
+curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 ```
 
 ###  请求参数
