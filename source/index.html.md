@@ -2686,6 +2686,8 @@ api.hbdm.com\n
 
 ## 代码实例
 
+**REST**
+
 - <a href='https://github.com/huobiapi/Futures-Java-demo'>Java</a>
 
 - <a href='https://github.com/huobiapi/Futures-Python-demo'>Python</a>
@@ -2700,6 +2702,15 @@ api.hbdm.com\n
 
 - <a href='https://github.com/huobiapi/Futures-Yi-demo'>易语言</a>
   
+**Websocket**
+
+- <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/WebSocket-JAVA-demo'>Java</a>
+
+- <a href='https://github.com/huobiapi/Futures-Python-demo/tree/master/Websocket-Python3-demo'>Python</a>
+
+- <a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/master/WebSocket-Node.js-demo'>Node.js</a>
+
+
 # 合约市场行情接口
 
 ## 获取合约信息 
