@@ -2349,7 +2349,7 @@ A legitimate request consists of following parts：
 
 ### Create API Key
 
-You could </a> create API Key at <a href='https://www.hbg.com/zh-cn/apikey/'> .
+You could <a href='https://www.hbg.com/zh-cn/apikey/'> at </a> create API Key
 
 API Key consists of the following two parts.
 
@@ -2359,7 +2359,6 @@ API Key consists of the following two parts.
 
 <aside class="notice">
 When create API Key, users could bind IP address, as the validity of unbond IP address is only 90 days.
-
 </aside>
 <aside class="notice">
 API Key has operation authorization of trading, borrowing, deposit and withdrawal etc..
@@ -2481,6 +2480,7 @@ Please note that, for both public interface and private interface, there are rat
     （1） For restful interface: 200 times/second for one IP at most.
 
     （2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.
+
 * If you have any special demands for API rate limit, please send application to dm_mm@huobi.com with a mail subject of “Application of raising API rate limit”. The email needs to cover following information:
 
    （1） Please provide your UID.
