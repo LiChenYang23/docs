@@ -2292,7 +2292,7 @@ obtain_currency_list  | array     | For creation this is the amount for ETF crea
 
   - <a href='https://github.com/huobiapi/API_Docs_en#websocket-apimarket'>Websocket Documentation </a>
  
-# 合约交易接入说明
+# Huobi Derivative Market (HBDM) API Access Illustration
 
 ##  API List
 
@@ -2318,61 +2318,62 @@ Restful   | User Order Info  |  api/v1/contract_order_detail  | POST            
 Restful   | User Order Info  |  api/v1/contract_openorders      | POST             | Get Current Orders                             | Yes                    |
 Restful   | User Order Info  |  api/v1/contract_hisorders      | POST             | Get History Orders                             | Yes                    |
 
-## 访问地址
+##  Address
 
-访问地址 | 适用站点 | 适用功能 | 适用交易对 |
+Address | Applicable sites | Applicable functions | Applicable trading pairs |
 ------ | ---- | ---- | ------ |
-https://api.hbdm.com| 火币合约|   行情     | 火币合约的交易品种  |
+https://api.hbdm.com| Huobi DM |    Market     | Trading pairs provided by Huobi DM  |
 
-## 签名认证
+## Signature Authentication & Verification
 
-### 签名说明
+### Signature Illustration
 
-API 请求在通过 internet 传输的过程中极有可能被篡改，为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改。
+Considering that API requests may get tampered in the process of transmission, to keep the transmission secure, you have to use your API Key to do Signature Authentication for all private interface except for public interface (used for acuqiring basic information and market data), in this way to verify whether the parameters/ parameter value get tampered or not in the process of transmission
 
-一个合法的请求由以下几部分组成：
+A legitimate request consists of following parts：
 
-- 方法请求地址：即访问服务器地址 api.hbdm.com，比如 api.hbdm.com/api/v1/contract_order。
+- Request address of method, i.e. visit server address--api.hbdm.com, e.g.:  api.hbdm.com/api/v1/contract_order
 
-- API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。
+- API Access Key ID (AccessKeyId): Access Key of the API Key that you apply.
 
-- 签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。
+- Method of Signature (SignatureMethod): Based on the Hash Aggrement, users calculate the signature via HmacSHA256.
 
-- 签名版本（SignatureVersion）：签名协议的版本，此处使用2。
+- aSignature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.
 
-- 时间戳（Timestamp）：您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。如：2017-05-11T16:22:06。在查询请求中包含此值有助于防止第三方截取您的请求。
+- Timestamp (Timestamp): The time when you send the request (UTC time zone) : (UTC time zone) : (UTC time zone), e.g.: 2017-05-11T16:22:06
 
-- 必选和可选参数：每个方法都有一组用于定义 API 调用的必需参数和可选参数。可以在每个方法的说明中查看这些参数及其含义。 请一定注意：对于 GET 请求，每个方法自带的参数都需要进行签名运算； 对于 POST 请求，每个方法自带的参数不进行签名认证，即 POST 请求中需要进行签名运算的只有 AccessKeyId、SignatureMethod、SignatureVersion、Timestamp 四个参数，其它参数放在 body 中。
+- Must-fill parameters & optional parameters: For each method, there are a group of must-fill parameters and optional parameters used to address the API request, which can be found in the illustration of each method as well as their meaning. Please note that, in terms of "Get" requests, it needs to do Signature calculation for all the original parameters in each method ; In terms of "Post" requests, no need to do Signature calculation for the original parameters in each method, which means only four parameters need to do Signature calculation in "Post" requests, i.e. AccessKeyId, SignatureMethod, SignatureVersion, Timestamp with other parameters placed in "body".
 
-- 签名：签名计算得出的值，用于确保签名有效和未被篡改。
+- Signature: The result of Signature calculation which is used to verify if signature is valid and not tampered.
 
 
-### 创建 API Key
+### Create API Key
 
-您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。
+You could </a> create API Key at <a href='https://www.hbg.com/zh-cn/apikey/'> .
 
-API Key 包括以下两部分
+API Key consists of the following two parts.
 
-- `Access Key`  API 访问密钥
+- "Access Key", the Key used to visit API.
   
-- `Secret Key`  签名认证加密所使用的密钥（仅申请时可见）
+- "Secret Key", the Key used to do Signature authentication and verification (visible during application period).
 
 <aside class="notice">
-创建 API Key 时可以选择绑定 IP 地址，未绑定 IP 地址的 API Key 有效期为90天。
+When create API Key, users could bind IP address, as the validity of unbond IP address is only 90 days.
+
 </aside>
 <aside class="notice">
-API Key 具有包括交易、借贷和充提币等所有操作权限。
+API Key has operation authorization of trading, borrowing, deposit and withdrawal etc..
 </aside>
 <aside class="warning">
-这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露。
+Both Access Key and Secret Key are closely related with account security, please do not disclose them to others for any reasons anytime.
 </aside>
 
 
-### 签名步骤
+### Steps for Signature
 
-规范要计算签名的请求 因为使用 HMAC 进行签名计算时，使用不同内容计算得到的结果会完全不同。所以在进行签名计算前，请先对请求进行规范化处理。下面以查询某订单详情请求为例进行说明：
+Normative request for Signature calculation     Different contents will get totally different results when use HMAC to calculate Signature, therefore, please normalize the requests before doing Signature calculation. Take the request of inquering order details as an example:
 
-查询某订单详情
+query details of one order 
 
 `https://api.hbdm.com/api/v1/contract_order?`
 
@@ -2386,24 +2387,24 @@ API Key 具有包括交易、借贷和充提币等所有操作权限。
 
 `&symbol=BTC`
 
-#### 1. 请求方法（GET 或 POST），后面添加换行符 “\n”
+#### 1. Request methods (GET/POST): add line breaker "\n".
 
 
 `GET\n`
 
-#### 2. 添加小写的访问地址，后面添加换行符 “\n”
+#### 2. Text the visit address in lowercase, adding line breake "\n"
 
 `
 api.hbdm.com\n
 `
 
-#### 3. 访问方法的路径，后面添加换行符 “\n”
+#### 3. Visit the path of methods, adding line breaker "\n"
 
 `
 /api/v1/contract_order\n
 `
 
-#### 4. 按照ASCII码的顺序对参数名进行排序。例如，下面是请求参数的原始顺序，进行过编码后
+#### 4. Rank the parameter names according to the sequence of ASCII codes, for example, below is the parameters in original sequence and the new sequence:
 
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
@@ -2417,14 +2418,14 @@ api.hbdm.com\n
 `Timestamp=2017-05-11T15%3A19%3A30`
 
 <aside class="notice">
-使用 UTF-8 编码，且进行了 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20”。
+Use UTF-8 to encode when it has already been encoded by URI with hexadecimals in Uppercase, e.g., ":" wiil be encoded to "%3A" while space to "%20".
 </aside>
 <aside class="notice">
-时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URI 编码。
+Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with URI.
 </aside>
 
 
-#### 5. 经过排序之后
+#### 5. After ranking
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -2436,12 +2437,12 @@ api.hbdm.com\n
 
 `symbol=BTC`
 
-#### 6. 按照以上顺序，将各参数使用字符 “&” 连接
+#### 6.  Following the sequence above, link parameters with "&"
 
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&symbol=BTC`
 
-#### 7. 组成最终的要进行签名计算的字符串如下
+#### 7. Form the final character strings that need to do Signature calculation as following:
 
 `GET\n`
 
@@ -2452,23 +2453,23 @@ api.hbdm.com\n
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&symbol=BTC`
 
 
-#### 8. 用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名
+#### 8. Use the "request character strings" formed in the last step and your Secret Key to create a digital Signature.
 
 `4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=`
 
-1. 将上一步得到的请求字符串和 API 私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。
+1. Take the request character string formed in the last step and API Secret Key as two parameters, encoding them with the Hash Function HmacSHA256 to get corresponding Hash value.
 
-2. 将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。
+2. Encoding the Hash value with base-64 code, the result will be the digital Signature of this request.
 
-#### 9. 将生成的数字签名加入到请求的路径参数里
+#### 9. Add the digital Signature into the parameters of request path.
 
-最终，发送到服务器的 API 请求应该为
+The final request sent to Server via API should be like:
 
 `https://api.hbdm.com/api/v1/contract_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
-1. 把所有必须的认证参数添加到接口调用的路径参数里
+1. Add all the must authentication parameters into the parameters of request path;
 
-2. 把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。
+2. Add the digital Signature encoded with URL code into the path parameters with the parameter name of "Signature".
 
 ## API Rate Limit Illustration
 
@@ -2490,84 +2491,86 @@ Please note that, for both public interface and private interface, there are rat
 
 Once received the application, we will expedite on it and reply to you soon. Thanks for your patience.
 
-## 错误码详情
+## Details of Each Error Code
 
-错误代码	 | 错误描述|
+Error Code | Error Details Description|
 ----- | ---------------------- |
-403	|	无效身份                |
-1000|	系统异常                |
-1001|	系统未准备就绪             |
-1002|	查询异常                |
-1003|	操作redis异常           |
-1010|	用户不存在               |
-1011|	用户会话不存在             |
-1012|	用户账户不存在             |
-1013|	合约品种不存在             |
-1014|	合约不存在               |
-1015|	指数价格不存在             |
-1016|	对手价不存在              |
-1017|	查询订单不存在             |
-1030|	输入错误                |
-1031|	非法的报单来源             |
-1032|	访问次数超出限制            |
-1033|	合约周期字段值错误           |
-1034|	报单价格类型字段值错误         |
-1035|	报单方向字段值错误           |
-1036|	报单开平字段值错误           |
-1037|	杠杆倍数不符合要求           |
-1038|	报单价格不符合最小变动价        |
-1039|	报单价格超出限制            |
-1040|	报单数量不合法             |
-1041|	报单数量超出限制            |
-1042|	超出多头持仓限制            |
-1043|	超出多头持仓限制            |
-1044|	超出平台持仓限制            |
-1045|	杠杆倍数与所持有仓位的杠杆不符合    |
-1046|	持仓未初始化              |
-1047|	可用保证金不足             |
-1048|	持仓量不足               |
-1050|	客户报单号重复             |
-1051|	没有可撤订单              |
-1052|	超出批量数目限制            |
-1053|	无法获取合约的最新价格区间       |
-1054|	无法获取合约的最新价          |
-1055|	平仓时权益不足             |
-1056|	结算中无法下单和撤单          |
-1057|	暂停交易中无法下单和撤单        |
-1058|	停牌中无法下单和撤单          |
-1059|	交割中无法下单和撤单          |
-1060|	此合约在非交易状态中，无法下单和撤单  |
-1061|	订单不存在，无法撤单          |
-1062|	撤单中，无法重复撤单          |
-1063|	订单已成交，无法撤单          |
-1064|	报单主键冲突              |
-1065|	客户报单号不是整数           |
-1066|	字段不能为空              |
-1067|	字段不合法               |
-1068|	导出错误                |
-1069|	报单价格不合法             |
-1100|	用户没有开仓权限            |
-1101|	用户没有平仓权限            |
-1102|	用户没有入金权限            |
-1103|	用户没有出金权限            |
-1104|	合约交易权限,当前禁止交易       |
-1105|	合约交易权限,当前只能平仓       |
-1200|	登录错误                |
-1220|	用户尚未开通合约交易          |
-1221|	开户资金不足              |
-1222|	开户天数不足              |
-1223|	开户VIP等级不足           |
-1224|	开户国家限制              |
-1225|	开户不成功               |
-1250|	无法获取HT_token        |
-1251|	BTC折合资产无法获取         |
-1252|	现货资产无法获取            |
-1077|	交割结算中，当前品种资金查询失败    |
-1078|	交割结算中，部分品种资金查询失败    |
-1079|	交割结算中，当前品种持仓查询失败    |
-1080|	交割结算中，部分品种持仓查询失败    |
+403	|	invalid ID                |
+1000|	system exception                |
+1001|	system not on deck             |
+1002|	query exception               |
+1003|	redis operation exception           |
+1010|	user not existing              |
+1011|	user session not exists            |
+1012|	user account not exists             |
+1013|	contract type not exists             |
+1014|	contract not exists               |
+1015|	index price not exists            |
+1016|	BBO price not exists             |
+1017|	query order not exists             |
+1030|	input error                |
+1031|	illegal order source             |
+1032|	beyond visit limits            |
+1033|	wrong field value of contract period       |
+1034|	wrong field value of order type          |
+1035|	wrong field value of order direction           |
+1036|	wrong closing/opening field value of  orders          |
+1037|	invalid leverage ratio          |
+1038|	order price beyond the requirement of minimum variable price        |
+1039|	order price beyond the limits            |
+1040|	illegal order quantity             |
+1041|	order quantity beyond limits            |
+1042|	long positions beyond limits            |
+1043|	short positions beyond limits            |
+1044|	beyond position limits            |
+1045|	leverage ratio not in accordance with the leverage ratio of open positions    |
+1046|	uninitialized open positions              |
+1047|	lack of available margin             |
+1048|	lack of open positions               |
+1050|	repeated order id              |
+1051|	no orders could be withdrawed               |
+1052|	beyond the limits of bacth order quantity             |
+1053|	cannot acquire contracts' latest price range      |
+1054|	cannot acquire contracts' latest           |
+1055|	cannot close positions for lack of equity             |
+1056|	cannot place or withdraw orders during settlement       |
+1057|	cannot place or withdraw orders during trading pause        |
+1058|	cannot place or withdraw orders when trading suspended           |
+1059|	cannot place or withdraw orders during delivery          |
+1060|	cannot place or withdraw orders under no-trading status  |
+1061|	cannot withdraw not existed orders          |
+1062|	cannot repeatedly withdraw orders when in withdrawing status          |
+1063|	cannot withdraw filled orders          |
+1064|	order primary key duplication              |
+1065|	user's order id is not integer           |
+1066|	do not leave the field blank               |
+1067|	illegal fields               |
+1068|	output error                |
+1069|	illegal order price             |
+1100|	users do not have rights to open positions            |
+1101|	users do not have rights to close positions            |
+1102|	users do not have rights to deposit            |
+1103|	users do not have rights to withdraw            |
+1104|	without contract trading permission, you are banned to trade       |
+1105|	with current contract trading permission, you are only allowed to close positions       |
+1200|	login error                |
+1220|	user has not onboarded Huobi DM or activate the account          |
+1221|	lack of margin to open account              |
+1222|	insufficient account opening days             |
+1223|	account VIP level not high enough          |
+1224|	account registration place restricted               |
+1225|	unsuccessful account opening               |
+1250|	token cannot acquire HT_token        |
+1251|	cannot acquire BTC equivalent assets         |
+1252|	cannot acquire spot assets            |
+1077|	failed query of current contract assets during settlement and delivery    |
+1078|	failed query of partial contracts' assets during settlement and delivery    |
+1079|	failed query of current contract open positions during settlement and delivery    |
+1080|	failed query of partial contract assets during settlement and delivery    |
 
-## 代码实例
+## Code Demo
+
+**REST**
 
 - <a href='https://github.com/huobiapi/Futures-Java-demo'>Java</a>
 
@@ -2582,6 +2585,14 @@ Once received the application, we will expedite on it and reply to you soon. Tha
 - <a href='https://github.com/huobiapi/Futures-Node.js-demo'>Node.js</a>
 
 - <a href='https://github.com/huobiapi/Futures-Yi-demo'>易语言</a>
+  
+**Websocket**
+
+- <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/WebSocket-JAVA-demo'>Java</a>
+
+- <a href='https://github.com/huobiapi/Futures-Python-demo/tree/master/Websocket-Python3-demo'>Python</a>
+
+- <a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/master/WebSocket-Node.js-demo'>Node.js</a>
 
 # HuobiDM Market Data interface
 
