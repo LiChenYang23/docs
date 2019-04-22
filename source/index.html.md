@@ -2349,7 +2349,7 @@ A legitimate request consists of following parts：
 
 ### Create API Key
 
-You could <a href='https://www.hbg.com/zh-cn/apikey/'> at </a> create API Key
+<a href='https://www.hbg.com/zh-cn/apikey/'>You could  create API Key at</a>
 
 API Key consists of the following two parts.
 
@@ -2584,8 +2584,6 @@ Error Code | Error Details Description|
 
 - <a href='https://github.com/huobiapi/Futures-Node.js-demo'>Node.js</a>
 
-- <a href='https://github.com/huobiapi/Futures-Yi-demo'>易语言</a>
-  
 **Websocket**
 
 - <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/WebSocket-JAVA-demo'>Java</a>
