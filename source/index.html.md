@@ -2430,6 +2430,7 @@ Restful     |  交易接口          |  api/v1/contract_order_info |            
 Restful     |  交易接口           | api/v1/contract_order_detail |                POST       |  获取订单明细信息             |  是  |
 Restful     |  交易接口           | api/v1/contract_openorders |                    POST       |  获取合约当前未成交委托       |  是  |
 Restful     |  交易接口           |  api/v1/contract_hisorders |                            POST       |  获取合约历史委托             |  是 |
+Restful     |  交易接口           |  api/v1/contract_matchresults |                POST       |  获取历史成交记录            |  是  |
 
 ## 访问地址
 
@@ -4068,6 +4069,83 @@ current_page  |  true  |  int  |   当前页  |   |
 total_size  |  true  |  int  |   总条数  |    |  
 ts  |  true  |  long  |  时间戳  |    |  
 
+## 获取历史成交记录
+
+### 实例
+
+- POST `api/v1/contract_matchresults`
+
+### 请求参数
+
+ 参数名称    | 是否必须 | 类型 |  描述        |  默认值 | 取值范围                             |
+ ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+ symbol      | true     | string | 品种代码          |         | "BTC","ETH"...                           |
+ trade_type  | true     | int    | 交易类型          |         | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平 |
+ create_date | true     | int    | 日期            |         | 7，90（7天或者90天）                            |
+ page_index  | false    | int    | 页码，不填默认第1页    | 1       |                                          |
+ page_size   | false    | int    | 不填默认20，不得多于50 | 20      |                                          |
+
+> Response: 
+
+```json
+{                                               
+    "data": {                                      
+ 		"current_page": 1,                              
+ 		"total_page": 1,                                
+ 		"total_size": 2,                                
+ 		"trades": [{                                    
+ 			"contract_code": "EOS190419",                 
+ 			"contract_type": "this_week",                 
+ 			"create_date": 1555553626736,                 
+ 			"direction": "sell",                          
+ 			"match_id": 3635853382,                       
+ 			"offset": "close",                            
+ 			"offset_profitloss": 0.15646398812252696,     
+ 			"order_id": 1118,                             
+ 			"symbol": "EOS",                              
+ 			"trade_fee": -0.002897500905469032,           
+ 			"trade_price": 5.522,                         
+ 			"trade_turnover": 80,                         
+ 			"trade_volume": 8                             
+ 		}]                                              
+ 	},                                                
+ 	"status": "ok",                                   
+ 	"ts": 1555654870867                               
+}                                               
+```    
+
+### 返回参数
+ 
+ 参数名称              |  是否必须 |  类型  |  描述             |  取值范围     |
+ ---------------------- | -------- | ------- | ------------------ | ------------ |
+ status                 | true     | string  | 请求处理结果             |              |
+ \<object\>(属性名称: data) |          |         |                    |              |
+ \<list\>(属性名称: trades) |          |         |                    |              |
+ match_id               | true     | long    | 成交ID               |              |
+ order_id               | true     | long    | 订单ID               |              |
+ symbol                 | true     | string  | 品种代码               |              |
+ contract_type          | true     | string  | 合约类型               | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
+ contract_code          | true     | string  | 合约代码               |  "BTC180914" ...       |
+ direction              | true     | string  | "buy":买 "sell":卖         |              |
+ offset                 | true     | string  | "open":开 "close":平           |              |
+ trade_volume           | true     | decimal | 成交数量               |              |
+ trade_price                  | true     | decimal | 成交价格               |              |
+ trade_turnover                  | true     | decimal | 成交总金额               |              |
+ create_date            | true     | long    | 成交时间               |              |
+ offset_profitloss                 | true     | decimal | 平仓盈亏                 |              |
+ traded_fee                    | true     | decimal | 成交手续费                |              |
+ \</list\>              |          |         |                    |              |
+ total_page             | true     | int     | 总页数                |              |
+ current_page           | true     | int     | 当前页                |              |
+ total_size             | true     | int     | 总条数                |              |
+ \</object\>            |          |         |                    |              |
+ ts                     | true     | long    | 时间戳                |              |
+
+### 备注
+
+- 如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:
+
+    
 
 # 合约Websocket 订阅
 
