@@ -2317,6 +2317,7 @@ Restful   | User Order Info  | api/v1/contract_order_info       | POST          
 Restful   | User Order Info  |  api/v1/contract_order_detail  | POST             | Get Trade Details of an Order                  | Yes                    |
 Restful   | User Order Info  |  api/v1/contract_openorders      | POST             | Get Current Orders                             | Yes                    |
 Restful   | User Order Info  |  api/v1/contract_hisorders      | POST             | Get History Orders                             | Yes                    |
+Restful   | User Order Info  |  api/v1/contract_matchresults    | POST             | Acquire History Match Results              | Yes |
 
 ##  Address
 
@@ -3915,6 +3916,82 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | current_page                     | true          | int      | Current Page                                                 |                                   |
 | total_size                       | true          | int      | Total Size                                                   |                                   |
 | ts                               | true          | long     | Timestamp                                                    |                                   |
+
+## Acquire History Match Results
+
+###  Example 
+
+- POST `api/v1/contract_matchresults`
+
+### Request Parameter
+
+Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  Value Range   
+----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+symbol      | true     | string | contract types code          |         | "BTC","ETH"...                           |
+trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
+create_date | true     | int    | date            |         | 7, 90 (7 or 90 days)                            |
+page_index  | false    | int    | page; if not enter, it will be the default value of the 1st page.  | 1       |                                          |
+page_size   | false    | int    | if not enter, it will be the default value of 20; the number should ≤50 | 20      |                                          |
+
+> Response:
+
+```json
+    {
+     "data": {
+		"current_page": 1,
+		"total_page": 1,
+		"total_size": 2,
+		"trades": [{
+			"contract_code": "EOS190419",
+			"contract_type": "this_week",
+			"create_date": 1555553626736,
+			"direction": "sell",
+			"match_id": 3635853382,
+			"offset": "close",
+			"offset_profitloss": 0.15646398812252696,
+			"order_id": 1118,
+			"symbol": "EOS",
+			"trade_fee": -0.002897500905469032,
+			"trade_price": 5.522,
+			"trade_turnover": 80,
+			"trade_volume": 8
+		}]
+	},
+	"status": "ok",
+	"ts": 1555654870867
+    }
+```
+
+### Returning Parameter
+
+ Parameter Name                |  Mandatory   |  Type  |  Desc                                                      | **Value Range**                   |
+---------------------- | -------- | ------- | ------------------ | ------------ |
+status                 | true     | string  | request handling result            |              |
+\<object\>(attribute name: data: data) |          |         |                    |              |
+\<list\>(attribute name: data: trades) |          |         |                    |              |
+match_id               | true     | long    | traded ID               |              |
+order_id               | true     | long    | order ID              |              |
+symbol                 | true     | string  | contract type code               |              |
+contract_type          | true     | string  | contract type               |  deliver on this Friday then "this_week"; deliver on next Friday then "next_week"; for quarterly contract then "quarter"  |
+contract_code          | true     | string  | contract code              |  "BTC180914" ...       |
+direction              | true     | string  | "buy": to bid/ go long; "sell": to ask/ go short.         |              |
+offset                 | true     | string  | "open": open positions; "close": close positions           |              |
+trade_volume           | true     | decimal | the number of traded contract with unit of lot               |              |
+trade_price                  | true     | decimal | the price at which orders get filled               |              |
+trade_turnover                  | true     | decimal | the number of total traded amout with number of USD               |              |
+create_date            | true     | long    | the time when orders get filled               |              |
+offset_profitloss                 | true     | decimal | profits and losses generated from closing positions                 |              |
+traded_fee                    | true     | decimal | fees charged by platform                |              |
+\</list\>              |          |         |                    |              |
+total_page             | true     | int     | total pages                |              |
+current_page           | true     | int     | current page                |              |
+total_size             | true     | int     | total size of the list                |              |
+\</object\>            |          |         |                    |              |
+ts                     | true     | long    | timestamp                |              |
+
+### Notice
+
+- If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.
 
 # HuobiDM Websocket Subscription
 
