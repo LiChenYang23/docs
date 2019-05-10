@@ -2598,16 +2598,18 @@ api.hbdm.com\n
 
     （2）  websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据
 
-- 如果您对API访问频率有特殊需求，请联系 dm_mm@huobi.com，邮件标题“申请提升API限频”，邮件中说明白：
+- 所有API接口返回数据中增加限频信息
 
-    （1）您的火币UID
-
-    （2）您的应用程序的目的和预期的增长
-
-    （3）您所需的速率限制
-
-  我们工作人员将及时跟进您的限频提升申请。
+  将在api接口response中的header返回以下字段：
   
+  ratelimit-limit： 单轮请求数上限，单位：次数
+  
+  ratelimit-interval：请求数重置的时间间隔，单位：毫秒
+  
+  ratelimit-remaining：本轮剩余可用请求数，单位：次数
+  
+  ratelimit-reset：请求数上限重置时间，单位：毫秒
+
 ## 错误码详情
 
 错误代码	 | 错误描述|
@@ -3469,12 +3471,25 @@ volume  |    long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |    string  |    true  |  "open":开 "close":平  |
 lever_rate  |  int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]  |
-order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价  |
+order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做Maker单  |
 
-###  备注：
+###  备注
 
 如果contract_code填了值，那就按照contract_code去下单;
+
 如果contract_code没有填值，则按照symbol+contract_type去下单。
+
+报单字段order_price_type中增加订单价格类型'post_only'，post_only是“只做Maker（post_only）”，不会立刻在市场成交，保证用户始终为Maker；如果委托会立即与已有委托成交，那么该委托会被取消。
+
+###   开平方向
+
+开多：买入开多(direction用buy、offset用open)
+
+平多：卖出平多(direction用sell、offset用close)
+
+开空：卖出开空(direction用sell、offset用open)
+
+平空：买入平空(direction用buy、offset用close)
 
 > Response:
 
@@ -3520,13 +3535,16 @@ volume  |  long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |  string  |    true  |  "open":开 "close":平  |
 lever_rate  |   int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]  |
-order_price_type  | string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价  |
+order_price_type  | string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做Maker单 |
 \</list\>  |    |    |    |
 
 ###  备注：
 
-如果contract_code填了值，那就按照contract_code去下单;
-如果contract_code没有填值，则按照symbol+contract_type去下单。
+如果contract_code填了值，那就按照contract_code去下单
+
+如果contract_code没有填值，则按照symbol+contract_type去下单
+
+报单字段order_price_type中增加订单价格类型'post_only'，post_only是“只做Maker（post_only）”，不会立刻在市场成交，保证用户始终为Maker；如果委托会立即与已有委托成交，那么该委托会被取消。
 
 > Response:
 
@@ -3648,6 +3666,13 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |   |
 参数名称    |  是否必须    |  类型    |  描述  |
 -------------- | -------------- | ---------- | ---------------------------- |
 symbol  |    true  |  string   |  品种代码，如"BTC","ETH"...  |
+contract_code  |    false  |  string  |  合约code  |
+contract_type  |    false  |  string  |  合约类型  |
+
+### 备注 
+- 只传symbol，撤该该品种下所有周期的合约
+- 只要有contract_code，则撤销该code的合约
+- 只传symbol+contract_type， 则撤销二者拼接所成的合约订单
 
 > Response:(多笔订单返回结果(成功订单ID,失败订单ID))
     
@@ -3839,9 +3864,10 @@ page_size  |  false  |  int  |   不填默认20，不得多于50  |
             "trade_price":123.4555,
             "trade_fee":0.234,
             "trade_turnover":34.123,
+            "role": "maker",
             "created_at": 1490759594752
-           }
-          ],
+          }
+        ],
         "total_page":15,
         "total_size":3,
         "current_page":3
@@ -3889,6 +3915,7 @@ trade_price  |  true  |  decimal  |  撮合价格  |    |
 trade_volume  | true  |  decimal  |  成交量  |    |  
 trade_turnover  |    true  |  decimal  |  成交金额  |    | 
 trade_fee  |   true  |  decimal  |  成交手续费  |    |    
+role  |   true  |  string  |  taker或maker  |   | 
 created_at  |   true  |  long  |  创建时间  |    | 
 \</list\>  |    |    |    |    |   
 \</object \>  |    |     |    |    |
@@ -4093,21 +4120,22 @@ ts  |  true  |  long  |  时间戳  |    |
  		"current_page": 1,                              
  		"total_page": 1,                                
  		"total_size": 2,                                
- 		"trades": [{                                    
- 			"contract_code": "EOS190419",                 
- 			"contract_type": "this_week",                 
- 			"create_date": 1555553626736,                 
- 			"direction": "sell",                          
- 			"match_id": 3635853382,                       
- 			"offset": "close",                            
- 			"offset_profitloss": 0.15646398812252696,     
- 			"order_id": 1118,                             
- 			"symbol": "EOS",                              
- 			"trade_fee": -0.002897500905469032,           
- 			"trade_price": 5.522,                         
- 			"trade_turnover": 80,                         
- 			"trade_volume": 8                             
- 		}]                                              
+		"trades": [{
+			"contract_code": "EOS190419",
+			"contract_type": "this_week",
+			"create_date": 1555553626736,
+			"direction": "sell",
+			"match_id": 3635853382,
+			"offset": "close",
+			"offset_profitloss": 0.15646398812252696,
+			"order_id": 1118,
+			"symbol": "EOS",
+			"trade_fee": -0.002897500905469032,
+			"trade_price": 5.522,
+			"trade_turnover": 80,
+			"role": "maker",
+			"trade_volume": 8
+		}]                                        
  	},                                                
  	"status": "ok",                                   
  	"ts": 1555654870867                               
@@ -4134,6 +4162,7 @@ ts  |  true  |  long  |  时间戳  |    |
  create_date            | true     | long    | 成交时间               |              |
  offset_profitloss                 | true     | decimal | 平仓盈亏                 |              |
  traded_fee                    | true     | decimal | 成交手续费                |              |
+ role                   |   true    |       string  |  taker或maker  |         |
  \</list\>              |          |         |                    |              |
  total_page             | true     | int     | 总页数                |              |
  current_page           | true     | int     | 当前页                |              |
