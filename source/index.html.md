@@ -2482,15 +2482,15 @@ Please note that, for both public interface and private interface, there are rat
 
     （2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.
 
-* If you have any special demands for API rate limit, please send application to dm_mm@huobi.com with a mail subject of “Application of raising API rate limit”. The email needs to cover following information:
+* Will response following string for "header" via api 
 
-   （1） Please provide your UID.
+    ratelimit-limit: the upper limit of requests per time, unit: time
 
-   （2） Please describe the purpose/reasons of your application and the expected growth on trading volume.
+    ratelimit-interval: reset interval (reset the number of request), unit: ms
 
-   （3） The API rate limit you request.
+    ratelimit-remaining: the left available request number for this round, unit: time
 
-Once received the application, we will expedite on it and reply to you soon. Thanks for your patience.
+    ratelimit-reset: upper limit of reset time used to reset request number, unit: ms 
 
 ## Details of Each Error Code
 
@@ -3307,12 +3307,23 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | direction          | string             | true          | Transaction direction                                        |
 | offset             | string             | true          | "open", "close"                                              |
 | lever_rate         | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
-| order_price_type   | string             | true          | "limit", "opponent"                                          |
+| order_price_type   | string             | true          | "limit", "opponent"，"post_only"                                          |
 
 ###  Note ： 
 
 If there is a number in the Contract Code row，inquiry with Contract_Code. 
+
 If there is no number，inquiry by Symbol + Contract Type.
+
+Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.
+
+open long: direction - buy、offset - open
+
+close long: direction -sell、offset - close
+
+open short: direction -sell、offset - open
+
+close short: direction -buy、offset - close
 
 > Response:
 
@@ -3356,13 +3367,16 @@ If there is no number，inquiry by Symbol + Contract Type.
 | direction                             | string             | true          | Transaction direction                                        |
 | offset                                | string             | true          | "open": "close"                                              |
 | lever_rate                            | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
-| order_price_type                      | string             | true          | "limit":   "opponent"                                        |
+| order_price_type                      | string             | true          | "limit","opponent","post_only"                                        |
 | \</list\>                             |                    |               |                                                              |
 
 ###  Note  ：
 
 If there is a number in the Contract Code row,inquiry with Contract_Code. 
+
 If there is no number,inquiry by Symbol + Contract Type.
+
+Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.
 
 > Response:
 
@@ -3488,9 +3502,21 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                          |
 | ------------------ | ------------- | -------- | ------------------------------- |
 | symbol             | true          | string   | Variety code，eg "BTC","ETH"... |
+| contract_code             | false         | string   | contract_code            |
+| contract_type             | false         | string   | contract_type           |
+
+### Note
+
+1.  Send symbol to cancel all the contracts of that kind of symbol, e.g. send “BTC” to cancel all BTC weekly, biweekly and quarterly contracts.
+
+2.  Send contract_code to cancel the contracts of that code.
+
+3.  Send symbol+contract_type to cancel the certain contracts under the symbol of that contract_type, e.g. send “BTC” and “this week”, then the BTC weekly contracts will be cancelled.
 
 > Response:
+
  result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
+ 
 ```json
 {
   "status": "ok",
@@ -3688,6 +3714,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
         "trade_price":123.4555,
         "trade_fee":0.234,
         "trade_turnover":34.123,
+        "role": "maker",
         "created_at": 1490759594752
        }
       ],
@@ -3738,6 +3765,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | trade_volume                      | true          | decimal  | Transaction quantity                                         |                                   |
 | trade_turnover                    | true          | decimal  | Transaction price                                            |                                   |
 | trade_fee                         | true          | decimal  | Transaction Service fee                                      |                                   |
+| role                        | true          | string  |   taker or maker                              |                                                         |
 | created_at                        | true          | long     | Creation time                                                |                                   |
 | \</list\>                         |               |          |                                                              |                                   |
 | \</object \>                      |               |          |                                                              |                                   |
@@ -3954,7 +3982,8 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 			"trade_fee": -0.002897500905469032,
 			"trade_price": 5.522,
 			"trade_turnover": 80,
-			"trade_volume": 8
+			"trade_volume": 8,
+			"role": "maker",
 		}]
 	},
 	"status": "ok",
@@ -3982,6 +4011,7 @@ trade_turnover                  | true     | decimal | the number of total trade
 create_date            | true     | long    | the time when orders get filled               |              |
 offset_profitloss                 | true     | decimal | profits and losses generated from closing positions                 |              |
 traded_fee                    | true     | decimal | fees charged by platform                |              |
+ role                        | true          | string |   taker or maker     |                  |
 \</list\>              |          |         |                    |              |
 total_page             | true     | int     | total pages                |              |
 current_page           | true     | int     | current page                |              |
