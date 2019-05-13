@@ -3513,9 +3513,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 
 3.  Send symbol+contract_type to cancel the certain contracts under the symbol of that contract_type, e.g. send “BTC” and “this week”, then the BTC weekly contracts will be cancelled.
 
-> Response:
-
- result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
+> Response:result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
  
 ```json
 {
