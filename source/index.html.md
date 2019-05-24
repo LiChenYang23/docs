@@ -1750,7 +1750,7 @@ ts                     | true     | long    | timestamp                |        
 
 - If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.
 
-# Transferring Interface
+# HuobiDM Transferring Interface
 
 ##  Transfer margin between Spot account and Future account 
 
