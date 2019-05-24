@@ -1818,31 +1818,31 @@ dw-account-transfer-failed-account-abnormality  |  Account abnormality, failed t
 
 ## Error message when err-code is ‘base-msg’.
 
-err-code | err-msg  |  Comments   |
-------   | ----------------------- |----------------------------------    |
-base-msg  |  Unable to transfer in currently. Please contact customer service.  |         |
-base-msg  |  Unable to transfer out currently. Please contact customer service.  |        |
-base-msg  |  Abnormal contracts status. Can’t transfer.  |           |
-base-msg  |  Sub-account doesn't own the permissions to transfer in. Please contact customer service.  |            |
-base-msg  |  Sub-account doesn't own the permissions to transfer out. Please contact customer service.  |           |
-base-msg  |  The sub-account does not have transfer permissions. Please login main account to authorize.  |         |
-base-msg  |  Insufficient amount available.|Insufficient amount of Future Contract Account  |                       |
-base-msg  |  The single transfer-out amount must be no less than {0}{1}.  |         |
-base-msg  |  The single transfer-out amount must be no more than {0}{1}.  |         |
-base-msg  |  The single transfer-in amount must be no less than {0}{1}.  |          |
-base-msg  |  The single transfer-in amount must be no more than {0}{1}.  |          |                                                           
-base-msg  |  Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |              |
-base-msg  |  Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |                |
-base-msg  |  Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |          |
-base-msg  |  Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |            |
-base-msg  |  The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |            |
-base-msg  |  The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |              |
-base-msg  |  The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |        |
-base-msg  |  The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |          |
-base-msg  |  Transfer failed. Please try again later or contact customer service.  |       |
-base-msg  |  Abnormal service, transfer failed. Please try again later.  |           |
-base-msg  |  You don’t have access permission as you have not opened contracts trading.  |     |
-base-msg  |  This contract type doesn't exist.  |              |
+err-msg  |  Comments   |
+----------------------- |----------------------------------    |
+Unable to transfer in currently. Please contact customer service.  |         |
+Unable to transfer out currently. Please contact customer service.  |        |
+Abnormal contracts status. Can’t transfer.  |           |
+Sub-account doesn't own the permissions to transfer in. Please contact customer service.  |            |
+Sub-account doesn't own the permissions to transfer out. Please contact customer service.  |           |
+The sub-account does not have transfer permissions. Please login main account to authorize.  |         |
+Insufficient amount available.|Insufficient amount of Future Contract Account  |                       |
+The single transfer-out amount must be no less than {0}{1}.  |         |
+The single transfer-out amount must be no more than {0}{1}.  |         |
+The single transfer-in amount must be no less than {0}{1}.  |          |
+The single transfer-in amount must be no more than {0}{1}.  |          |                                                           
+Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |              |
+Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |                |
+Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |          |
+Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |            |
+The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |            |
+The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |              |
+The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |        |
+The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |          |
+Transfer failed. Please try again later or contact customer service.  |       |
+Abnormal service, transfer failed. Please try again later.  |           |
+You don’t have access permission as you have not opened contracts trading.  |     |
+This contract type doesn't exist.  |              |
 
 # HuobiDM Websocket Subscription
 
