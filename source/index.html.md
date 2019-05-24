@@ -1863,12 +1863,12 @@ err-code | err-msg(中文） | err-msg(English)  |  补充说明   |
 base-msg  |  用户没有入金权限  |  Unable to transfer in currently. Please contact customer service.  |           |
 base-msg  |  用户没有出金权限  |  Unable to transfer out currently. Please contact customer service.  |          |
 base-msg  |  合约状态异常，无法出入金  |  Abnormal contracts status. Can’t transfer.  |            |
-base-msg  |  子账号没有入金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer in. Please contact customer service.  |         |
+ base-msg  |  子账号没有入金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer in. Please contact customer service.  |         |
 base-msg  |  子账号没有出金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer out. Please contact customer service.  |        |
-base-msg  |  子账号没有划转权限，请登录主账号授权  |  The sub-account does not have transfer permissions. Please login main account to authorize.  |       |
+ base-msg  |  子账号没有划转权限，请登录主账号授权  |  The sub-account does not have transfer permissions. Please login main account to authorize.  |       |
 base-msg  |  可划转余额不足  |  Insufficient amount available.  |  合约账户的余额不足       |
 base-msg  |  单笔转出的数量不能低于{0}{1}  |  The single transfer-out amount must be no less than {0}{1}.  |       |
-base-msg  |  单笔转出的数量不能高于{0}{1}  |  The single transfer-out amount must be no more than {0}{1}.  |       |
+ base-msg  |  单笔转出的数量不能高于{0}{1}  |  The single transfer-out amount must be no more than {0}{1}.  |       |
 base-msg  |  单笔转入的数量不能低于{0}{1}  |  The single transfer-in amount must be no less than {0}{1}.  |         |
 base-msg  |  单笔转入的数量不能高于{0}{1}  |  The single transfer-in amount must be no more than {0}{1}.  |         |
 base-msg  |  您当日累计转出量超过{0}{1}，暂无法转出  |  Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |         |
