@@ -1858,31 +1858,31 @@ dw-account-transfer-failed-account-abnormality  |  账户异常，划转失败�
 
 ## base-msg对应的err-msg列表
 
-err-code  |  err-msg(中文） |  err-msg(English)  |  补充说明   |
-------------------  |  ------------------------------------  |  --------------------------------  |  --------------------- |
-base-msg  |  用户没有入金权限  |  Unable to transfer in currently. Please contact customer service  |           |
-base-msg  |  用户没有出金权限  |  Unable to transfer out currently. Please contact customer service  |          |
-base-msg  |  合约状态异常，无法出入金  |  Abnormal contracts status. Can’t transfer  |            |
-base-msg  |  子账号没有入金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer in. Please contact customer service  |         |
-base-msg  |  子账号没有出金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer out. Please contact customer service  |        |
-base-msg  |  子账号没有划转权限，请登录主账号授权  |  The sub-account does not have transfer permissions. Please login main account to authorize  |       |
-base-msg  |  可划转余额不足  |  Insufficient amount available  |  合约账户的余额不足       |
-base-msg  |  单笔转出的数量不能低于{0}{1}  |  The single transfer-out amount must be no less than {0}{1}  |       |
-base-msg  |  单笔转出的数量不能高于{0}{1}  |  The single transfer-out amount must be no more than {0}{1}  |       |
-base-msg  |  单笔转入的数量不能低于{0}{1}  |  The single transfer-in amount must be no less than {0}{1}  |         |
-base-msg  |  单笔转入的数量不能高于{0}{1}  |  The single transfer-in amount must be no more than {0}{1}  |         |
-base-msg  |  您当日累计转出量超过{0}{1}，暂无法转出  |  Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being   |         |
-base-msg  |  您当日累计转入量超过{0}{1}，暂无法转入  |  Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being   |           |
-base-msg  |  您当日累计净转出量超过{0}{1}，暂无法转出  |  Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being   |          |
-base-msg  |  您当日累计净转入量超过{0}{1}，暂无法转入  |  Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being   |            |
-base-msg  |  超过平台当日累计最大转出量限制，暂无法转出  |  The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being   |              |
-base-msg  |  超过平台当日累计最大转入量限制，暂无法转入  |  The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being   |                |
-base-msg  |  超过平台当日累计最大净转出量限制，暂无法转出  |  The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being   |         |
-base-msg  |  超过平台当日累计最大净转入量限制，暂无法转入  |  The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being   |           |
-base-msg  |  划转失败，请稍后重试或联系客服  |  Transfer failed. Please try again later or contact customer service   |                     |
-base-msg  |  服务异常，划转失败，请稍后再试  |  Abnormal service, transfer failed. Please try again later   |                           |
-base-msg  |  您尚未开通合约交易，无访问权限  |  You don’t have access permission as you have not opened contracts trading   |                    |
-base-msg  |  合约品种不存在  |  This contract type doesn't exist.  |  没有相应币种的合约       |
+err-msg(中文） |  err-msg(English)  |  补充说明   |
+------------------------------------  |  --------------------------------  |  --------------------- |
+用户没有入金权限  |  Unable to transfer in currently. Please contact customer service  |           |
+用户没有出金权限  |  Unable to transfer out currently. Please contact customer service  |          |
+合约状态异常，无法出入金  |  Abnormal contracts status. Can’t transfer  |            |
+子账号没有入金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer in. Please contact customer service  |         |
+子账号没有出金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer out. Please contact customer service  |        |
+子账号没有划转权限，请登录主账号授权  |  The sub-account does not have transfer permissions. Please login main account to authorize  |       |
+可划转余额不足  |  Insufficient amount available  |  合约账户的余额不足       |
+单笔转出的数量不能低于{0}{1}  |  The single transfer-out amount must be no less than {0}{1}  |       |
+单笔转出的数量不能高于{0}{1}  |  The single transfer-out amount must be no more than {0}{1}  |       |
+单笔转入的数量不能低于{0}{1}  |  The single transfer-in amount must be no less than {0}{1}  |         |
+单笔转入的数量不能高于{0}{1}  |  The single transfer-in amount must be no more than {0}{1}  |         |
+您当日累计转出量超过{0}{1}，暂无法转出  |  Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being   |         |
+您当日累计转入量超过{0}{1}，暂无法转入  |  Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being   |           |
+您当日累计净转出量超过{0}{1}，暂无法转出  |  Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being   |          |
+您当日累计净转入量超过{0}{1}，暂无法转入  |  Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being   |            |
+超过平台当日累计最大转出量限制，暂无法转出  |  The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being   |              |
+超过平台当日累计最大转入量限制，暂无法转入  |  The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being   |                |
+超过平台当日累计最大净转出量限制，暂无法转出  |  The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being   |         |
+超过平台当日累计最大净转入量限制，暂无法转入  |  The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being   |           |
+划转失败，请稍后重试或联系客服  |  Transfer failed. Please try again later or contact customer service   |                     |
+服务异常，划转失败，请稍后再试  |  Abnormal service, transfer failed. Please try again later   |                           |
+您尚未开通合约交易，无访问权限  |  You don’t have access permission as you have not opened contracts trading   |                    |
+合约品种不存在  |  This contract type doesn't exist.  |  没有相应币种的合约       |
 
     
 
