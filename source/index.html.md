@@ -1844,8 +1844,8 @@ err-msg  |    true  |  string  |  错误消息  |  具体错误码请见列表  
 
 ## err-code列表
 
-err-code | err-msg(中文） | err-msg(English)  |  补充说明
------- | --------------------------------------- | ------------------------------------  |  ----------------------------------- |
+err-code | err-msg(中文） | err-msg(English)  |  补充说明   |
+------------------ | ------------------------------------ | --------------------------------  |  ----------------------------------- |
 base-msg  |    |    |  其他错误，具体的err-msg, 请参照对应的错误消息列表  |
 base-currency-error  |  币种无效  |  The currency is invalid  |           |
 frequent-invoke  |  操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code） |  the operation is too frequent. Please try again later  |  如果请求次数超过1分钟10次，系统返回该error-code    |
@@ -1858,7 +1858,7 @@ dw-account-transfer-failed-account-abnormality  |  账户异常，划转失败�
 
 ## base-msg对应的err-msg列表
 
-err-code | err-msg(中文） | err-msg(English)  |  补充说明
+err-code | err-msg(中文） | err-msg(English)  |  补充说明  |
 --------------------  | ------------------------------ | ---------------------------  |  --------------------------- |
 base-msg  |  用户没有入金权限  |  Unable to transfer in currently. Please contact customer service.  |           |
 base-msg  |  用户没有出金权限  |  Unable to transfer out currently. Please contact customer service.  |          |
