@@ -1858,8 +1858,8 @@ dw-account-transfer-failed-account-abnormality  |  账户异常，划转失败�
 
 ## base-msg对应的err-msg列表
 
-err-code | err-msg(中文） | err-msg(English)  |  补充说明  |
------------------- | ------------------------------------ | --------------------------------  |  ----------------------------------- |
+err-code | err-msg(中文） | err-msg(English)  |  补充说明   |
+------------------  |  ------------------------------------  |  --------------------------------  |  --------------------- |
 base-msg  |  用户没有入金权限  |  Unable to transfer in currently. Please contact customer service.  |           |
 base-msg  |  用户没有出金权限  |  Unable to transfer out currently. Please contact customer service.  |          |
 base-msg  |  合约状态异常，无法出入金  |  Abnormal contracts status. Can’t transfer.  |            |
