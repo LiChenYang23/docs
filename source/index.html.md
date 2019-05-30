@@ -1060,7 +1060,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
           "position_margin": 3.4,
           "lever_rate": 10,
           "direction":"buy",
-           "last_price":7900.17
+          "last_price":7900.17
          }
         ],
      "ts": 158797866555
