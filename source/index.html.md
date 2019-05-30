@@ -1015,7 +1015,8 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
       "profit": 0.97,
       "position_margin": 3.4,
       "lever_rate": 10,
-      "direction":"buy"
+      "direction":"buy",
+      "last_price":7900.17
      }
     ],
  "ts": 158797866555
@@ -1042,6 +1043,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | position_margin                | true          | decimal  | Position margin                               |                                     |
 | lever_rate                     | true          | int      | Leverage rate                                 |                                     |
 | direction                      | true          | string   | Transaction direction                         |                                     |
+| last_price                     | true          | decimal  | Latest price                                  |                                     |
 | \</list\>                      |               |          |                                               |                                     |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
 
