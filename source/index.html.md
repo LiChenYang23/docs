@@ -1059,7 +1059,8 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
           "profit": 0.97,
           "position_margin": 3.4,
           "lever_rate": 10,
-          "direction":"buy"
+          "direction":"buy",
+           "last_price":7900.17
          }
         ],
      "ts": 158797866555
@@ -1086,6 +1087,7 @@ profit  |  true  |  decimal   |  收益  |    |
 position_margin  |  true  |  decimal    |  持仓保证金  |    |   
 lever_rate  |  true  |  int  |   杠杠倍数  |    |
 direction  |  true  |  string  |  "buy":买 "sell":卖  |    |
+last_price  |  true  |  decimal    |  最新价  |     | 
 \</list\>  |    |    |    |    |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |    |
 
