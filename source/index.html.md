@@ -1970,7 +1970,7 @@ Websocket   |  资产接口            |  positions.$symbol  |        sub |  订
  * ratelimit-reset：请求数上限重置时间，单位：毫秒
  
 
-# 市场行情接口
+# 市场行情WebSocket
 
 ## 市场行情心跳
 
