@@ -1972,7 +1972,9 @@ Websocket   |  资产接口            |  positions.$symbol  |        sub |  订
 
 # 市场行情WebSocket
 
-## 市场行情心跳
+## 简介
+
+### 市场行情心跳
 
 WebSocket API 支持双向心跳，无论是 Server 还是 Client 都可以发起 `ping` message，对方返回 `pong` message。
 
@@ -2558,7 +2560,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
     "data": object // 必填;返回数据对象
   }
 ```
-## 订单推送心跳
+### 订单推送心跳
 
 WebSocket API 支持单向心跳，Server 发起 ping message，Client 返回 pong message。
 WebSocket Server 发送⼼心跳:
@@ -2595,8 +2597,6 @@ WebSocket Client 应该返回:
 }
 ```
 
-## 服务方连接处理
-
 ### 服务方主动断开连接
 
 在建连和鉴权期间，如果出错，服务方会主动断开连接，在关闭之前推送数据结构如下,
@@ -2619,7 +2619,7 @@ WebSocket Client 应该返回:
 }
 ```
 
-## 鉴权-Authentication
+### 鉴权-Authentication
 
 用户自⼰在火币网⽣成Access Key和Secret Key，Secret Key由用户自⼰保存，⽤户需提供Access Key。目前关于 apikey 申请和修改，请在“账户 - API 管理 ” 创建新API Key 填写备注(可选择绑定 ip)点击创建。其中 Access Key 为 API 访问密钥，Secret Key 为用户对请求进⾏签名的密钥(仅申请时可见)。用户按规则生成签名(Signature)。 
 
@@ -2627,7 +2627,7 @@ WebSocket Client 应该返回:
 
 重要提示：这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露。 
 
-### 鉴权请求数据格式
+#### 鉴权请求数据格式
 
 ```
 {
@@ -2641,7 +2641,7 @@ WebSocket Client 应该返回:
 }
 ```
 
-### 鉴权请求数据格式说明
+#### 鉴权请求数据格式说明
 
 字段名称         | 类型   | 说明                                                         |
 --------------- | ----- | ----------------------------------------------------------- |
@@ -2705,7 +2705,7 @@ ticket           | string | type的值为ticket时必填；登陆时返回      
   * 将上述值作为参数Signature的取值添加到 API 请求中。 将此参数添加到请求时，必须将该值进
     ⾏ URI 编码。
 
-### 鉴权应答数据格式说明
+#### 鉴权应答数据格式说明
 
 名称     | 类型    | 说明                                                 |
 ------- | ------ | --------------------------------------------------- |
@@ -2717,7 +2717,7 @@ err-msg  | string  | 可选，若出错表示详细错误信息                 
 ts       | long    | 服务端应答时间戳                                     |
 user-id  | long    | ⽤户 id                                              |
 
-### 请求数据
+#### 请求数据
 
 鉴权成功应答数据示例
 
