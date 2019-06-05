@@ -1743,7 +1743,7 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 			"trade_price": 5.522,
 			"trade_turnover": 80,
 			"trade_volume": 8,
-			"role": "maker",
+			"role": "maker"
 		}]
 	},
 	"status": "ok",
@@ -2020,7 +2020,7 @@ Process of example parameter Signature calculation
 | ts       | long    | Server-end response timestamp                                     |
 | user-id  | long    | User id                                              |
 
-Sample of successful responded authentication 
+> Sample of successful responded authentication 
 
 ```json
   {
@@ -2034,7 +2034,7 @@ Sample of successful responded authentication
   }
 ```
 
-Sample of failed responded authentication 
+> Sample of failed responded authentication 
 
 
 ```json
@@ -2054,14 +2054,14 @@ Sample of failed responded authentication
 ### Market Heartbeat
 WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.
 
-WebSocket Server sends heartbeat:
+> WebSocket Server sends heartbeat:
 
 ```json
 {"ping": 18212558000}
 
 ```
 
-WebSocket Client should respond:
+> WebSocket Client should respond:
 
 ```json
  {"pong": 18212558000}
@@ -2093,7 +2093,7 @@ After establish connection with WebSocket API, describing data formed as followi
 
 ### Example
 
-Example for correct subscription parameter：
+> Example for correct subscription parameter：
 
 ```json
   {                                     
@@ -2103,7 +2103,7 @@ Example for correct subscription parameter：
                                      
 ```
 
-Example for correct subscription return parameter
+> Example for correct subscription return parameter
 
 ```json
   {                                          
@@ -2115,7 +2115,7 @@ Example for correct subscription return parameter
 
 ```
 
-whenever KLine updated，client will receive the data，for example
+> whenever KLine updated，client will receive the data，for example
 
 ```
    {                                                                                              
@@ -2162,7 +2162,7 @@ Mistaken subscription (mistaken symbol)
                                                     
 ```
 
-Example for failed subscription and return parameter
+> Example for failed subscription and return parameter
 
 ```json
   {                                                               
@@ -2175,7 +2175,7 @@ Example for failed subscription and return parameter
                                                                
 ```
 
-Mistaken subscription (mistaken topic)
+> Mistaken subscription (mistaken topic)
 
 ```json
     {                                     
@@ -2185,7 +2185,7 @@ Mistaken subscription (mistaken topic)
 
 ```
 
-Example for failed subscription and return parameter
+> Example for failed subscription and return parameter
 
 ```json
   {                                                                             
@@ -2221,22 +2221,22 @@ Response：
 | symbol | true | string |Contract Code | |e.g. "BTC_CW" represents BTC “this_week”、"BTC_NW" represents BTC “next_week”、"BTC_CQ" represents BTC “quarter“|
 | period | true | string | Kline Period | | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon |
 
-[t1, t5] assumes that there is Kline oft1 ~ t5 ：
+- [t1, t5] assumes that there is Kline oft1 ~ t5 ：
 
-from: t1, to: t5, return [t1, t5].
-from: t5, to: t1, which t5  > t1, return [].
-from: t5, return [t5].
-from: t3, return [t3, t5].
-to: t5, return [t1, t5].
-from: t which t3  < t  <t4, return [t4, t5].
-to: t which t3  < t  <t4, return [t1, t3].
-from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
+    from: t1, to: t5, return [t1, t5].
+    from: t5, to: t1, which t5  > t1, return [].
+    from: t5, return [t5].
+    from: t3, return [t3, t5].
+    to: t5, return [t1, t5].
+    from: t which t3  < t  <t4, return [t4, t5].
+    to: t which t3  < t  <t4, return [t1, t3].
+    from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 
 **NOTE**：maximum 2000 per time
 
 ### Example
 
-Example for Requesting parameter of KLine data：
+> Example for Requesting parameter of KLine data：
 
 ```json
   {                                                
@@ -2246,7 +2246,7 @@ Example for Requesting parameter of KLine data：
                                             
 ```
 
-Example of successful requesting and return data：
+> Example of successful requesting and return data：
 
 ```json
   {                                     
@@ -2284,6 +2284,7 @@ Example of successful requesting and return data：
 ### Topic
 
 After establish connection with WebSocket API, describing data formed as following to Server：
+
 ```json
   {                                        
     "sub": "market.$symbol.depth.$type",     
@@ -2302,7 +2303,7 @@ After establish connection with WebSocket API, describing data formed as followi
 
 ### Example
 
-Example of correct subscription of requesting parameter：
+> Example of correct subscription of requesting parameter：
 
 ```json
   {                                      
@@ -2312,7 +2313,7 @@ Example of correct subscription of requesting parameter：
                                         
 ```
 
-example of successful subscription and returning parameter：
+> example of successful subscription and returning parameter：
 
 ```json
   {                                             
@@ -2324,7 +2325,7 @@ example of successful subscription and returning parameter：
 
 ```
 
-Whenever depth updated，client will receive data，for example：
+> Whenever depth updated，client will receive data，for example：
 
 ```
   {                                                   
@@ -2386,7 +2387,7 @@ After establish connection with WebSocket API, describing data formed as followi
 
 ### Example
 
-Example of successful subscription of request parameter：
+> Example of successful subscription of request parameter：
 
 ```json
   {                                  
@@ -2396,7 +2397,7 @@ Example of successful subscription of request parameter：
                                 
 ```
 
-Example of successful subscription and return parameter：
+> Example of successful subscription and return parameter：
 
 ```json
   {                                                        
@@ -2417,7 +2418,7 @@ Example of successful subscription and return parameter：
 
 ```
 
-tick illustration：
+> tick illustration：
 
 ```
   "tick":                                                                                                   
@@ -2453,7 +2454,7 @@ return Trade Detail
 
 ### Example
 
-Example for request parameter of requesting Market Detail Data：
+> Example for request parameter of requesting Market Detail Data：
 
 ```json
   {                                             
@@ -2463,7 +2464,7 @@ Example for request parameter of requesting Market Detail Data：
                                               
 ```
 
-Example of successful request and return data：
+> Example of successful request and return data：
 
 ```json
   {                                         
@@ -2489,7 +2490,7 @@ Example of successful request and return data：
 
 ```
 
-tick date illustration：
+> tick date illustration：
 
 ```
   "data": [                                           
@@ -2529,7 +2530,7 @@ After establish connection with WebSocket API, describing data formed as followi
 
 ### Example
 
-Example of successful subscription of request parameter：
+> Example of successful subscription of request parameter：
 
 ```json
   {                                            
@@ -2539,7 +2540,7 @@ Example of successful subscription of request parameter：
                                             
 ```
 
-Example of successful subscription and return parameter：
+> Example of successful subscription and return parameter：
 
 ```json
   {                                              
@@ -2551,7 +2552,7 @@ Example of successful subscription and return parameter：
 
 ```
 
-Whenever Trade Detail updated，client will receive data，for example：
+> Whenever Trade Detail updated，client will receive data，for example：
 
 ```json
   {                                            
@@ -2572,7 +2573,7 @@ Whenever Trade Detail updated，client will receive data，for example：
 
 ```
 
-data illustration：
+> data illustration：
 
 ```
   "data": [                                 
@@ -2593,7 +2594,7 @@ data illustration：
 
 ### Order Push Heartbeat
 
-WebSocket API supports one-way heartbeat. The Server initiates ping message and the Client will return pong message. The Server sends back a heartbeat:
+> WebSocket API supports one-way heartbeat. The Server initiates ping message and the Client will return pong message. The Server sends back a heartbeat:
 
 ```json
   {
@@ -2603,7 +2604,7 @@ WebSocket API supports one-way heartbeat. The Server initiates ping message and 
   
 ```
 
-WebSocket Client should return:
+> WebSocket Client should return:
 
 ```json
   {
@@ -2675,7 +2676,7 @@ After successfully building WebSocket API connection, send data to Server in the
 
 ### Sample of subscription request
 
-Correct subscription request
+> Correct subscription request
 
 ```json
   {
@@ -2686,7 +2687,7 @@ Correct subscription request
   
 ```
 
-Response sample to successful subscription request
+> Response sample to successful subscription request
 
 ```json
   {
@@ -2699,7 +2700,7 @@ Response sample to successful subscription request
   
 ```
 
-Sample of incorrect subscription request (wrong topic)
+> Sample of incorrect subscription request (wrong topic)
 
 ```json
   {
@@ -2709,7 +2710,7 @@ Sample of incorrect subscription request (wrong topic)
   }
 ```
 
-Response sample of failed subscription request 
+> Response sample of failed subscription request 
 
 ```json
   {
@@ -2828,7 +2829,7 @@ After successfully building WebSocket API connection, send data to Server in the
 
 ### Requset examples of cancel subscription
 
-The correct way to unsubscribe 
+> The correct way to unsubscribe 
 
 ```json
   {
@@ -2839,7 +2840,7 @@ The correct way to unsubscribe
   
 ```
 
-Examples of return data when unsubscribe successufully
+> Examples of return data when unsubscribe successufully
 
 ```json
   {
@@ -2887,7 +2888,7 @@ After building connection with WebSocket API successfully, please send data in t
 
 ### Sample for subscription request
 
-The correct subscription request
+> The correct subscription request
 
 ```json
   {
@@ -2898,7 +2899,7 @@ The correct subscription request
   
 ```
 
-Response for successful subscription
+> Response for successful subscription
 
 ```json
   {
@@ -2911,7 +2912,7 @@ Response for successful subscription
 
 ```
 
-Sample of incorrect subscription request（wrong topic）
+> Sample of incorrect subscription request（wrong topic）
 
 ```json
   {
@@ -2921,7 +2922,7 @@ Sample of incorrect subscription request（wrong topic）
   }
   
 ```
-Response  data sample for failed subscription
+> Response  data sample for failed subscription
  
 ```json
   {
@@ -3007,7 +3008,7 @@ After building connection with WebSocket API successfully, please send data in t
 
 ### Request sample of unsubscription 
 
-The correct request of unsubscription
+> The correct request of unsubscription
 
 ```json
   {
@@ -3018,7 +3019,7 @@ The correct request of unsubscription
   
 ```
 
-Response for successful unsubscription
+> Response for successful unsubscription
 
 ```json
   {
@@ -3078,7 +3079,7 @@ The correct subscription request
 
 ```
 
-Response for successful subscription
+> Response for successful subscription
 
 ```json
   {
@@ -3091,7 +3092,7 @@ Response for successful subscription
   
 ```
 
-Sample for incorrect subscription request（Wrong topic）
+> Sample for incorrect subscription request（Wrong topic）
 
 ```json
   {
@@ -3101,7 +3102,8 @@ Sample for incorrect subscription request（Wrong topic）
   }
   
 ```
-Response  data sample for failed subscription
+
+> Response  data sample for failed subscription
 
 ```json
   {
@@ -3191,7 +3193,8 @@ After building connection with WebSocket API successfully, please send data in t
 | topic    | string | Must fill;Must fill；Must fill；Topic name of the subscription，Must fill (positions.$symbol), when the value of $symbol is "*" means subscribing all types of contracts;         |
 
 ### Sample for unsubscription request
-Correct request sample for unsubscription
+
+> Correct request sample for unsubscription
 
 ```json
   {
@@ -3202,7 +3205,7 @@ Correct request sample for unsubscription
   
 ```
 
-Response for successful unsubscription
+> Response for successful unsubscription
 
 ```json
   {
