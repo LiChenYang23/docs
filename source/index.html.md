@@ -1936,16 +1936,16 @@ Important Note: Access Key and Secret Key are closely linked with account securi
 
 ### Formats of authentication request
 
-```
-{
-  "op": "auth",
-  "type": "api",
-  "AccessKeyId": "e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx",
-  "SignatureMethod": "HmacSHA256",
-  "SignatureVersion": "2",
-  "Timestamp": "2017-05-11T15:19:30",
-  "Signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=",
-}
+```json
+  {
+    "op": "auth",
+    "type": "api",
+    "AccessKeyId": "e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx",
+    "SignatureMethod": "HmacSHA256",
+    "SignatureVersion": "2",
+    "Timestamp": "2017-05-11T15:19:30",
+    "Signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="
+  }
 ```
 
 ###  Authentication request illustration
@@ -2022,30 +2022,29 @@ Process of example parameter Signature calculation
 
 Sample of successful responded authentication 
 
-```
- 
-{
-  "op": "auth",
-  "type":"api",
-  "ts": 1489474081631,
-  "err-code": 0,
-  "data": {
-    "user-id": 12345678
+```json
+  {
+    "op": "auth",
+    "type":"api",
+    "ts": 1489474081631,
+    "err-code": 0,
+    "data": {
+      "user-id": 12345678
+    }
   }
-}
 ```
 
 Sample of failed responded authentication 
 
 
-```
-{
-"op": "auth",
-"type":"api",
-"ts": 1489474081631, 
-"err-code": xxxx， 
-"err-msg": ”error details“
-}
+```json
+  {
+    "op": "auth",
+    "type":"api",
+    "ts": 1489474081631, 
+    "err-code": "xxxx", 
+    "err-msg": "error details"
+  }
 ```
 
 # Websocket Market Data
@@ -2056,13 +2055,19 @@ Sample of failed responded authentication
 WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.
 
 WebSocket Server sends heartbeat:
-```
+
+```json
 {"ping": 18212558000}
+
 ```
+
 WebSocket Client should respond:
-```
+
+```json
  {"pong": 18212558000}
+
 ```
+
 Note: The "pong"  value from the responded data is the sent "ping" value--Once the WebSocket Client and WebSocket Server get connected, the Server will send a heartbeat every 5 seconds (the frequency might change) to Websocket Client. It will get disconnected automatically if Websocket Client ignores the heartbeat message for 2 times. Websocket Server will remain the connection as Websocket Client sends one "ping" value of the latest 2 heartbeat message back. 
 
 
@@ -2072,11 +2077,13 @@ Note: The "pong"  value from the responded data is the sent "ping" value--Once t
 
 After establish connection with WebSocket API, describing data formed as following to Server：
 
-    {
-    "sub": "market.$symbol.kline.$period",
-    "id": "id generate by client"
-    }
-	
+```json
+  {                                      
+    "sub": "market.$symbol.kline.$period", 
+    "id": "id generate by client"          
+  }
+                                        
+```
 ### Topic Parameter
 
 |**Parameter**|   **Name**  | **Type**  | **Description** |  **Default Value**  | **Range**|
@@ -2088,87 +2095,108 @@ After establish connection with WebSocket API, describing data formed as followi
 
 Example for correct subscription parameter：
 
-    {
-    "sub": "market.BTC_CQ.kline.1min",
-    "id": "id1"
-    }
+```json
+  {                                     
+    "sub": "market.BTC_CQ.kline.1min",    
+    "id": "id1"                           
+  }  
+                                     
+```
 
 Example for correct subscription return parameter
 
-    {
-    "id": "id1",
-    "status": "ok",
-    "subbed": "market.BTC_CQ.kline.1min",
-    "ts": 1489474081631
-    }
+```json
+  {                                          
+    "id": "id1",                               
+    "status": "ok",                            
+    "subbed": "market.BTC_CQ.kline.1min",      
+    "ts": 1489474081631                        
+  }                                          
+
+```
 
 whenever KLine updated，client will receive the data，for example
 
-    {
-     "ch": "market.BTC_CQ.kline.1min",
-     "ts": 1489474082831,
-     "tick": 
-        {
-         "id": 1489464480,
-         "vol": 100,
-         "count": 0,
-         "open": 7962.62,
-         "close": 7962.62,
-         "low": 7962.62,
-         "high": 7962.62,
-         "amount": 0.3 //BTC quantity
-        }
-    }
-    
-    tick 
-    
-    "tick": 
-      {
-       "id": Kline id,
-       "vol": transaction (contract),
-       "count": transaction count,
-       "open": opening price,
-       "close": closing price, when Kline is the last one, the price is the latest price
-       "low": lowest price,
-       "high": highest price,
-       "amount": BTC, sum(denomination of the contract* transaction amount/transaction price)
-    }
+```
+   {                                                                                              
+    "ch": "market.BTC_CQ.kline.1min",                                                             
+    "ts": 1489474082831,                                                                          
+    "tick":                                                                                       
+       {                                                                                          
+        "id": 1489464480,                                                                         
+        "vol": 100,                                                                               
+        "count": 0,                                                                               
+        "open": 7962.62,                                                                          
+        "close": 7962.62,                                                                         
+        "low": 7962.62,                                                                           
+        "high": 7962.62,                                                                          
+        "amount": 0.3 //BTC quantity                                                              
+       }                                                                                          
+   }                                                                                              
+                                                                                                  
+   tick                                                                                           
+                                                                                                  
+   "tick":                                                                                        
+     {                                                                                            
+      "id": Kline id,                                                                             
+      "vol": transaction (contract),                                                              
+      "count": transaction count,                                                                 
+      "open": opening price,                                                                      
+      "close": closing price, when Kline is the last one, the price is the latest price           
+      "low": lowest price,                                                                        
+      "high": highest price,                                                                      
+      "amount": BTC, sum(denomination of the contract* transaction amount/transaction price)      
+   }                                                                                              
+
+```
 
 ### Example for mistaken subscription
 
 Mistaken subscription (mistaken symbol)
 
-    {
-     "sub": "market.invalidsymbol.kline.1min",
-     "id": "id2"
-    }
+```json
+  {                                                  
+    "sub": "market.invalidsymbol.kline.1min",         
+    "id": "id2"                                       
+  }
+                                                    
+```
 
 Example for failed subscription and return parameter
 
-    {
-     "id": "id2",
-     "status": "error",
-     "err-code": "bad-request",
-     "err-msg": "invalid topic market.invalidsymbol.kline.1min",
-     "ts": 1494301904959
-    }
+```json
+  {                                                               
+   "id": "id2",                                                   
+   "status": "error",                                             
+   "err-code": "bad-request",                                     
+   "err-msg": "invalid topic market.invalidsymbol.kline.1min",    
+   "ts": 1494301904959                                            
+  }  
+                                                               
+```
 
 Mistaken subscription (mistaken topic)
 
-    {
-     "sub": "market.BTC_CQ.kline.3min",
-     "id": "id3"
-    }
+```json
+    {                                     
+     "sub": "market.BTC_CQ.kline.3min",   
+     "id": "id3"                          
+    }                                     
+
+```
 
 Example for failed subscription and return parameter
 
-    {
-     "id": "id3",
-     "status": "error",
-     "err-code": "bad-request",
-     "err-msg": "invalid topic market.BTC_CQ.kline.3min",
-     "ts": 1494310283622
-    }
+```json
+  {                                                                             
+   "id": "id3",                                                                 
+   "status": "error",                                                           
+   "err-code": "bad-request",                                                   
+   "err-msg": "invalid topic market.BTC_CQ.kline.3min",                         
+   "ts": 1494310283622                                                          
+  }                                                                             
+
+```
 
 ## Request Candlestick Data
 
@@ -2176,11 +2204,15 @@ Example for failed subscription and return parameter
 
 Response：
 
-    {
-     "req": "market.$symbol.kline.$period",
-     "id": "id generated by client",
-     "from": "optional, type: long, 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00，unit：second",
-      "to": "optional, type: long, 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00，unit：second，must larger than from"}
+```json
+  {                                                                                                                         
+   "req": "market.$symbol.kline.$period",                                                                                   
+   "id": "id generated by client",                                                                                          
+   "from": "optional, type: long, 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00，unit：second",                      
+   "to": "optional, type: long, 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00，unit：second，must larger than from"
+   } 
+
+```
 
 ### Topic Parameter
 
@@ -2189,16 +2221,16 @@ Response：
 | symbol | true | string |Contract Code | |e.g. "BTC_CW" represents BTC “this_week”、"BTC_NW" represents BTC “next_week”、"BTC_CQ" represents BTC “quarter“|
 | period | true | string | Kline Period | | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon |
 
-    [t1, t5] assumes that there is Kline oft1 ~ t5 ：
-    
-    from: t1, to: t5, return [t1, t5].
-    from: t5, to: t1, which t5  > t1, return [].
-    from: t5, return [t5].
-    from: t3, return [t3, t5].
-    to: t5, return [t1, t5].
-    from: t which t3  < t  <t4, return [t4, t5].
-    to: t which t3  < t  <t4, return [t1, t3].
-    from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
+[t1, t5] assumes that there is Kline oft1 ~ t5 ：
+
+from: t1, to: t5, return [t1, t5].
+from: t5, to: t1, which t5  > t1, return [].
+from: t5, return [t5].
+from: t3, return [t3, t5].
+to: t5, return [t1, t5].
+from: t which t3  < t  <t4, return [t4, t5].
+to: t which t3  < t  <t4, return [t1, t3].
+from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 
 **NOTE**：maximum 2000 per time
 
@@ -2206,51 +2238,58 @@ Response：
 
 Example for Requesting parameter of KLine data：
 
-    {
-    "req": "market.BTC_CQ.kline.1min",
-    "id": "id4"
-    }
+```json
+  {                                                
+    "req": "market.BTC_CQ.kline.1min",               
+    "id": "id4"                                      
+  }      
+                                            
+```
 
 Example of successful requesting and return data：
 
-    {
-     "rep": "market.BTC_CQ.kline.1min",
-     "status": "ok",
-     "id": "id4",
-     "tick": [
-       {
-        "vol": 100,
-        "count": 27,
-        "id": 1494478080,
-        "open": 10050.00,
-        "close": 10058.00,
-        "low": 10050.00,
-        "high": 10058.00,
-        "amount": 175798.757708
-       },
-       {
-        "vol": 300,
-        "count": 28,
-        "id": 1494478140,
-        "open": 10058.00,
-        "close": 10060.00,
-        "low": 10056.00,
-        "high": 10065.00,
-        "amount": 158331.348600
-       }
-     ]
-    }
+```json
+  {                                     
+    "rep": "market.BTC_CQ.kline.1min",   
+    "status": "ok",                      
+    "id": "id4",                         
+    "tick": [                            
+      {                                  
+       "vol": 100,                       
+       "count": 27,                      
+       "id": 1494478080,                 
+       "open": 10050.00,                 
+       "close": 10058.00,                
+       "low": 10050.00,                  
+       "high": 10058.00,                 
+       "amount": 175798.757708           
+      },                                 
+      {                                  
+       "vol": 300,                       
+       "count": 28,                      
+       "id": 1494478140,                 
+       "open": 10058.00,                 
+       "close": 10060.00,                
+       "low": 10056.00,                  
+       "high": 10065.00,                 
+       "amount": 158331.348600           
+      }                                  
+    ]                                    
+  }                                     
+  
+```
 
 ## Subscribe Market Depth Data
 
 ### Topic
 
 After establish connection with WebSocket API, describing data formed as following to Server：
-
-    {
-    "sub": "market.$symbol.depth.$type",
-    "id": "id generated by client"
-    }
+```json
+  {                                        
+    "sub": "market.$symbol.depth.$type",     
+    "id": "id generated by client"           
+  }                                        
+```
 
 ### Topic Parameter
 
@@ -2265,56 +2304,65 @@ After establish connection with WebSocket API, describing data formed as followi
 
 Example of correct subscription of requesting parameter：
 
-    {
-    "sub": "market.BTC_CQ.depth.step0",
-    "id": "id5"
-    }
+```json
+  {                                      
+    "sub": "market.BTC_CQ.depth.step0",    
+    "id": "id5"                            
+  }
+                                        
+```
 
 example of successful subscription and returning parameter：
 
-    {
-      "id": "id5",
-      "status": "ok",
-      "subbed": "market.BTC_CQ.depth.step0",
-      "ts": 1489474081631
-    }
+```json
+  {                                             
+    "id": "id5",                                
+    "status": "ok",                             
+    "subbed": "market.BTC_CQ.depth.step0",      
+    "ts": 1489474081631                         
+  }                                             
+
+```
 
 Whenever depth updated，client will receive data，for example：
 
-    {
-     "ch": "market.BTC_CQ.depth.step0",
-     "ts": 1489474082831,
-     "tick":
-       { 
-        "mrid": 269073229,
-         "id": 1539843937,
-            "bids": [
-             [9999.9101,1], 
-             [9992.3089,2]
-                    ],
-             "asks": [
-              [10010.9800,10],
-              [10011.3900,15]
-                     ],
-          "ts": 1539843937417,
-           "version": 1539843937,
-           "ch": "market.BTC_CQ.depth.step0"
-        }
-    }
-    
-    tick illustration
-    "tick": {
-      "bids": [
-        [price of buy 1, amount of buy 1]
-        [price of buy 2, amount of buy 2]
-         //more data here
-       ],
-       "asks": [
-        [price of sell 1, amount of sell 1]
-        [price of sell 2, amount of sell 2]
-        //more data here
-       ]
-    }
+```
+  {                                                   
+   "ch": "market.BTC_CQ.depth.step0",                 
+   "ts": 1489474082831,                               
+   "tick":                                            
+     {                                                
+      "mrid": 269073229,                              
+       "id": 1539843937,                              
+          "bids": [                                   
+           [9999.9101,1],                             
+           [9992.3089,2]                              
+                  ],                                  
+           "asks": [                                  
+            [10010.9800,10],                          
+            [10011.3900,15]                           
+                   ],                                 
+        "ts": 1539843937417,                          
+         "version": 1539843937,                       
+         "ch": "market.BTC_CQ.depth.step0"            
+      }                                               
+  }                                                   
+                                                      
+  tick illustration                                   
+  "tick": {                                           
+    "bids": [                                         
+      [price of buy 1, amount of buy 1]               
+      [price of buy 2, amount of buy 2]               
+       //more data here                               
+     ],                                               
+     "asks": [                                        
+      [price of sell 1, amount of sell 1]             
+      [price of sell 2, amount of sell 2]             
+      //more data here                                
+     ]                                                
+  }                                                   
+
+```
 
 ## Subscribe Trade Detail Data
 
@@ -2322,10 +2370,13 @@ Whenever depth updated，client will receive data，for example：
 
 After establish connection with WebSocket API, describing data formed as following to Server:
 
-    {
-     "sub": "market.$symbol.detail",
-     "id": "id generated by client"
-    }
+```json
+  {                                    
+    "sub": "market.$symbol.detail",     
+    "id": "id generated by client"      
+  } 
+                                     
+```
 	
 ### Topic Parameter
 
@@ -2337,43 +2388,52 @@ After establish connection with WebSocket API, describing data formed as followi
 
 Example of successful subscription of request parameter：
 
-    {
-     "sub": "market.BTC_CQ.detail",
-     "id": "id6"
-    }
+```json
+  {                                  
+   "sub": "market.BTC_CQ.detail",    
+   "id": "id6"                       
+  }    
+                                
+```
 
 Example of successful subscription and return parameter：
 
-    {
-    "ch": "market.BTC_CW.detail",
-    "ts": 1539842340724,
-    "tick": {
-    	"id": 1539842340,
-    	"mrid": 268041138,
-    	"open": 6740.47,
-    	"close": 7800,
-    	"high": 7800,
-    	"low": 6726.13,
-    	"amount": 477.1200312075244664773339914558562673572,
-    	"vol": 32414,
-    	"count": 1716
-            }
-       }
+```json
+  {                                                        
+    "ch": "market.BTC_CW.detail",                            
+    "ts": 1539842340724,                                     
+    "tick": {                                                
+    	"id": 1539842340,                                      
+    	"mrid": 268041138,                                     
+    	"open": 6740.47,                                       
+    	"close": 7800,                                         
+    	"high": 7800,                                          
+    	"low": 6726.13,                                        
+    	"amount": 477.1200312075244664773339914558562673572,   
+    	"vol": 32414,                                          
+    	"count": 1716                                          
+      }                                                
+  }                                                     
+
+```
 
 tick illustration：
 
-    "tick": 
-         { 
-           "id":  Kline id, 
-           "mrid": 1494496390000, 
-           "vol": Trading volume, 
-           "count": transaction count, 
-           "open": opening price, 
-           "close": closing price, when Kline is the last one, price is the latest price 
-           "low": Lowest Price, 
-           "high": Highest Price, 
-           "amount": Transaction amount(currency), sum(trading volume(amount)*denomination/transaction price)
-         }
+```
+  "tick":                                                                                                   
+       {                                                                                                    
+         "id":  Kline id,                                                                                   
+         "mrid": 1494496390000,                                                                             
+         "vol": Trading volume,                                                                             
+         "count": transaction count,                                                                        
+         "open": opening price,                                                                             
+         "close": closing price, when Kline is the last one, price is the latest price                      
+         "low": Lowest Price,                                                                               
+         "high": Highest Price,                                                                             
+         "amount": Transaction amount(currency), sum(trading volume(amount)*denomination/transaction price) 
+       }  
+                                                                                                         
+```
 
 ## Request Trade Detail Data
 
@@ -2381,10 +2441,13 @@ tick illustration：
 
 Whenever depth updated，client will receive data，for example：
 
-    {
-     "req": "market.$symbol.trade.detail",
-     "id": "id generated by client"
-    }
+```json
+  {                                         
+    "req": "market.$symbol.trade.detail",    
+    "id": "id generated by client"           
+  }  
+                                         
+```
 
 return Trade Detail
 
@@ -2392,47 +2455,55 @@ return Trade Detail
 
 Example for request parameter of requesting Market Detail Data：
 
-    {
-     "req": "market.BTC_CQ.trade.detail",
-     "id": "id8"
-    }
+```json
+  {                                             
+    "req": "market.BTC_CQ.trade.detail",         
+    "id": "id8"                                  
+  } 
+                                              
+```
 
 Example of successful request and return data：
 
+```json
+  {                                         
+   "ch": "market.BTC_CQ.trade.detail",      
+   "ts": 1489474082831,                     
+   "data": [                                
+            {                               
+             "id":601595424,                
+             "price":10195.64,              
+             "amount":100,                  
+             "direction":"buy",             
+             "ts":1494495766000             
+             },                             
+            {                               
+            "id":601595423,                 
+            "price":10195.64,               
+            "amount":200,                   
+            "direction":"buy",              
+            "ts":1494495711000              
+            }                               
+          ]                                 
+   }                                        
 
-
-    {
-     "ch": "market.BTC_CQ.trade.detail",
-     "ts": 1489474082831,
-     "data": [
-              {
-               "id":601595424,
-               "price":10195.64,
-               "amount":100,
-               "direction":"buy",
-               "ts":1494495766000
-               },
-              {
-              "id":601595423,
-              "price":10195.64,
-              "amount":200,
-              "direction":"buy",
-              "ts":1494495711000
-              }
-            ]
-     }
+```
 
 tick date illustration：
 
-    "data": [
-      {
-       "id": message ID,
-       "price": transaction price,
-       "amount": transaction amount ,
-       "direction": transaction direction,
-       "ts": timestamp
-      }
-     ]
+```
+  "data": [                                           
+    {                                                 
+     "id": message ID,                                
+     "price": transaction price,                      
+     "amount": transaction amount ,                   
+     "direction": transaction direction,              
+     "ts": timestamp                                  
+    }                                                 
+   ]
+                                                     
+```
+
 
 ## Subscribe Trade Detail Data
 
@@ -2440,10 +2511,13 @@ tick date illustration：
 
 After establish connection with WebSocket API, describing data formed as following to Server：
 
-    {
-    "sub": "market.$symbol.trade.detail",
-    "id": "id generated by client"
-    }
+```json
+  {                                              
+    "sub": "market.$symbol.trade.detail",          
+    "id": "id generated by client"                 
+  }
+                                                
+```
 
 **NOTE**：Can only obtain the latest 300 Trade Detail Data。
 
@@ -2457,49 +2531,61 @@ After establish connection with WebSocket API, describing data formed as followi
 
 Example of successful subscription of request parameter：
 
-    {
-     "sub": "market.BTC_CQ.trade.detail",
-     "id": "id7"
-    }
+```json
+  {                                            
+   "sub": "market.BTC_CQ.trade.detail",        
+   "id": "id7"                                 
+  }  
+                                            
+```
 
 Example of successful subscription and return parameter：
 
-    {
-     "id": "id7",
-     "status": "ok",
-     "subbed": "market.BTC_CQ.trade.detail",
-     "ts": 1489474081631
-    }
+```json
+  {                                              
+   "id": "id7",                                  
+   "status": "ok",                               
+   "subbed": "market.BTC_CQ.trade.detail",       
+   "ts": 1489474081631                           
+  }                                              
+
+```
 
 Whenever Trade Detail updated，client will receive data，for example：
 
-    {
-    "ch": "market.BTC_NW.trade.detail",
-    "ts": 1539831709042,
-    "tick": {
-    	"id": 265842227,
-    	"ts": 1539831709001,
-    	"data": [{
-    		"amount": 20,
-    		"ts": 1539831709001,
-    		"id": 265842227259096443,
-    		"price": 6742.25,
-    		"direction": "buy"
-    	        }]
-              }
-     }
+```json
+  {                                            
+    "ch": "market.BTC_NW.trade.detail",          
+    "ts": 1539831709042,                         
+    "tick": {                                    
+    	"id": 265842227,                           
+    	"ts": 1539831709001,                       
+    	"data": [{                                 
+    	  "amount": 20,                            
+    	  "ts": 1539831709001,                     
+    	  "id": 265842227259096443,                
+    	  "price": 6742.25,                        
+    	  "direction": "buy"                       
+    	}]                                 
+    }                                  
+  }                                           
+
+```
 
 data illustration：
 
-    "data": [
-      {
-       "id": message ID,
-      "price": transaction price,
-       "amount": transaction amount ,
-       "direction": transaction direction,
-       "ts": timestamp
-      }
-     ]
+```
+  "data": [                                 
+    {                                       
+      "id": message ID,                      
+      "price": transaction price,             
+      "amount": transaction amount ,         
+      "direction": transaction direction,    
+      "ts": timestamp                        
+    }                                       
+  ]                                        
+
+```
 	 
 # Websocket Asset and Order
 
@@ -2509,20 +2595,22 @@ data illustration：
 
 WebSocket API supports one-way heartbeat. The Server initiates ping message and the Client will return pong message. The Server sends back a heartbeat:
 
-```
-{
+```json
+  {
     "op": "ping",
     "ts": 1492420473058
-}
+  }
+  
 ```
 
 WebSocket Client should return:
 
-```
-{
-    "op": "pong"
+```json
+  {
+    "op": "pong",
     "ts": 1492420473058
-}
+  }
+  
 ```
 
 Note: 
@@ -2530,33 +2618,36 @@ Note:
 Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. 
 Under abnormal conditions, WebSocket Server will return error message like:
 
-```
-{
-    "op": "pong"
+```json
+  {
+    "op": "pong",
     "ts": 1492420473027,
-    "err-code": 2011，
-    "err-msg": “detailed error message”
-}
+    "err-code": 2011,
+    "err-msg": "detailed error message"
+  }
+  
 ```
 
 Websocket Server disconnects automatically
 During period of building connection and authentication, Websocket Server will disconnect automatically if there is any error. The data structure before closing pushing are as below:
 
 ```
-{
+  {
     "op": "close", // indicate Websocket Server disconnected automatically 
     "ts": long   // The local timestamp of Server push
-}
+  }
 
 ```
+
 Server return error but remain connection
 After successful authentication, Server will return error but not disconnect if Client provides illegal Op or there is any internal error.
 
 ```
-{
+  {
     "op": "error", // indicate that receive illegal Op or internal error
     "ts": long// The local timestamp of Server push
-}
+  }
+  
 ```
 
 ## Subscribe data（sub）
@@ -2565,12 +2656,13 @@ After successfully building WebSocket API connection, send data to Server in the
 
 ### Data formats of subscription request
 
-```
-{
-  “op”: “sub”,
-  "cid": "id generated by client”,
-  “topic": "topic to sub”
-}
+```json
+  {
+    "op": "sub",
+    "cid": "id generated by client",
+    "topic": "topic to sub"
+  }
+
 ```
 
 ### Subscription request formats illustration
@@ -2585,87 +2677,91 @@ After successfully building WebSocket API connection, send data to Server in the
 
 Correct subscription request
 
-```
-{
-  "op": "sub",
-  "cid": "40sG903yz80oDFWr",
-  "topic": "orders.btc"
-}
+```json
+  {
+    "op": "sub",
+    "cid": "40sG903yz80oDFWr",
+    "topic": "orders.btc"
+  }
+  
 ```
 
 Response sample to successful subscription request
 
-```
-{
-  "op": "sub",
-  "cid": "40sG903yz80oDFWr",
-  "err-code": 0,
-  "ts": 1489474081631,
-  "topic": "orders.btc"
-}
+```json
+  {
+    "op": "sub",
+    "cid": "40sG903yz80oDFWr",
+    "err-code": 0,
+    "ts": 1489474081631,
+    "topic": "orders.btc"
+  }
+  
 ```
 
 Sample of incorrect subscription request (wrong topic)
 
-```
-{
-  "op": "sub",
-  "topic": "orders.bar",
-  "cid": "40sG903yz80oDFWr"
-}
+```json
+  {
+    "op": "sub",
+    "topic": "orders.bar",
+    "cid": "40sG903yz80oDFWr"
+  }
 ```
 
 Response sample of failed subscription request 
 
-```
-{
-  "op": "sub",
-  "topic": "orders.bar",
-  "cid": "40sG903yz80oDFWr",
-  "err-code": xxxx, // For specific encoding, please refer to response code list 
-  "err-msg": “Error details”，
-  "ts": 1489474081631
-}
+```json
+  {
+    "op": "sub",
+    "topic": "orders.bar",
+    "cid": "40sG903yz80oDFWr",
+    "err-code": "xxxx", // For specific encoding, please refer to response code list 
+    "err-msg": "Error details",
+    "ts": 1489474081631
+  }
+  
 ```
 
 ### Data formats illustration of detailed information of filled orders  
 
-```
-{
-“op”: “notify”,
-“topic”: “orders.btc”, 
-"ts": 1489474082831, 
-"symbol": "BTC",
-"contract_type": "this_week",
-"contract_code": "BTC180914", 
-"volume": 111, 
-"price": 1111, 
-"order_price_type": "limit", 
-"direction": "buy",
-"offset": "open", 
-"status": 6, //order status( 3 submitted 4 partially filled 5 withdrawal with partially filled  6 fully filled 7 withdrawal)
-"lever_rate": 10, 
-"order_id": 106837, 
-"client_order_id": 10683, 
-"order_source": "web", 
-"order_type": 1, //Order type  (1:quotation 、2: withdrawal 、3: liquadation、4:delivery)
-"created_at": 1408076414000,
-"trade_volume": 1, 
-"trade_turnover": 1200, 
-"fee": 0, 
-"trade_avg_price": 10, 
-"margin_frozen": 10, 
-"profit": 2, 
-"trade":[{
-    "trade_id":112,
-    "trade_volume":1, 
-    "trade_price":123.4555,
-    "trade_fee":0.234, 
-    "trade_turnover":34.123, 
-    "created_at": 1490759594752, 
-    "role": "maker"
-  }]
-}
+```json
+  {
+    "op": "notify",
+    "topic": "orders.btc", 
+    "ts": 1489474082831, 
+    "symbol": "BTC",
+    "contract_type": "this_week",
+    "contract_code": "BTC180914", 
+    "volume": 111, 
+    "price": 1111, 
+    "order_price_type": "limit", 
+    "direction": "buy",
+    "offset": "open", 
+    "status": 6, //order status( 3 submitted 4 partially filled 5 withdrawal with partially filled  6 fully filled 7 withdrawal)
+    "lever_rate": 10, 
+    "order_id": 106837, 
+    "client_order_id": 10683, 
+    "order_source": "web", 
+    "order_type": 1, //Order type  (1:quotation 、2: withdrawal 、3: liquadation、4:delivery)
+    "created_at": 1408076414000,
+    "trade_volume": 1, 
+    "trade_turnover": 1200, 
+    "fee": 0, 
+    "trade_avg_price": 10, 
+    "margin_frozen": 10, 
+    "profit": 2, 
+    "trade":[{
+        "trade_id":112,
+        "trade_volume":1, 
+        "trade_price":123.4555,
+        "trade_fee":0.234, 
+        "trade_turnover":34.123, 
+        "created_at": 1490759594752, 
+        "role": "maker"
+      }]
+  }
+  
 ```
 
 ### Data formats illustration of orders push  
@@ -2713,12 +2809,13 @@ After successfully building WebSocket API connection, send data to Server in the
 
 ### Data formats of cancel subscription request
 
-```
-{
-  “op”: “unsub”,
-  “topic": "topic to unsub”,
-  "cid": "id generated by client”,
-}
+```json
+  {
+    "op": "unsub",
+    "topic": "topic to unsub",
+    "cid": "id generated by client"
+  }
+
 ```
 
 ### Formats illustration of unsubscribing
@@ -2733,24 +2830,25 @@ After successfully building WebSocket API connection, send data to Server in the
 
 The correct way to unsubscribe 
 
-```
-{
-  "op": "unsub",
-  "topic": "orders.btc",
-  "cid": "40sG903yz80oDFWr"
-}
+```json
+  {
+    "op": "unsub",
+    "topic": "orders.btc",
+    "cid": "40sG903yz80oDFWr"
+  }
+  
 ```
 
 Examples of return data when unsubscribe successufully
 
-```
-{
-  "op": "unsub",
-  "topic": "orders.btc",
-  "cid": "id generated by client",
-  "err-code": 0,
-  "ts": 1489474081631
-}
+```json
+  {
+    "op": "unsub",
+    "topic": "orders.btc",
+    "cid": "id generated by client",
+    "err-code": 0,
+    "ts": 1489474081631
+  }
 ```
 
 ### Subscribe and unsubscribe rules
@@ -2770,12 +2868,13 @@ After building connection with WebSocket API successfully, please send data in t
 
 ### The required format for corresponding data subscription
 
-```
-{
-  "op": "sub",
-  "cid": "id generated by client”,
-  “topic": "topic to sub”
-}
+```json
+  {
+    "op": "sub",
+    "cid": "id generated by client",
+    "topic": "topic to sub"
+  }
+  
 ```
 
 ### More illustration of the required format
@@ -2790,73 +2889,77 @@ After building connection with WebSocket API successfully, please send data in t
 
 The correct subscription request
 
-```
-{
-  "op": "sub",
-  "cid": "40sG903yz80oDFWr",
-  "topic": "accounts.btc"
-}
+```json
+  {
+    "op": "sub",
+    "cid": "40sG903yz80oDFWr",
+    "topic": "accounts.btc"
+  }           
+  
 ```
 
 Response for successful subscription
 
-```
-{
-  "op": "sub",
-  "cid": "40sG903yz80oDFWr",
-  "err-code": 0,
-  "ts": 1489474081631,
-  "topic": "accounts.btc"
-}
+```json
+  {
+    "op": "sub",
+    "cid": "40sG903yz80oDFWr",
+    "err-code": 0,
+    "ts": 1489474081631,
+    "topic": "accounts.btc"
+  }
+
 ```
 
 Sample of incorrect subscription request（wrong topic）
 
-```
-{
-  "op": "sub",
-  "topic": "accounts.bar",
-  "cid": "40sG903yz80oDFWr"
-}
+```json
+  {
+    "op": "sub",
+    "topic": "accounts.bar",
+    "cid": "40sG903yz80oDFWr"
+  }
+  
 ```
 Response  data sample for failed subscription
  
-```
-{
-  "op": "sub",
-  "topic": "accounts.bar",
-  "cid": "40sG903yz80oDFWr",
-  "err-code": xxxx, // For the specific code please refer to Error Code List  
-  "err-msg": “Details of the error message”，
-  "ts": 1489474081631
-}
+```json
+  {
+    "op": "sub",
+    "topic": "accounts.bar",
+    "cid": "40sG903yz80oDFWr",
+    "err-code": "xxxx", // For the specific code please refer to Error Code List  
+    "err-msg": "Details of the error message",
+    "ts": 1489474081631
+  }
 ```
 
 ### Sample of return parameters  for assests change
 
-```
-{
-    "op": “notify”,             // Operation name
-    "topic": “accounts”,     // Topic
-    "ts": 1489474082831,    
-    "event": "order.match",
-    "data":[
-       {
-    "symbol": "BTC",
-    "margin_balance": 1,
-    "margin_static": 1,
-    "margin_position": 0,
-    "margin_frozen": 3.33,
-    "margin_available": 0.34,
-    "profit_real": 3.45,
-    "profit_unreal": 7.45,
-    "withdraw_available":4.0989898,
-    "risk_rate": 100,
-    "liquidation_price": 100
-    "lever_rate": 10
-     }
-   ]
-}
+```json
+  {
+      "op": "notify",             // Operation name
+      "topic": "accounts",     // Topic
+      "ts": 1489474082831,    
+      "event": "order.match",
+      "data":[
+        {
+          "symbol": "BTC",
+          "margin_balance": 1,
+          "margin_static": 1,
+          "margin_position": 0,
+          "margin_frozen": 3.33,
+          "margin_available": 0.34,
+          "profit_real": 3.45,
+          "profit_unreal": 7.45,
+          "withdraw_available":4.0989898,
+          "risk_rate": 100,
+          "liquidation_price": 100
+          "lever_rate": 10
+        }
+     ]
+  }
+  
 ```
 
 ### String Illustration
@@ -2885,12 +2988,13 @@ After building connection with WebSocket API successfully, please send data in t
 
 ### Request format of unsubscription
 
-```
-{
-  “op”: “unsub”,
-  “topic": "topic to unsub”,
-  "cid": "id generated by client”,
-}
+```json
+  {
+    "op": "unsub",
+    "topic": "topic to unsub",
+    "cid": "id generated by client"
+  }
+
 ```
 
 ### Request format illustration of unsubscription 
@@ -2905,24 +3009,26 @@ After building connection with WebSocket API successfully, please send data in t
 
 The correct request of unsubscription
 
-```
-{
-  "op": "unsub",
-  "topic": "accounts.btc",
-  "cid": "40sG903yz80oDFWr"
-}
+```json
+  {
+    "op": "unsub",
+    "topic": "accounts.btc",
+    "cid": "40sG903yz80oDFWr"
+  }     
+  
 ```
 
 Response for successful unsubscription
 
-```
-{
-  "op": "unsub",
-  "topic": "accounts.btc",
-  "cid": "id generated by client",
-  "err-code": 0,
-  "ts": 1489474081631
-}
+```json
+  {
+    "op": "unsub",
+    "topic": "accounts.btc",
+    "cid": "id generated by client",
+    "err-code": 0,
+    "ts": 1489474081631
+  }
+  
 ```
 
 ###  Illustration for the rules of Subscription and Unsubscription
@@ -2942,12 +3048,13 @@ After building connection with WebSocket API successfully, please send data in t
 
 ### Request format of subscription
 
-```
-{
-  “op”: “sub”,
-  "cid": "id generated by client”,
-  “topic": "topic to sub”
-}
+```json
+  {
+    "op": "sub",
+    "cid": "id generated by client",
+    "topic": "topic to sub"
+  }      
+  
 ```
 
 ### Request format illustration of subscribtion
@@ -2962,76 +3069,80 @@ After building connection with WebSocket API successfully, please send data in t
 
 The correct subscription request
 
-```
-{
-  "op": "sub",
-  "cid": "40sG903yz80oDFWr",
-  "topic": "positions.btc"
-}
+```json
+  {
+    "op": "sub",
+    "cid": "40sG903yz80oDFWr",
+    "topic": "positions.btc"
+  }
+
 ```
 
 Response for successful subscription
 
-```
-{
-  "op": "sub",
-  "cid": "40sG903yz80oDFWr",
-  "err-code": 0,
-  "ts": 1489474081631,
-  "topic": "positions.btc"
-}
+```json
+  {
+    "op": "sub",
+    "cid": "40sG903yz80oDFWr",
+    "err-code": 0,
+    "ts": 1489474081631,
+    "topic": "positions.btc"
+  }
+  
 ```
 
 Sample for incorrect subscription request（Wrong topic）
 
-```
-{
-  "op": "sub",
-  "topic": "positions.bar",
-  "cid": "40sG903yz80oDFWr"
-}
+```json
+  {
+    "op": "sub",
+    "topic": "positions.bar",
+    "cid": "40sG903yz80oDFWr"
+  }
+  
 ```
 Response  data sample for failed subscription
 
-```
-{
-  "op": "sub",
-  "topic": "positions.bar",
-  "cid": "40sG903yz80oDFWr",
-  "err-code": xxxx, //For the specific code please refer to Error Code List  
-  "err-msg": “Details of the error message”，
-  "ts": 1489474081631
-}
+```json
+  {
+    "op": "sub",
+    "topic": "positions.bar",
+    "cid": "40sG903yz80oDFWr",
+    "err-code": "xxxx", //For the specific code please refer to Error Code List  
+    "err-msg": "Details of the error message",
+    "ts": 1489474081631
+  }
+  
 ```
 
 ### Sample of return parameters  for position change
 
-```
-{ 
+```json
+  { 
+    "op": "notify",           // Operation name
+    "topic": "positions",     // Topic
+    "ts": 1489474082831,   
+    "event": "order.match",
+    "data":[
+      {
+        "symbol": "BTC",
+        "contract_code": "BTC180914",
+        "contract_type": "this_week",
+        "volume": 1,
+        "available": 0,
+        "frozen": 0.3,
+        "cost_open": 422.78,
+        "cost_hold": 422.78,
+        "profit_unreal": 0.00007096,
+        "profit_rate": 0.07,
+        "profit": 0.97,
+        "position_margin": 3.4,
+        "lever_rate": 10,
+        "direction":"buy"
+      }
+    ]
+  }
 
-      “op”: “notify”,             // Operation name
-      “topic”: “positions”,     // Topic
-      "ts": 1489474082831,   
-     "event": "order.match"
-     "data":[
-                   {
-      "symbol": "BTC",
-      "contract_code": "BTC180914",
-      "contract_type": "this_week",
-      "volume": 1,
-      "available": 0,
-      "frozen": 0.3,
-      "cost_open": 422.78,
-      "cost_hold": 422.78,
-      "profit_unreal": 0.00007096,
-      "profit_rate": 0.07,
-      "profit": 0.97,
-      "position_margin": 3.4,
-      "lever_rate": 10,
-      "direction":"buy"
-                 }
-             ]
-}
 ```
 
 ### Return Parameter
@@ -3062,12 +3173,13 @@ After building connection with WebSocket API successfully, please send data in t
 
 ### Request format of unsubscription
 
-```
-{
-  “op”: “unsub”,
-  “topic": "topic to unsub”,
-  "cid": "id generated by client”,
-}
+```json
+  {
+    "op": "unsub",
+    "topic": "topic to unsub",
+    "cid": "id generated by client"
+  }
+  
 ```
 
 ### Request format illustration for unsubscription
@@ -3081,24 +3193,26 @@ After building connection with WebSocket API successfully, please send data in t
 ### Sample for unsubscription request
 Correct request sample for unsubscription
 
-```
-{
-  "op": "unsub",
-  "topic": "positions.btc",
-  "cid": "40sG903yz80oDFWr"
-}
+```json
+  {
+    "op": "unsub",
+    "topic": "positions.btc",
+    "cid": "40sG903yz80oDFWr"
+  }
+  
 ```
 
 Response for successful unsubscription
 
-```
-{
-  "op": "unsub",
-  "topic": "positions.btc",
-  "cid": "id generated by client",
-  "err-code": 0,
-  "ts": 1489474081631
-}
+```json
+  {
+    "op": "unsub",
+    "topic": "positions.btc",
+    "cid": "id generated by client",
+    "err-code": 0,
+    "ts": 1489474081631
+  }
+  
 ```
 
 ### Illustration for the rules of Subscription and Unsubscription
