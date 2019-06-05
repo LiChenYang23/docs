@@ -2938,7 +2938,7 @@ Response  data sample for failed subscription
 
 ```json
   {
-      "op": "notify",             // Operation name
+      "op": "notify",          // Operation name
       "topic": "accounts",     // Topic
       "ts": 1489474082831,    
       "event": "order.match",
@@ -2954,7 +2954,7 @@ Response  data sample for failed subscription
           "profit_unreal": 7.45,
           "withdraw_available":4.0989898,
           "risk_rate": 100,
-          "liquidation_price": 100
+          "liquidation_price": 100,
           "lever_rate": 10
         }
      ]
