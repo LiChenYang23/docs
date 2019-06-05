@@ -1877,10 +1877,1277 @@ Abnormal service, transfer failed. Please try again later.  |           |
 You don’t have access permission as you have not opened contracts trading.  |     |
 This contract type doesn't exist.  |              |
 
-# HuobiDM Websocket Subscription
+# Websocket General
 
-  - <a href='https://github.com/huobiapi/API_Docs_en/wiki/WS_api_reference_en'>HuobiDM Websocket Documentation </a>
-  
+## API List
+
+|**TYPE**|   **Market Type**   |**Context** |**Req Method**   |**Desc**                     |**Auth Required**        |
+|----------- |------------------ |------------------------------------------------------------------------------------------------------------------------------------------------------------------- |---------- |---------------------------- |--------------|
+|Websocket   |Market Interface |         market.$symbol.kline.$period|                                                                                                            sub        |Subscribe Candlestick Data              |No|
+|Websocket   |Market Interface|           market.$symbol.kline.$period|                                                                                                                    req        |Request Candlestick Data              |No|
+|Websocket   |Market Interface           |market.$symbol.depth.$type |                                                                                                                     sub        |Subscribe Market Depth Data        |No|
+|Websocket   |Market Interface           |market.$symbol.detail |                                                                                                                     sub        |Subscribe Trade Detail Data       |No|
+|Websocket   |Market Interface           |market.$symbol.trade.detail |                                                                                                                     req        |Request Trade Detail Data        |No|
+|Websocket   |Market Interface           |market.$symbol.trade.detail|        sub |Subscribe Trade Detail Data   | No  |
+|Websocket   |Trade Interface           |orders.$symbol|        sub |Subscribe Order Trade Data   | Yes  |
+|Websocket   |accounts Interface           |accounts.$symbol|        sub |Subscribe accounts Data   | Yes  |
+|Websocket   |accounts Interface           |positions.$symbol|        sub |Subscribe positions Data   | Yes  |
+
+## Huobi DM subscription address
+
+Market data request and subscription: wss://www.hbdm.com/ws
+
+Order push subscription: wss://api.hbdm.com/notification
+
+If you have further queries about Huobi DM order push subscription, please refer to the [Demo](https://github.com/huobiapi/Futures-Java-demo)
+
+## API Rate Limit Illustration
+
+Please note that, for both public interface and private interface, there are rate limits, more details are as below:
+* Generally, the private interface rate limit of API key is at most 30 times every 3 second for each UID (this 30 times every 3 second rate limit is shared by all the altcoins contracts delivered by different date).
+* For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 second at most for each IP (this 60 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
+* In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:
+
+    （1） For restful interface: 200 times/second for one IP at most.
+
+    （2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.
+
+
+* WebSoket, the private order push interface, requires API KEY Verification:
+
+    Each UID can build at most create 10 WS connections for private order push at the same time. For each account, 
+contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
+order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly
+contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.
+
+response following string for "header" via api 
+* ratelimit-limit: the upper limit of requests per time, unit: time
+* ratelimit-interval: reset interval (reset the number of request), unit: ms
+* ratelimit-remaining: the left available request number for this round, unit: time
+* ratelimit-reset: upper limit of reset time used to reset request number, unit: ms
+
+## Authentication
+
+### Authentication Description
+
+Users need to create Access Key and Secret Key on Huobi Global, with Secret Key kept by users themselves and Access Key used to visit API secret key. As for now, in terms of the application and change of apikey, please create a new API Key under “Account-API Management”, filling in the note (optionally binding your IP) and clicking “Create”.  As Access Key is used to visit API secret key, Secret Key is used to request signature (only can be seen during the application). Users need to follow the rules to create Signature. To build the WS trading function connection, users need to get the authentication. Detailed formats are laid out below:
+
+Important Note: Access Key and Secret Key are closely linked with account security, please not disclose to others. 
+
+### Formats of authentication request
+
+```
+{
+  "op": "auth",
+  "type": "api",
+  "AccessKeyId": "e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx",
+  "SignatureMethod": "HmacSHA256",
+  "SignatureVersion": "2",
+  "Timestamp": "2017-05-11T15:19:30",
+  "Signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=",
+}
+```
+
+###  Authentication request illustration
+
+| Name         | Type   | Illustration                                                         |
+| :--------------- | :----- | :----------------------------------------------------------- |
+| op               | string | Required; operation name, the fixed value of authentication is "auth"                             |
+| type             | string | Required; verification method with "api" standing for interface verification and "ticket" for end verification          |
+| cid              | string | Required; Client requests the unique ID                                       |
+| AccessKeyId      | string | Required if the type value is "api"; AccessKey is the API visit key API |
+| SignatureMethod  | string | Required if the type value is "api"; Methods of signature, users calculate the signature based on the Hash aggreement, here utilizing "HmacSHA256"  |
+| SignatureVersion | string | Required if the type value is "api"; signature aggreement version，here utilizing "2"              |
+| Timestamp        | string | Required if the type value is "api"; timestamp, the time you send request (UTC time zone) put timestamp into your query request helping to prevent the third party intercept your request; e.g.: 2017-05-11T16:22:06. Please note (UTC time zone) |
+| Signature        | string | Required if the type value is "api"; signature, calculated value to make sure signature valid and not tampered |
+| ticket           | string | Required if the type value is "ticket"; response when login                           |
+
+Note：
+
+* In order to reduce the work of getting access to the interface, the authentication is executed via the same signature calculation as REST interface.
+* Please pay attention to the case sensitivity
+*  When the type is "api", parameters including op, type, cid and Signature do not join the calculation of Signature.
+* In this Signature calculation, the fixed vauled of request method is "GET"; for other parameters please refer to REST interface Signature calculation document.
+
+Steps：
+
+Process of example parameter Signature calculation
+
+* Please follow the request of Signature calculation, by using of HMAC, the different contents will turn out totally different results. Therefore, please standardize the requests before doing Signature calculation.
+
+* Request methods (GET/POST): add line breaker of "\n".
+
+  ```
+  GET\n
+  ```
+* Text the visit address in lowercase, adding line breaker of "\n".
+  ```
+   api.hbdm.com\n
+
+  ```
+
+* Visit methods path, adding line breaker of "\n".
+
+  ```
+    /notification\n
+  ```
+
+
+* Rank the parameter names according to ASCII code (Use UTF-8 to encode when it has already encoded by URI. hexadecimal characters must capitalize, e.g. ":" will be encoded as "%3A" and space as "%20" ) . Below is the example of the original ranking of request parameters and the corresponding encoding forms.
+
+  ```
+  AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
+  7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-
+  11T15%3A19%3A30
+  ```
+
+* Following the sequence above, link the parameters with "&" 
+  * The final character string used to do Signature calculation is laid out as below:
+    * Signature calculation, add the two parameters into cryptographic hash function: the charactor string, Secret Key used to Signature calculation 
+     
+    * Encode the result of Signature calculation by Base64
+  * Take the encoding result above as Signature parameter, encoding it with URI and then, adding it into API request.
+
+### Format illustration of authentication response data 
+
+| Name    | Type    | Illustration                                                 |
+| :------- | :------ | :--------------------------------------------------- |
+| op       | string  | Required；operation name，fixed value of authentication is "auth"                    |
+| type     | string  | Required；respond according to the request parameters                       |
+| cid      | string  | Required；if request includes cid then response will also include.                           |
+| err-code | integer | If successful, respond with "0"; if not, respond other values; for detailed response code, please refer to appendix |
+| err-msg  | string  | Optional，If wrong, it will lay out the error details                         |
+| ts       | long    | Server-end response timestamp                                     |
+| user-id  | long    | User id                                              |
+
+Sample of successful responded authentication 
+
+```
+ 
+{
+  "op": "auth",
+  "type":"api",
+  "ts": 1489474081631,
+  "err-code": 0,
+  "data": {
+    "user-id": 12345678
+  }
+}
+```
+
+Sample of failed responded authentication 
+
+
+```
+{
+"op": "auth",
+"type":"api",
+"ts": 1489474081631, 
+"err-code": xxxx， 
+"err-msg": ”error details“
+}
+```
+
+# Websocket Market Data
+
+## General
+
+### Market Heartbeat
+WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.
+
+WebSocket Server sends heartbeat:
+```
+{"ping": 18212558000}
+```
+WebSocket Client should respond:
+```
+ {"pong": 18212558000}
+```
+Note: The "pong"  value from the responded data is the sent "ping" value--Once the WebSocket Client and WebSocket Server get connected, the Server will send a heartbeat every 5 seconds (the frequency might change) to Websocket Client. It will get disconnected automatically if Websocket Client ignores the heartbeat message for 2 times. Websocket Server will remain the connection as Websocket Client sends one "ping" value of the latest 2 heartbeat message back. 
+
+
+## Subscribe Candlestick Data
+
+### Topic
+
+After establish connection with WebSocket API, describing data formed as following to Server：
+
+    {
+    "sub": "market.$symbol.kline.$period",
+    "id": "id generate by client"
+    }
+	
+### Topic Parameter
+
+|**Parameter**|   **Name**  | **Type**  | **Description** |  **Default Value**  | **Range**|
+|--------------| -----------------| ---------- |----------| ------------| --------------------------------------------------------------------------------|
+|symbol  |       true         |  string  |   Contract Symbol   |               |e.g. "BTC_CW" represents BTC “this_week”、"BTC_NW" represents BTC “next_week”、"BTC_CQ" represents BTC “quarter“|
+|period    |     true          | string   | Kline Period |            |1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year|
+
+### Example
+
+Example for correct subscription parameter：
+
+    {
+    "sub": "market.BTC_CQ.kline.1min",
+    "id": "id1"
+    }
+
+Example for correct subscription return parameter
+
+    {
+    "id": "id1",
+    "status": "ok",
+    "subbed": "market.BTC_CQ.kline.1min",
+    "ts": 1489474081631
+    }
+
+whenever KLine updated，client will receive the data，for example
+
+    {
+     "ch": "market.BTC_CQ.kline.1min",
+     "ts": 1489474082831,
+     "tick": 
+        {
+         "id": 1489464480,
+         "vol": 100,
+         "count": 0,
+         "open": 7962.62,
+         "close": 7962.62,
+         "low": 7962.62,
+         "high": 7962.62,
+         "amount": 0.3 //BTC quantity
+        }
+    }
+    
+    tick 
+    
+    "tick": 
+      {
+       "id": Kline id,
+       "vol": transaction (contract),
+       "count": transaction count,
+       "open": opening price,
+       "close": closing price, when Kline is the last one, the price is the latest price
+       "low": lowest price,
+       "high": highest price,
+       "amount": BTC, sum(denomination of the contract* transaction amount/transaction price)
+    }
+
+### Example for mistaken subscription
+
+Mistaken subscription (mistaken symbol)
+
+    {
+     "sub": "market.invalidsymbol.kline.1min",
+     "id": "id2"
+    }
+
+Example for failed subscription and return parameter
+
+    {
+     "id": "id2",
+     "status": "error",
+     "err-code": "bad-request",
+     "err-msg": "invalid topic market.invalidsymbol.kline.1min",
+     "ts": 1494301904959
+    }
+
+Mistaken subscription (mistaken topic)
+
+    {
+     "sub": "market.BTC_CQ.kline.3min",
+     "id": "id3"
+    }
+
+Example for failed subscription and return parameter
+
+    {
+     "id": "id3",
+     "status": "error",
+     "err-code": "bad-request",
+     "err-msg": "invalid topic market.BTC_CQ.kline.3min",
+     "ts": 1494310283622
+    }
+
+## Request Candlestick Data
+
+### Topic
+
+Response：
+
+    {
+     "req": "market.$symbol.kline.$period",
+     "id": "id generated by client",
+     "from": "optional, type: long, 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00，unit：second",
+      "to": "optional, type: long, 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00，unit：second，must larger than from"}
+
+### Topic Parameter
+
+|**Parameter**|   **Name**  | **Type**  | **Description** |  **Default Value**  | **Range**|
+| -------- | -------- | ------ | ------ | ------- |---------------------------------------- |
+| symbol | true | string |Contract Code | |e.g. "BTC_CW" represents BTC “this_week”、"BTC_NW" represents BTC “next_week”、"BTC_CQ" represents BTC “quarter“|
+| period | true | string | Kline Period | | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon |
+
+    [t1, t5] assumes that there is Kline oft1 ~ t5 ：
+    
+    from: t1, to: t5, return [t1, t5].
+    from: t5, to: t1, which t5  > t1, return [].
+    from: t5, return [t5].
+    from: t3, return [t3, t5].
+    to: t5, return [t1, t5].
+    from: t which t3  < t  <t4, return [t4, t5].
+    to: t which t3  < t  <t4, return [t1, t3].
+    from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
+
+**NOTE**：maximum 2000 per time
+
+### Example
+
+Example for Requesting parameter of KLine data：
+
+    {
+    "req": "market.BTC_CQ.kline.1min",
+    "id": "id4"
+    }
+
+Example of successful requesting and return data：
+
+    {
+     "rep": "market.BTC_CQ.kline.1min",
+     "status": "ok",
+     "id": "id4",
+     "tick": [
+       {
+        "vol": 100,
+        "count": 27,
+        "id": 1494478080,
+        "open": 10050.00,
+        "close": 10058.00,
+        "low": 10050.00,
+        "high": 10058.00,
+        "amount": 175798.757708
+       },
+       {
+        "vol": 300,
+        "count": 28,
+        "id": 1494478140,
+        "open": 10058.00,
+        "close": 10060.00,
+        "low": 10056.00,
+        "high": 10065.00,
+        "amount": 158331.348600
+       }
+     ]
+    }
+
+## Subscribe Market Depth Data
+
+### Topic
+
+After establish connection with WebSocket API, describing data formed as following to Server：
+
+    {
+    "sub": "market.$symbol.depth.$type",
+    "id": "id generated by client"
+    }
+
+### Topic Parameter
+
+|**Parameter**|   **Name**  | **Type**  | **Description** |  **Default Value**  | **Range**|
+|-------------- |-------------- |---------- |------------ |------------ |---------------------------------------------------------------------------------|
+|symbol         |true           |string     |Contract Code            |        |e.g. "BTC_CW" represents BTC “this_week”、"BTC_NW" represents BTC “next_week”、"BTC_CQ" represents BTC “quarter“.|
+|type           |true           |string     |Depth Type        |        |step0, step1, step2, step3, step4, step5（merged depth 0-5）；step0 means doesn’t merge|
+
+**NOTE**：When the user selects “Merged Depth”, the market pending orders within the certain quotation accuracy will be combined and displayed. The merged depth only changes the display mode and does not change the actual order price。
+
+### Example
+
+Example of correct subscription of requesting parameter：
+
+    {
+    "sub": "market.BTC_CQ.depth.step0",
+    "id": "id5"
+    }
+
+example of successful subscription and returning parameter：
+
+    {
+      "id": "id5",
+      "status": "ok",
+      "subbed": "market.BTC_CQ.depth.step0",
+      "ts": 1489474081631
+    }
+
+Whenever depth updated，client will receive data，for example：
+
+    {
+     "ch": "market.BTC_CQ.depth.step0",
+     "ts": 1489474082831,
+     "tick":
+       { 
+        "mrid": 269073229,
+         "id": 1539843937,
+            "bids": [
+             [9999.9101,1], 
+             [9992.3089,2]
+                    ],
+             "asks": [
+              [10010.9800,10],
+              [10011.3900,15]
+                     ],
+          "ts": 1539843937417,
+           "version": 1539843937,
+           "ch": "market.BTC_CQ.depth.step0"
+        }
+    }
+    
+    tick illustration
+    "tick": {
+      "bids": [
+        [price of buy 1, amount of buy 1]
+        [price of buy 2, amount of buy 2]
+         //more data here
+       ],
+       "asks": [
+        [price of sell 1, amount of sell 1]
+        [price of sell 2, amount of sell 2]
+        //more data here
+       ]
+    }
+
+## Subscribe Trade Detail Data
+
+### Topic
+
+After establish connection with WebSocket API, describing data formed as following to Server:
+
+    {
+     "sub": "market.$symbol.detail",
+     "id": "id generated by client"
+    }
+	
+### Topic Parameter
+
+|**Parameter**|   **Name**  | **Type**  | **Description** |  **Default Value**  | **Range**|
+|-------------- |-------------- |---------- |------------ |------------ |--------------------------------------------------------------------------------|
+|symbol         |true           |string     |Contract Code      |              |e.g. "BTC_CW" represents BTC “this_week”、"BTC_NW" represents BTC “next_week”、"BTC_CQ" represents BTC “quarter“.|
+
+### Example
+
+Example of successful subscription of request parameter：
+
+    {
+     "sub": "market.BTC_CQ.detail",
+     "id": "id6"
+    }
+
+Example of successful subscription and return parameter：
+
+    {
+    "ch": "market.BTC_CW.detail",
+    "ts": 1539842340724,
+    "tick": {
+    	"id": 1539842340,
+    	"mrid": 268041138,
+    	"open": 6740.47,
+    	"close": 7800,
+    	"high": 7800,
+    	"low": 6726.13,
+    	"amount": 477.1200312075244664773339914558562673572,
+    	"vol": 32414,
+    	"count": 1716
+            }
+       }
+
+tick illustration：
+
+    "tick": 
+         { 
+           "id":  Kline id, 
+           "mrid": 1494496390000, 
+           "vol": Trading volume, 
+           "count": transaction count, 
+           "open": opening price, 
+           "close": closing price, when Kline is the last one, price is the latest price 
+           "low": Lowest Price, 
+           "high": Highest Price, 
+           "amount": Transaction amount(currency), sum(trading volume(amount)*denomination/transaction price)
+         }
+
+## Request Trade Detail Data
+
+### Topic
+
+Whenever depth updated，client will receive data，for example：
+
+    {
+     "req": "market.$symbol.trade.detail",
+     "id": "id generated by client"
+    }
+
+return Trade Detail
+
+### Example
+
+Example for request parameter of requesting Market Detail Data：
+
+    {
+     "req": "market.BTC_CQ.trade.detail",
+     "id": "id8"
+    }
+
+Example of successful request and return data：
+
+
+
+    {
+     "ch": "market.BTC_CQ.trade.detail",
+     "ts": 1489474082831,
+     "data": [
+              {
+               "id":601595424,
+               "price":10195.64,
+               "amount":100,
+               "direction":"buy",
+               "ts":1494495766000
+               },
+              {
+              "id":601595423,
+              "price":10195.64,
+              "amount":200,
+              "direction":"buy",
+              "ts":1494495711000
+              }
+            ]
+     }
+
+tick date illustration：
+
+    "data": [
+      {
+       "id": message ID,
+       "price": transaction price,
+       "amount": transaction amount ,
+       "direction": transaction direction,
+       "ts": timestamp
+      }
+     ]
+
+## Subscribe Trade Detail Data
+
+### Topic
+
+After establish connection with WebSocket API, describing data formed as following to Server：
+
+    {
+    "sub": "market.$symbol.trade.detail",
+    "id": "id generated by client"
+    }
+
+**NOTE**：Can only obtain the latest 300 Trade Detail Data。
+
+### Topic Parameter
+
+|**Parameter**|   **Name**  | **Type**  | **Description** |  **Default Value**  | **Range**|
+|-------------- |-------------- |---------- |---------- |------------ |--------------------------------------------------------------------------------|
+|symbol         |true           |string     |Contract Name    |            |e.g. "BTC_CW" represents BTC “This Week”、"BTC_NW" represents BTC “Next Week”、"BTC_CQ" represents BTC “Quarter“.|
+
+### Example
+
+Example of successful subscription of request parameter：
+
+    {
+     "sub": "market.BTC_CQ.trade.detail",
+     "id": "id7"
+    }
+
+Example of successful subscription and return parameter：
+
+    {
+     "id": "id7",
+     "status": "ok",
+     "subbed": "market.BTC_CQ.trade.detail",
+     "ts": 1489474081631
+    }
+
+Whenever Trade Detail updated，client will receive data，for example：
+
+    {
+    "ch": "market.BTC_NW.trade.detail",
+    "ts": 1539831709042,
+    "tick": {
+    	"id": 265842227,
+    	"ts": 1539831709001,
+    	"data": [{
+    		"amount": 20,
+    		"ts": 1539831709001,
+    		"id": 265842227259096443,
+    		"price": 6742.25,
+    		"direction": "buy"
+    	        }]
+              }
+     }
+
+data illustration：
+
+    "data": [
+      {
+       "id": message ID,
+      "price": transaction price,
+       "amount": transaction amount ,
+       "direction": transaction direction,
+       "ts": timestamp
+      }
+     ]
+	 
+# Websocket Asset and Order
+
+## General
+
+### Order Push Heartbeat
+
+WebSocket API supports one-way heartbeat. The Server initiates ping message and the Client will return pong message. The Server sends back a heartbeat:
+
+```
+{
+    "op": "ping",
+    "ts": 1492420473058
+}
+```
+
+WebSocket Client should return:
+
+```
+{
+    "op": "pong"
+    "ts": 1492420473058
+}
+```
+
+Note: 
+"ts" value in the return "pong" message is the "ts" value from "ping" push
+Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. 
+Under abnormal conditions, WebSocket Server will return error message like:
+
+```
+{
+    "op": "pong"
+    "ts": 1492420473027,
+    "err-code": 2011，
+    "err-msg": “detailed error message”
+}
+```
+
+Websocket Server disconnects automatically
+During period of building connection and authentication, Websocket Server will disconnect automatically if there is any error. The data structure before closing pushing are as below:
+
+```
+{
+    "op": "close", // indicate Websocket Server disconnected automatically 
+    "ts": long   // The local timestamp of Server push
+}
+
+```
+Server return error but remain connection
+After successful authentication, Server will return error but not disconnect if Client provides illegal Op or there is any internal error.
+
+```
+{
+    "op": "error", // indicate that receive illegal Op or internal error
+    "ts": long// The local timestamp of Server push
+}
+```
+
+## Subscribe data（sub）
+
+After successfully building WebSocket API connection, send data to Server in the formats as below to subscribe data:
+
+### Data formats of subscription request
+
+```
+{
+  “op”: “sub”,
+  "cid": "id generated by client”,
+  “topic": "topic to sub”
+}
+```
+
+### Subscription request formats illustration
+
+| Charactor string name | Type   | Illustration                                        |
+| :------- | :----- | :------------------------------------------ |
+| op       | string | Required；operation name, fixed value of subscription is "sub"             |
+| cid      | string | Required; Client requests unique ID                     |
+| topic    | string | Required；topic name of subscription, for detailed topic list, please refer to appendix |
+
+### Sample of subscription request
+
+Correct subscription request
+
+```
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "orders.btc"
+}
+```
+
+Response sample to successful subscription request
+
+```
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "err-code": 0,
+  "ts": 1489474081631,
+  "topic": "orders.btc"
+}
+```
+
+Sample of incorrect subscription request (wrong topic)
+
+```
+{
+  "op": "sub",
+  "topic": "orders.bar",
+  "cid": "40sG903yz80oDFWr"
+}
+```
+
+Response sample of failed subscription request 
+
+```
+{
+  "op": "sub",
+  "topic": "orders.bar",
+  "cid": "40sG903yz80oDFWr",
+  "err-code": xxxx, // For specific encoding, please refer to response code list 
+  "err-msg": “Error details”，
+  "ts": 1489474081631
+}
+```
+
+### Data formats illustration of detailed information of filled orders  
+
+```
+{
+“op”: “notify”,
+“topic”: “orders.btc”, 
+"ts": 1489474082831, 
+"symbol": "BTC",
+"contract_type": "this_week",
+"contract_code": "BTC180914", 
+"volume": 111, 
+"price": 1111, 
+"order_price_type": "limit", 
+"direction": "buy",
+"offset": "open", 
+"status": 6, //order status( 3 submitted 4 partially filled 5 withdrawal with partially filled  6 fully filled 7 withdrawal)
+"lever_rate": 10, 
+"order_id": 106837, 
+"client_order_id": 10683, 
+"order_source": "web", 
+"order_type": 1, //Order type  (1:quotation 、2: withdrawal 、3: liquadation、4:delivery)
+"created_at": 1408076414000,
+"trade_volume": 1, 
+"trade_turnover": 1200, 
+"fee": 0, 
+"trade_avg_price": 10, 
+"margin_frozen": 10, 
+"profit": 2, 
+"trade":[{
+    "trade_id":112,
+    "trade_volume":1, 
+    "trade_price":123.4555,
+    "trade_fee":0.234, 
+    "trade_turnover":34.123, 
+    "created_at": 1490759594752, 
+    "role": "maker"
+  }]
+}
+```
+
+### Data formats illustration of orders push  
+
+| Charactor string name                | Type    | Illustration                                                         |
+| ----------------------- | ------- | ------------------------------------------------------------ |
+| op                      | string  | Required; Operation name，fixed value of the push is "notify;                          |
+| topic                   | string  | Required; Topic of the push                                             |
+| ts                      | long    | Server-end response timestamp                                             |
+| symbol                  | string  | Contract type ID                                                       |
+| contract_type           | string  | Contract type                                                   |
+| contract_code           | string  | Contract code                                                   |
+| volume                  | decimal | Order volume                                                     |
+| price                   | decimal | Order price                                                     |
+| order_price_type        | string  | "limit", "opponent","post_only"   Position limit will be applied to post_only while order limit will not.                 |
+| direction               | string  | "buy", "sell"                                        |
+| offset                  | string  | "open", "close"                                       |
+| status                  | int     | (1prepare to submit 2 prepare to submit 3 submitted 4 partially filled 5 withdrawal with partially filled  6 fully filled 7 withdrawal 11 during withdrawal) |
+| lever_rate              | int     | Leverage ratio                                                     |
+| order_id                | long    | Order ID                                                       |
+| client_order_id         | long    | Client order ID                                                   |
+| order_source            | int     | Order source） |
+| order_type              | int     | Order type  1:Quotation 、 2: withdrawal 、 3: liquidation、4: delivery                 |
+| created_at              | long    | Order created time                                                 |
+| trade_volume            | decimal | Trade volume                                                     |
+| trade_turnover          | decimal | Trade turnover                                                   |
+| fee                     | decimal | fee                                                       |
+| trade_avg_price         | decimal | Average price                                                     |
+| margin_frozen           | decimal | Frozen margin                                                   |
+| profit                  | decimal | Profit                                                         |
+| <list>(属性名称: trade) |         |                                                              |
+| trade_id                | long    | match result id, not unique, note:  one match result represents a trade set of one taker order and N maker orders, if the taker order matches with the N maker orders, it will generate N trades with same match result id                                                  |
+| trade_volume            | decimal | Trade volume                                                      |
+| trade_price             | decimal | Match price                                                     |
+| trade_fee               | decimal | Trade fee                                                   |
+| trade_turnover          | decimal | Trade turnover                                                     |
+| created_at              | long    | Order filled time                                                 |
+| role              | string  | taker or maker                                                |
+| <list>                  |         |                                                              |
+
+
+## Unsubscribe data (unsub)
+
+After successfully building WebSocket API connection, send data to Server in the formats as below to unsubscribe data:
+
+### Data formats of cancel subscription request
+
+```
+{
+  “op”: “unsub”,
+  “topic": "topic to unsub”,
+  "cid": "id generated by client”,
+}
+```
+
+### Formats illustration of unsubscribing
+
+| Name | Type   | Illustration                                               |
+| :------- | :----- | :------------------------------------------------- |
+| op       | string | Required; operation name, fixed value of unsubscribing "unsub";                 |
+| cid      | string | optionally fill;Client requests unique ID                            |
+| topic    | string | Required; topic name of the unsubscribing, detailed topic list please refer to the appendix; |
+
+### Requset examples of cancel subscription
+
+The correct way to unsubscribe 
+
+```
+{
+  "op": "unsub",
+  "topic": "orders.btc",
+  "cid": "40sG903yz80oDFWr"
+}
+```
+
+Examples of return data when unsubscribe successufully
+
+```
+{
+  "op": "unsub",
+  "topic": "orders.btc",
+  "cid": "id generated by client",
+  "err-code": 0,
+  "ts": 1489474081631
+}
+```
+
+### Subscribe and unsubscribe rules
+
+| Subscribe (sub)      | Unsubscribe (ubsub) | Rules   |
+| -------------- | --------------- | ------ |
+| orders.*       | orders.*        | allowed   |
+| orders.symbol1 | orders.*        | allowed   |
+| orders.symbol1 | orders.symbol1  | allowed   |
+| orders.symbol1 | orders.symbol2  | disallowed |
+| orders.*       | orders.symbol1  | disallowed |
+
+
+## Data of balances (sub)
+
+After building connection with WebSocket API successfully, please send data in the following format to the Server to subscribe corresponding data:
+
+### The required format for corresponding data subscription
+
+```
+{
+  "op": "sub",
+  "cid": "id generated by client”,
+  “topic": "topic to sub”
+}
+```
+
+### More illustration of the required format
+
+| String Name | Type   | Illustration                                        |
+| :------- | :----- | :------------------------------------------ |
+| op       | string | Must fill；Operation name, the fixed value for subscription should be "sub"             |
+| cid      | string | Must fill; Client unique ID for requests                     |
+| topic    | string | Must fill；Must fill；Topic name of the subscription，Must fill (accounts.$symbol)  Subscribe/unsubscribe the assets changes information of one contract type; when the value of $symbol is "*" then it means subscribing/unsubscribing all contract types; |
+
+### Sample for subscription request
+
+The correct subscription request
+
+```
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "accounts.btc"
+}
+```
+
+Response for successful subscription
+
+```
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "err-code": 0,
+  "ts": 1489474081631,
+  "topic": "accounts.btc"
+}
+```
+
+Sample of incorrect subscription request（wrong topic）
+
+```
+{
+  "op": "sub",
+  "topic": "accounts.bar",
+  "cid": "40sG903yz80oDFWr"
+}
+```
+Response  data sample for failed subscription
+ 
+```
+{
+  "op": "sub",
+  "topic": "accounts.bar",
+  "cid": "40sG903yz80oDFWr",
+  "err-code": xxxx, // For the specific code please refer to Error Code List  
+  "err-msg": “Details of the error message”，
+  "ts": 1489474081631
+}
+```
+
+### Sample of return parameters  for assests change
+
+```
+{
+    "op": “notify”,             // Operation name
+    "topic": “accounts”,     // Topic
+    "ts": 1489474082831,    
+    "event": "order.match",
+    "data":[
+       {
+    "symbol": "BTC",
+    "margin_balance": 1,
+    "margin_static": 1,
+    "margin_position": 0,
+    "margin_frozen": 3.33,
+    "margin_available": 0.34,
+    "profit_real": 3.45,
+    "profit_unreal": 7.45,
+    "withdraw_available":4.0989898,
+    "risk_rate": 100,
+    "liquidation_price": 100
+    "lever_rate": 10
+     }
+   ]
+}
+```
+
+### String Illustration
+
+| String Name                | Type    | Illustration                                                         |
+| ----------------------- | ------- | ------------------------------------------------------------ |
+| ts                        | long  | Response generation time, unit: millisecond                           |
+| event                     | string  | Illustration for assets changes information, i.e., create order and open positions (order.open), orders matched (order.match) (except for liquidated, settled and delivered positions), Settlement and delivery (settlement), orders liquidated (order.liquidation)(net and positions taken-over), order canceled (order.cancel), contract account transferring (contract.transfer)(including external-transferring), system (contract.system), other assets changes (other), initial margin (init)                                              |
+| symbol                    | string    | contract types code ,"BTC","ETH"...，when the value of $symbol is "*" means subscribing all types of contracts                                            |
+| margin_balance            | decimal  | Account Equity                                                       |
+| margin_static             | decimal  | Static Equity                                                     |
+| margin_position           | decimal  | Position margin (the margin of open positions)                                                     |
+| margin_frozen             | decimal | Frozen margin                                                     |
+| margin_available          | decimal | Available margin                                                     |
+| profit_real               | decimal  | Realized profits and losses               |
+| profit_unreal             | decimal  | Unrealized profits and losses                                         |
+| risk_rate                 | decimal  | Margin rate                                     |
+| liquidation_price         | decimal     | Estimated liquidation price |
+| withdraw_available        | decimal     | Available tranferring amount                                                  |
+| lever_rate                | decimal    | Leverage ratios                                                    |
+
+
+## Unsubscribe（ubsub）
+
+After building connection with WebSocket API successfully, please send data in the following format to the Server to unsubscribe data:
+
+### Request format of unsubscription
+
+```
+{
+  “op”: “unsub”,
+  “topic": "topic to unsub”,
+  "cid": "id generated by client”,
+}
+```
+
+### Request format illustration of unsubscription 
+
+| String Name | Type   | Illustration                                               |
+| :------- | :----- | :------------------------------------------------- |
+| op       | string | Must fill;Operation name, the fixed value for unsubscription should be "unsub" ;                 |
+| cid      | string | Optional fill; Client unique ID for requests                             |
+| topic    | string | Must fill;Must fill；Must fill；Topic name of the subscription，Must fill (accounts.$symbol)  Subscribe/unsubscribe the assets changes information of one contract type; when the value of $symbol is "*" then it means subscribing/unsubscribing all contract types; |
+
+### Request sample of unsubscription 
+
+The correct request of unsubscription
+
+```
+{
+  "op": "unsub",
+  "topic": "accounts.btc",
+  "cid": "40sG903yz80oDFWr"
+}
+```
+
+Response for successful unsubscription
+
+```
+{
+  "op": "unsub",
+  "topic": "accounts.btc",
+  "cid": "id generated by client",
+  "err-code": 0,
+  "ts": 1489474081631
+}
+```
+
+###  Illustration for the rules of Subscription and Unsubscription
+
+| Subscribe (sub)      | Unsubscribe (ubsub) | Rules   |
+| -------------- | --------------- | ------ |
+| accounts.*       | accounts.*        | Permit   |
+| accounts.symbol1 | accounts.*        | Permit   |
+| accounts.symbol1 | accounts.symbol1  | Permit   |
+| accounts.symbol1 | accounts.symbol2  | Not permit |
+| accounts.*       | accounts.symbol1  | Not permit |
+
+
+## Subscribe Position Change Data (sub)
+
+After building connection with WebSocket API successfully, please send data in the following format to the Server to subscribe:
+
+### Request format of subscription
+
+```
+{
+  “op”: “sub”,
+  "cid": "id generated by client”,
+  “topic": "topic to sub”
+}
+```
+
+### Request format illustration of subscribtion
+
+| String Name | Type   | Illustration                                        |
+| :------- | :----- | :------------------------------------------ |
+| op       | string | Must fill；Operation name, the fixed value for subscription should be "sub"             |
+| cid      | string | Optional fill; Client unique ID for requests                     |
+| topic    | string | Must fill；Topic name of the subscription，Must fill (positions.$symbol)  Subscribe/unsubscribe the assets changes information of one contract type; when the value of $symbol is "*" then it means subscribing/unsubscribing all contract types; |
+
+### Sample for subscription request
+
+The correct subscription request
+
+```
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "positions.btc"
+}
+```
+
+Response for successful subscription
+
+```
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "err-code": 0,
+  "ts": 1489474081631,
+  "topic": "positions.btc"
+}
+```
+
+Sample for incorrect subscription request（Wrong topic）
+
+```
+{
+  "op": "sub",
+  "topic": "positions.bar",
+  "cid": "40sG903yz80oDFWr"
+}
+```
+Response  data sample for failed subscription
+
+```
+{
+  "op": "sub",
+  "topic": "positions.bar",
+  "cid": "40sG903yz80oDFWr",
+  "err-code": xxxx, //For the specific code please refer to Error Code List  
+  "err-msg": “Details of the error message”，
+  "ts": 1489474081631
+}
+```
+
+### Sample of return parameters  for position change
+
+```
+{ 
+
+      “op”: “notify”,             // Operation name
+      “topic”: “positions”,     // Topic
+      "ts": 1489474082831,   
+     "event": "order.match"
+     "data":[
+                   {
+      "symbol": "BTC",
+      "contract_code": "BTC180914",
+      "contract_type": "this_week",
+      "volume": 1,
+      "available": 0,
+      "frozen": 0.3,
+      "cost_open": 422.78,
+      "cost_hold": 422.78,
+      "profit_unreal": 0.00007096,
+      "profit_rate": 0.07,
+      "profit": 0.97,
+      "position_margin": 3.4,
+      "lever_rate": 10,
+      "direction":"buy"
+                 }
+             ]
+}
+```
+
+### Return Parameter
+
+| String Name                | Type    | Illustration                                                         |
+| ----------------------- | ------- | ------------------------------------------------------------ |
+| ts                     | long  | Response generation time, unit: millisecond                           |
+| event                  | string  | Illustration for assets changes information, i.e., create order and open positions (order.open), orders matched (order.match) (except for liquidated, settled and delivered positions), Settlement and delivery (settlement), orders liquidated (order.liquidation)(net and positions taken-over), order canceled (order.cancel), contract account transferring (contract.transfer)(including external-transferring), system (contract.system), other assets changes (other), initial margin (init)   |
+| symbol                 | string    | contract types code ,"BTC","ETH"...，when the value of $symbol is "*" means subscribing all types of contracts                                               |
+| contract_code          | decimal  | Contract code                                                      |
+| contract_type          | decimal  | Contract type, weekly: "this_week"; Biweekly:"next_week"; Quarterly:"quarter"; Already delivered: "delivered"                                                    |
+| volume                 | decimal  | Open positions                                                     |
+| available              | decimal | Available positions for closing                                                     |
+| frozen                 | decimal | Frozen amount                                                    |
+| cost_open              | decimal  | Average open price                |
+| cost_hold              | decimal  | Average position price                                        |
+| profit_unreal          | decimal  | Unrealized profits and losses                                        |
+| profit_rate            | decimal     | Profit rate |
+| profit                 | decimal     | Profit                                                     |
+| position_margin        | decimal    | Position margin                                                       |
+| lever_rate             | decimal     | Leverage ratios                                                 |
+| direction              | decimal    | The trading direction: "buy", "sell"                                                   |
+
+
+## Unsubscribe data (ubsub)
+
+After building connection with WebSocket API successfully, please send data in the following format to the Server to unsubscribe data:
+
+### Request format of unsubscription
+
+```
+{
+  “op”: “unsub”,
+  “topic": "topic to unsub”,
+  "cid": "id generated by client”,
+}
+```
+
+### Request format illustration for unsubscription
+
+| String Name | Type   | Illustration                                               |
+| :------- | :----- | :------------------------------------------------- |
+| op       | string | Must fill;Operation name, the fixed value for unsubscription should be "unsub" ;              |
+| cid      | string | Optional fill; Client unique ID for requests                          |
+| topic    | string | Must fill;Must fill；Must fill；Topic name of the subscription，Must fill (positions.$symbol), when the value of $symbol is "*" means subscribing all types of contracts;         |
+
+### Sample for unsubscription request
+Correct request sample for unsubscription
+
+```
+{
+  "op": "unsub",
+  "topic": "positions.btc",
+  "cid": "40sG903yz80oDFWr"
+}
+```
+
+Response for successful unsubscription
+
+```
+{
+  "op": "unsub",
+  "topic": "positions.btc",
+  "cid": "id generated by client",
+  "err-code": 0,
+  "ts": 1489474081631
+}
+```
+
+### Illustration for the rules of Subscription and Unsubscription
+
+| Subsribe (sub)      | Unsubscribe (ubsub) | Rules   |
+| -------------- | --------------- | ------ |
+| positions.*       | positions.*        | permit   |
+| positions.symbol1 | positions.*        | permit   |
+| positions.symbol1 | positions.symbol1  | permit   |
+| positions.symbol1 | positions.symbol2  | not permit |
+| positions.*       | positions.symbol1  | not permit |
+
+# Websocket Appendix
+
+## Operation (OP) Type illustration
+
+| Type   | Description                 |
+| ------ | -------------------- |
+| ping   | heartbeat initiate (server)     |
+| pong   | heartbeat response             |
+| auth   | authentication                 |
+| sub    | subscribe information             |
+| unsub  | unsubscribe         |
+| notify | push subscription (server) |
+
+## topic type illustration
+
+| Type           | Operation type | Description                                                         |
+| -------------- | ------------ | ------------------------------------------------------------ |
+| orders.$symbol | sub,ubsub    | subscribe/unsubscribe to order change of specified trading pairs when the value of $symbol is "*" standing for subscribing all trading pairs |
+
+## Err-Code illustration
+
+| Error code | Error description                                 |
+| ------ | ---------------------------------------- |
+| 0      | Request successfully.                    |
+| 2001   | Invalid authentication.                  |
+| 2002   | Authentication required.                 |
+| 2003   | Authentication failed.                   |
+| 2004   | Number of visits exceeds limit.          |
+| 2005   | Connection has been authenticated.       |
+| 2010   | Topic error.                             |
+| 2011   | Contract doesn't exist.                  |
+| 2012   | Topic not subscribed.                    |
+| 2013   | Authentication type doesn't exist.       |
+| 2014   | Repeated subscription.                   |
+| 2030   | Exceeds connection limit of single user. |
+| 2040   | Missing required parameter.              |
+
 </br>
 </br>
 </br>
