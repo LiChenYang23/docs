@@ -3243,9 +3243,182 @@ err-msg(中文） |  err-msg(English)  |  补充说明   |
 
     
 
-# 合约Websocket 订阅
+# 合约Websocket简介
 
-  - <a href='https://github.com/huobiapi/API_Docs/wiki/WS_api_reference_Derivatives'>合约Websocket 文档 </a>
+## 接口列表
+
+  权限类型  |   接口数据类型   |  请求方法   |  类型    |  描述                     |  需要验签       |                                                                                                                                            
+----------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |---------- |---------------------------- |--------------|
+  读取   |  市场行情接口 |         market.$symbol.kline.$period  |      sub        |  订阅 KLine 数据              |  否  |
+  读取   |  市场行情接口  |           market.$symbol.kline.$period  |              req        |  请求 KLine 数据              |  否  |
+  读取   |  市场行情接口           |  market.$symbol.depth.$type  |               sub        |  订阅 Market Depth 数据       |  否  | 
+  读取   |  市场行情接口           |  market.$symbol.detail  |               sub        |  订阅 Market detail 数据       |  否  |
+  读取   |  市场行情接口           |  market.$symbol.trade.detail  |               req        |  请求 Trade detail 数据       |  否  |
+  读取   |  市场行情接口           |  market.$symbol.trade.detail  |        sub |  订阅 Trade Detail 数据  |  否  | 
+  交易   |  交易接口           |  orders.$symbol  |        sub |  订阅订单成交数据  | 是  | 
+  读取   |  资产接口           |  accounts.$symbol  |        sub  |  订阅某个品种下的资产变动信息  | 是  | 
+  读取   |  资产接口          |  positions.$symbol  |        sub  |  订阅某个品种下的持仓变动信息  | 是  | 
+  读取   |  交易接口          |  liquidationOrders.$symbol  |        sub  |  订阅某个品种下的强平订单信息  | 是  | 
+
+## 合约订阅地址
+
+ 合约站行情请求以及订阅地址为：wss://www.hbdm.com/ws
+ 
+ 合约站订单推送订阅地址：wss://api.hbdm.com/notification
+ 
+ 如果这个两个地址访问不了，可使用：合约站行情请求以及订阅地址为：wss://www.btcgateway.pro/ws
+ 
+ 合约站订单推送订阅地址：wss://api.btcgateway.pro/notification
+ 
+ 如果对合约订单推送订阅有疑问，可以参考[Demo](https://github.com/huobiapi/Futures-Java-demo)
+ 
+## 访问次数限制
+
+公开行情接口和用户私有接口都有访问次数限制
+
+- 普通用户，需要密钥的私有接口，每个UID 3秒最多30次请求(该UID的所有币种和不同到期日的合约的所有私有接口共享3秒30次的额度)
+
+- 其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）
+
+- 行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：
+
+    （1） restful接口：同一个IP,  1秒最多200个请求 
+
+    （2）  websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据
+
+- WebSocket私有订单成交推送接口(需要API KEY验签)
+
+    一个UID最多同时建立10个私有订单推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。
+
+    注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。
+
+api接口response中的header返回以下字段
+
+- ratelimit-limit： 单轮请求数上限，单位：次数
+
+- ratelimit-interval：请求数重置的时间间隔，单位：毫秒
+
+- ratelimit-remaining：本轮剩余可用请求数，单位：次数
+
+- ratelimit-reset：请求数上限重置时间，单位：毫秒 
+ 
+ 
+# 合约WebSocket市场行情接口
+
+## 订阅 KLine 数据
+
+### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：
+
+   `
+   {
+    "sub": "market.$symbol.kline.$period",
+    "id": "id generate by client"
+   }
+   `
+
+  参数名称  |    是否必须   |   类型  |   描述   |    默认值    |   取值范围
+-------------- | -----------------| ---------- |----------| ------------ | --------------------------------------------------------------------------------  |
+  symbol  |       true         |  string  |   交易对   |               |  如"BTC\_CW"表示BTC当周合约，"BTC\_NW"表示BTC次周合约，"BTC\_CQ"表示BTC季度合约  |
+  period    |     true          | string   |  K线周期     |            |  1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon  |
+
+### 正确订阅请求参数的例子：
+
+`
+    {
+    "sub": "market.BTC_CQ.kline.1min",
+    "id": "id1"
+    }
+`
+
+> 订阅成功返回数据的例子
+
+```json
+  {
+  "id": "id1",
+  "status": "ok",
+  "subbed": "market.BTC_CQ.kline.1min",
+  "ts": 1489474081631
+  }
+
+```
+    
+
+> 之后每当 KLine 有更新时，client 会收到数据，例子
+
+```json
+    {
+     "ch": "market.BTC_CQ.kline.1min",
+     "ts": 1489474082831,
+     "tick": 
+        {
+         "id": 1489464480,
+         "mrid": 268168237,
+         "vol": 100,
+         "count": 0,
+         "open": 7962.62,
+         "close": 7962.62,
+         "low": 7962.62,
+         "high": 7962.62,
+         "amount": 0.3
+        }
+    }
+    
+```
+
+> tick 说明:
+
+```
+    "tick": 
+      {
+       "id": K线id,
+       "mrid": 268168237,
+       "vol": 成交量张数,
+       "count": 成交笔数,
+       "open": 开盘价,
+       "close": 收盘价,当K线为最晚的一根时，是最新成交价
+       "low": 最低价,
+       "high": 最高价,
+       "amount": BTC, 即 sum(每一笔 该合约面值* 该笔的成交量/成交价)
+    }
+```
+
+
+**错误订阅的列子**
+
+错误订阅(错误的 symbol)
+
+    {
+     "sub": "market.invalidsymbol.kline.1min",
+     "id": "id2"
+    }
+
+订阅失败返回数据的例子
+
+    {
+     "id": "id2",
+     "status": "error",
+     "err-code": "bad-request",
+     "err-msg": "invalid topic market.invalidsymbol.kline.1min",
+     "ts": 1494301904959
+    }
+
+错误订阅(错误的 topic)
+
+    {
+     "sub": "market.BTC_CQ.kline.3min",
+     "id": "id3"
+    }
+
+订阅失败返回数据的例子
+
+    {
+     "id": "id3",
+     "status": "error",
+     "err-code": "bad-request",
+     "err-msg": "invalid topic market.BTC_CQ.kline.3min",
+     "ts": 1494310283622
+    } 
+ 
 
 <br>
 
