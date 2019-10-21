@@ -3311,8 +3311,11 @@ api接口response中的header返回以下字段
 
 
    {
-    "sub": "market.$symbol.kline.$period",
-    "id": "id generate by client"
+   
+   "sub": "market.$symbol.kline.$period",
+   
+   "id": "id generate by client"
+   
    }
 
 
@@ -3325,9 +3328,12 @@ api接口response中的header返回以下字段
 
 
    {
-    "sub": "market.BTC_CQ.kline.1min",
-    "id": "id1"
-    }
+   
+   "sub": "market.BTC_CQ.kline.1min",
+   
+   "id": "id1"
+   
+   }
 
 
 > 订阅成功返回数据的例子
@@ -3387,14 +3393,18 @@ api接口response中的header返回以下字段
 
 错误订阅(错误的 symbol)
 
-    {
-     "sub": "market.invalidsymbol.kline.1min",
-     "id": "id2"
-    }
+  {
+  
+  "sub": "market.invalidsymbol.kline.1min",
+  
+  "id": "id2"
+  
+  }
 
-订阅失败返回数据的例子
+> 订阅失败返回数据的例子
 
-    {
+```json
+  {
      "id": "id2",
      "status": "error",
      "err-code": "bad-request",
@@ -3402,22 +3412,33 @@ api接口response中的header返回以下字段
      "ts": 1494301904959
     }
 
-错误订阅(错误的 topic)
+```
+    
 
-    {
-     "sub": "market.BTC_CQ.kline.3min",
-     "id": "id3"
-    }
+错误订阅(错误的 topic)：
 
-订阅失败返回数据的例子
 
-    {
+   {
+   
+   "sub": "market.BTC_CQ.kline.3min",
+   
+   "id": "id3"
+   
+   }
+
+> 订阅失败返回数据的例子
+
+```json
+  {
      "id": "id3",
      "status": "error",
      "err-code": "bad-request",
      "err-msg": "invalid topic market.BTC_CQ.kline.3min",
      "ts": 1494310283622
     } 
+
+```
+    
  
 
 <br>
