@@ -3540,7 +3540,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 ```
  
  
-# 合约WebSocket市场行情接口
+# WebSocket市场行情接口
 
 ## 订阅 KLine 数据
 
